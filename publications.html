@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=8" />
-    <script src="js/prefs.js?v=8"></script>
-    <script src="js/main.js?v=8" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=9" />
+    <script src="js/prefs.js?v=9"></script>
+    <script src="js/main.js?v=9" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -20,7 +20,7 @@
     <noscript>
       <nav class="noscript-nav container">
         <a href="index.html">About</a> · <a href="research.html">Research</a> ·
-        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a>
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
       </nav>
     </noscript>
 
@@ -53,7 +53,7 @@
             <button type="button" data-filter="proceedings" aria-pressed="false"><span lang="en">Conference proceedings</span><span lang="it">Atti di conferenza</span> <span class="count">4</span></button>
             <button type="button" data-filter="posters" aria-pressed="false"><span lang="en">Posters and talks</span><span lang="it">Poster e presentazioni</span> <span class="count">5</span></button>
             <button type="button" data-filter="reports" aria-pressed="false"><span lang="en">Reports and proposals</span><span lang="it">Rapporti e proposte</span> <span class="count">6</span></button>
-            <button type="button" data-filter="theses" aria-pressed="false"><span lang="en">Thesis</span><span lang="it">Tesi</span> <span class="count">1</span></button>
+            <button type="button" data-filter="theses" aria-pressed="false"><span lang="en">Theses</span><span lang="it">Tesi</span> <span class="count">1</span></button>
           </div>
 
           <!-- ---------- Journal articles ---------- -->
@@ -424,12 +424,78 @@
           <!-- ---------- Thesis ---------- -->
           <details class="pub-group" id="theses" open>
             <summary>
-              <h2 class="group-heading"><span lang="en">Thesis</span><span lang="it">Tesi</span></h2>
+              <h2 class="group-heading"><span lang="en">Theses</span><span lang="it">Tesi</span></h2>
               <span class="count">1</span>
             </summary>
             <div class="pubs">
+              <!-- PhD thesis, not yet published.
+                   TODO: once published, add the repository or DOI link and update the status; the title may still change -->
+              <article class="pub" id="pub-phd-thesis">
+                <span class="badge" style="--badge: #822433"><span lang="en">PhD thesis</span><span lang="it">Tesi di dottorato</span></span>
+                <div class="pub-body">
+                  <h3 class="pub-title">
+                    From Planetary Exploration to Particle Physics: Design and Validation of a Robotic Airship for the Underground Experimental Caverns at
+                    CERN
+                  </h3>
+                  <p class="pub-authors"><strong class="me">Francesco Mazzei</strong></p>
+                  <p class="pub-venue" lang="en">
+                    PhD Program in Astronomy, Astrophysics and Space Science (AASS), XXXIX cycle · University of Rome Tor Vergata · Academic year 2025/2026
+                    · <strong>In preparation</strong>
+                  </p>
+                  <p class="pub-venue" lang="it">
+                    Dottorato in Astronomy, Astrophysics and Space Science (AASS), XXXIX ciclo · Università di Roma Tor Vergata · Anno accademico 2025/2026
+                    · <strong>In preparazione</strong>
+                  </p>
+                  <p class="pub-note" lang="en">
+                    Supervisors: Prof. Fabio Curti, Corrado Gargiulo. Research carried out at CERN (EP-DT), funded by the CERN Doctoral Student Programme
+                    within the EP R&amp;D programme (Work Package 4.2).
+                  </p>
+                  <p class="pub-note" lang="it">
+                    Relatori: Prof. Fabio Curti, Corrado Gargiulo. Ricerca svolta al CERN (EP-DT), finanziata dal CERN Doctoral Student Programme
+                    nell&#39;ambito del programma EP R&amp;D (Work Package 4.2).
+                  </p>
+                  <details class="abstract">
+                    <summary>Abstract</summary>
+                    <p>
+                      Lighter-than-air robots, or aerobots, have been proposed for decades for planetary exploration. These vehicles must fly without
+                      satellite navigation, carry their payload within a small lift budget and operate autonomously. The experimental caverns of the Large
+                      Hadron Collider (LHC) at CERN impose the same requirements. Human access to them is increasingly restricted, and the magnetic field
+                      and radiation levels are among the quantities to be mapped. Unlike a planetary target, however, the cavern allows the vehicle to be
+                      flown, recovered and improved. This thesis brings the aerobot concept underground and asks whether a robotic airship can serve as a
+                      mobile scientific instrument in the ALICE cavern, addressing the question through the design, modelling, characterisation and
+                      experimental validation of such a vehicle.
+                    </p>
+                    <p>
+                      The platform is an ellipsoidal envelope of 412&nbsp;l, 1.70&nbsp;m long and 0.64&nbsp;m in diameter, sized to manoeuvre within the
+                      cavern, driven by six motors and carrying a custom gondola whose structure, electronics and flight software were designed and
+                      integrated as part of this work. Its dynamics are described by a six-degree-of-freedom vectorial formulation, reduced to
+                      control-oriented subsystems whose coefficients are identified on the physical platform through dedicated flight experiments. The main
+                      environmental disturbance in the cavern is the stray magnetic field of the detector, which is therefore quantified by finite-element
+                      simulation. The response of the brushed DC motors, whose permanent magnet and ferromagnetic housing couple with the external field, is
+                      characterised on a bench up to 200&nbsp;mT. The field induces a torque that grows super-linearly with field strength, reaching
+                      35.77&nbsp;mN&nbsp;m peak-to-peak, and is reproduced by a two-harmonic model derived from the geometry of the motor.
+                    </p>
+                    <p>
+                      In the absence of satellite positioning, pose is recovered by a marker-based localisation pipeline referenced to targets surveyed in
+                      the ALICE coordinate system, with a three-dimensional position root-mean-square error of 5.38&nbsp;cm against motion-capture ground
+                      truth. The flight software runs on an embedded microcontroller and implements a layered architecture of cascaded controllers for
+                      altitude, heading and planar motion, on top of which waypoint navigation is built. The vehicle holds altitude with sub-centimetre
+                      steady-state error and follows waypoint missions with mean cross-track errors between 0.19 and 0.26&nbsp;m.
+                    </p>
+                    <p>
+                      The vehicle was finally tested in the ALICE cavern in three campaigns between 2025 and 2026, during technical stops of the LHC. The
+                      platform performed in the cavern as designed and acquired the first onboard magnetic, radiation and environmental measurements. In the
+                      last campaign, with both detector magnets at nominal current, the measured stray field was compared with the simulation. The
+                      principal outcome is the first demonstration of a robotic airship operating as a mobile scientific instrument inside the cavern of an
+                      operating detector, together with a quantitative benchmark for the field map on which future robotic operations will rely, and a
+                      proving ground for technologies intended for the buoyant exploration of other planets.
+                    </p>
+                  </details>
+                </div>
+              </article>
+
               <article class="pub" id="pub-thesis-2022">
-                <span class="badge" style="--badge: #822433"><span lang="en">Thesis</span><span lang="it">Tesi</span></span>
+                <span class="badge" style="--badge: #822433"><span lang="en">MSc thesis</span><span lang="it">Tesi magistrale</span></span>
                 <div class="pub-body">
                   <h3 class="pub-title">Dynamic interaction and control of an indoor blimp inside the CERN FCC-hh magnetic environment</h3>
                   <p class="pub-authors"><strong class="me">Francesco Mazzei</strong></p>
