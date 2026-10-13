@@ -202,6 +202,13 @@
 
   renderLanguage();
 
+  // External links (papers, DOIs, profiles) open in a new tab, so the site stays open
+  Array.prototype.forEach.call(document.querySelectorAll('a[href^="http"]'), function (link) {
+    if (link.hostname === window.location.hostname) return;
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener");
+  });
+
   // Mobile menu
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("site-nav");
