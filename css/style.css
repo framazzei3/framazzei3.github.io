@@ -640,6 +640,15 @@ ol {
   margin: 0;
 }
 
+/* "Related work" links at the end of a project */
+.related {
+  font-size: 0.88rem;
+}
+
+.related li {
+  margin-bottom: 0.35rem;
+}
+
 @media (max-width: 860px) {
   .projects {
     grid-template-columns: 1fr;

@@ -129,7 +129,7 @@
      ------------------------------------------------------------------------ */
   var footer =
     '<footer class="site-footer"><div class="container footer-inner">' +
-    '<p>© <span class="year">' + new Date().getFullYear() + "</span> Francesco Mazzei</p>" +
+    '<p>© <span class="copy-year">' + new Date().getFullYear() + "</span> Francesco Mazzei</p>" +
     socialList() +
     '<a class="to-top" href="#">' + icon("i-up") + both(TEXT.toTop) + "</a>" +
     "</div></footer>";

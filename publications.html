@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=4" />
-    <script src="js/prefs.js?v=4"></script>
-    <script src="js/main.js?v=4" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=6" />
+    <script src="js/prefs.js?v=6"></script>
+    <script src="js/main.js?v=6" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -27,7 +27,7 @@
     <main id="main">
       <!-- ===================================================================
            PUBLICATIONS
-           Grouped by year, newest first. Each paper is one <article class="pub">;
+           Grouped by type, newest first. Each item is one <article class="pub">;
            titles, authors and abstracts are written once (in English), only the
            labels have an Italian version.
            =================================================================== -->
@@ -35,19 +35,29 @@
         <div class="container">
           <h1 class="page-title"><span lang="en">Publications</span><span lang="it">Pubblicazioni</span></h1>
           <p class="section-intro" lang="en">
-            Journal articles, conference papers, reports and theses, newest first. Full list on
+            Journal articles, conference proceedings, posters, reports and theses, newest first within each group. Full list on
             <a href="https://scholar.google.com/citations?user=2Do8txEAAAAJ">Google Scholar</a> and
             <a href="https://orcid.org/0000-0003-4888-1428">ORCID</a>.
           </p>
           <p class="section-intro" lang="it">
-            Articoli su rivista, articoli a conferenza, rapporti e tesi, dal più recente. Elenco completo su
+            Articoli su rivista, atti di conferenza, poster, rapporti e tesi, dal più recente all'interno di ogni gruppo. Elenco completo su
             <a href="https://scholar.google.com/citations?user=2Do8txEAAAAJ">Google Scholar</a> e
             <a href="https://orcid.org/0000-0003-4888-1428">ORCID</a>.
           </p>
 
-          <!-- ---------- 2026 ---------- -->
-          <h2 class="year">2026</h2>
+          <!-- ---------- Journal articles ---------- -->
+          <h2 class="year" id="journal"><span lang="en">Journal articles</span><span lang="it">Articoli su rivista</span></h2>
           <div class="pubs">
+            <article class="pub" id="pub-frontiers-2026">
+              <span class="badge" style="--badge: #d6232f">Front. Robot. AI</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Robotic Airship for Measurement and Validation of a CERN Detector Stray Magnetic Field</h3>
+                <p class="pub-authors"><strong class="me">Francesco Mazzei</strong>, Paolo Francesco Scaramuzzino, Luca Bernardi, Fabio Curti, Corrado Gargiulo</p>
+                <p class="pub-venue"><em>Frontiers in Robotics and AI</em>, vol. 13, 1926428 · 2026 · <span lang="en">In press</span><span lang="it">In stampa</span></p>
+                <!-- TODO: add <p class="pub-links"><a href="https://doi.org/10.3389/frobt.2026.1926428">DOI</a></p> once the DOI is live -->
+              </div>
+            </article>
+
             <article class="pub" id="pub-mechatronics-2026">
               <span class="badge" style="--badge: #e9711c">Mechatronics</span>
               <div class="pub-body">
@@ -59,11 +69,7 @@
                 </p>
               </div>
             </article>
-          </div>
 
-          <!-- ---------- 2025 ---------- -->
-          <h2 class="year">2025</h2>
-          <div class="pubs">
             <article class="pub" id="pub-robotics-2025">
               <span class="badge" style="--badge: #4f5671">Robotics</span>
               <div class="pub-body">
@@ -107,80 +113,7 @@
                 </p>
               </div>
             </article>
-          </div>
 
-          <!-- ---------- 2024 ---------- -->
-          <h2 class="year">2024</h2>
-          <div class="pubs">
-            <article class="pub" id="pub-spie-2024">
-              <span class="badge" style="--badge: #0b6e8a">SPIE</span>
-              <div class="pub-body">
-                <h3 class="pub-title">MBSE in the context of PLATO camera system development</h3>
-                <p class="pub-authors">
-                  Giacomo Dinuzzi, Andrea Balestra, Francesco Santoli, <strong class="me">Francesco Mazzei</strong>, Jose Lorenzo Alvarez, Nicolas Gorius,
-                  Simonetta Chinellato, Natalia Auricchio, Isabella Pagano, Flavia Calderone, Claudio Arena, Gianalfredo Nicolini, Fabrizio Cogato, Giacomo
-                  Cherchi, Alessio Aboudan, Francesco Borsa, Daniele Brienza, Demetrio Magrin, Mauro Focardi, Vladimiro Noce
-                </p>
-                <p class="pub-venue">
-                  In <em>Modeling, Systems Engineering, and Project Management for Astronomy XI</em>, Proc. SPIE, p. 68 · <span lang="en">Aug</span><span lang="it">ago</span> 2024
-                </p>
-                <p class="pub-links">
-                  <a href="https://doi.org/10.1117/12.3019903">DOI</a>
-                </p>
-              </div>
-            </article>
-
-            <article class="pub" id="pub-airships-2024">
-              <span class="badge" style="--badge: #5b8c3a">AAIC</span>
-              <div class="pub-body">
-                <h3 class="pub-title">Development of Small Airships for Indoor Exploration and Inspection of the CERN Underground Facilities</h3>
-                <p class="pub-authors">
-                  <strong class="me">Francesco Mazzei</strong>, Andreas Burkart, Paolo Francesco Scaramuzzino, Andre Sobotta, Fabio Curti, Corrado Gargiulo
-                </p>
-                <p class="pub-venue">In <em>The Airship Association International Conference</em> · 2024</p>
-                <p class="pub-links">
-                  <a href="https://doi.org/10.5281/zenodo.17219272">DOI</a>
-                  <a href="https://zenodo.org/doi/10.5281/zenodo.17219272">Zenodo</a>
-                </p>
-                <details class="abstract">
-                  <summary>Abstract</summary>
-                  <p>
-                    In the past years, Windreiter collected vast experience in the construction and piloting of small indoor blimps, mostly applied to video
-                    capture and airship regattas. Within a recent cooperation with the European Organization for Nuclear Research (CERN), the development of
-                    an autonomous indoor explorer airship was initiated. The experiments at CERN are characterized by an intense radiation field, thus human
-                    access is extremely restricted. This is problematic, as the state of running machinery is assessed offsite based on remote data coming
-                    from a number of static sensors and gauges installed inside experimental caverns. A potential solution would be an autonomous small
-                    airship equipped with cameras and other sensors that can enter radiation areas, avoiding the need for human intervention and thereby
-                    limiting health risks. Based on super lightweight balloons and newly developed electronics, a variety of small airships could be realized
-                    and deployed inside the Large Hadron Collider (LHC) detector caverns. A first prototype has already been successfully remotely piloted via
-                    video transmission inside the ALICE cavern. Enhancing this application, Windreiter is developing a blimp-specific indoor autopilot
-                    environment. Currently available autopilots often lack capabilities for indoor applications or cannot sense the blimp's sluggish
-                    dynamics. Thus cameras, external reference systems and multiple sensors are implemented to enable stabilized flight and autonomous
-                    operation. This paper presents the current state of development of a new prototype version capable of achieving waypoint mission flights
-                    with over 2 hours of endurance, carrying scientific payloads, and featuring dimensions that allow operation in narrow environments. This
-                    work showcases various tests conducted on a waypoint-following mission, including results and performance measurements. Future project
-                    applications include deployments in upcoming CERN caverns, operating in strong magnetic fields and radiation.
-                  </p>
-                </details>
-              </div>
-            </article>
-
-            <article class="pub" id="pub-cern-report-2024">
-              <span class="badge" style="--badge: #0033a0">CERN</span>
-              <div class="pub-body">
-                <h3 class="pub-title">Advancements on Aerial Robotic Systems and Sensor Technologies for Future HEP Detectors</h3>
-                <p class="pub-authors">Chi Kit Chan, <strong class="me">Francesco Mazzei</strong>, Paolo Francesco Scaramuzzino, Corrado Gargiulo</p>
-                <p class="pub-venue"><span lang="en">Technical report</span><span lang="it">Rapporto tecnico</span> · CERN, 2024</p>
-                <p class="pub-links">
-                  <a href="https://cds.cern.ch/record/2908974">CERN CDS</a>
-                </p>
-              </div>
-            </article>
-          </div>
-
-          <!-- ---------- 2023 ---------- -->
-          <h2 class="year">2023</h2>
-          <div class="pubs">
             <article class="pub" id="pub-frontiers-2023">
               <span class="badge" style="--badge: #d6232f">Front. Robot. AI</span>
               <div class="pub-body">
@@ -209,6 +142,63 @@
                     detector downtime.
                   </p>
                 </details>
+              </div>
+            </article>
+          </div>
+
+          <!-- ---------- Conference proceedings ---------- -->
+          <h2 class="year" id="proceedings"><span lang="en">Conference proceedings</span><span lang="it">Atti di conferenza</span></h2>
+          <div class="pubs">
+            <article class="pub" id="pub-airships-2024">
+              <span class="badge" style="--badge: #5b8c3a">AAIC</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Development of Small Airships for Indoor Exploration and Inspection of the CERN Underground Facilities</h3>
+                <p class="pub-authors">
+                  <strong class="me">Francesco Mazzei</strong>, Andreas Burkart, Paolo Francesco Scaramuzzino, Anton Sobotta, Fabio Curti, Corrado Gargiulo
+                </p>
+                <p class="pub-venue">In <em>Proceedings of the 12th International Airship Conference</em>, Zeppelinheim, Germany · 2024</p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.5281/zenodo.17219272">DOI</a>
+                  <a href="https://zenodo.org/doi/10.5281/zenodo.17219272">Zenodo</a>
+                </p>
+                <details class="abstract">
+                  <summary>Abstract</summary>
+                  <p>
+                    In the past years, Windreiter collected vast experience in the construction and piloting of small indoor blimps, mostly applied to video
+                    capture and airship regattas. Within a recent cooperation with the European Organization for Nuclear Research (CERN), the development of
+                    an autonomous indoor explorer airship was initiated. The experiments at CERN are characterized by an intense radiation field, thus human
+                    access is extremely restricted. This is problematic, as the state of running machinery is assessed offsite based on remote data coming
+                    from a number of static sensors and gauges installed inside experimental caverns. A potential solution would be an autonomous small
+                    airship equipped with cameras and other sensors that can enter radiation areas, avoiding the need for human intervention and thereby
+                    limiting health risks. Based on super lightweight balloons and newly developed electronics, a variety of small airships could be realized
+                    and deployed inside the Large Hadron Collider (LHC) detector caverns. A first prototype has already been successfully remotely piloted via
+                    video transmission inside the ALICE cavern. Enhancing this application, Windreiter is developing a blimp-specific indoor autopilot
+                    environment. Currently available autopilots often lack capabilities for indoor applications or cannot sense the blimp's sluggish
+                    dynamics. Thus cameras, external reference systems and multiple sensors are implemented to enable stabilized flight and autonomous
+                    operation. This paper presents the current state of development of a new prototype version capable of achieving waypoint mission flights
+                    with over 2 hours of endurance, carrying scientific payloads, and featuring dimensions that allow operation in narrow environments. This
+                    work showcases various tests conducted on a waypoint-following mission, including results and performance measurements. Future project
+                    applications include deployments in upcoming CERN caverns, operating in strong magnetic fields and radiation.
+                  </p>
+                </details>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-spie-2024">
+              <span class="badge" style="--badge: #0b6e8a">SPIE</span>
+              <div class="pub-body">
+                <h3 class="pub-title">MBSE in the context of PLATO camera system development</h3>
+                <p class="pub-authors">
+                  Giacomo Dinuzzi, Andrea Balestra, Francesco Santoli, <strong class="me">Francesco Mazzei</strong>, Jose Lorenzo Alvarez, Nicolas Gorius,
+                  Simonetta Chinellato, Natalia Auricchio, Isabella Pagano, Flavia Calderone, Claudio Arena, Gianalfredo Nicolini, Fabrizio Cogato, Giacomo
+                  Cherchi, Alessio Aboudan, Francesco Borsa, Daniele Brienza, Demetrio Magrin, Mauro Focardi, Vladimiro Noce
+                </p>
+                <p class="pub-venue">
+                  In <em>Modeling, Systems Engineering, and Project Management for Astronomy XI</em>, Proc. SPIE, p. 68 · <span lang="en">Aug</span><span lang="it">ago</span> 2024
+                </p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.1117/12.3019903">DOI</a>
+                </p>
               </div>
             </article>
 
@@ -244,6 +234,49 @@
                 </p>
               </div>
             </article>
+          </div>
+
+          <!-- ---------- Posters and talks ---------- -->
+          <h2 class="year" id="posters"><span lang="en">Posters and talks</span><span lang="it">Poster e presentazioni</span></h2>
+          <div class="pubs">
+            <article class="pub" id="pub-eprd-day-2026">
+              <span class="badge" style="--badge: #0033a0">EP-R&amp;D Day</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Measurement and Validation of ALICE Fringe Magnetic Field Using an Aerial Robot</h3>
+                <p class="pub-authors"><strong class="me">Francesco Mazzei</strong>, Paolo Francesco Scaramuzzino, Luca Bernardi, Corrado Gargiulo</p>
+                <p class="pub-venue" lang="en">Poster and oral presentation · EP-R&amp;D Day 2026, CERN, Geneva · Apr 2026</p>
+                <p class="pub-venue" lang="it">Poster e presentazione orale · EP-R&amp;D Day 2026, CERN, Ginevra · apr 2026</p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.17181/69tcr-c3252">DOI</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-day-2025">
+              <span class="badge" style="--badge: #0033a0">EP-R&amp;D Day</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Autonomous Blimp for Inspection and Magnetic Mapping in Experimental Cavern</h3>
+                <p class="pub-authors"><strong class="me">Francesco Mazzei</strong>, Paolo Francesco Scaramuzzino, Luca Bernardi, Corrado Gargiulo</p>
+                <p class="pub-venue" lang="en">Poster · EP-R&amp;D Day 2025, CERN, Geneva · May 2025</p>
+                <p class="pub-venue" lang="it">Poster · EP-R&amp;D Day 2025, CERN, Ginevra · mag 2025</p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.17181/ra9mc-zj476">DOI</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-day-2024">
+              <span class="badge" style="--badge: #0033a0">EP-R&amp;D Day</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Future Robotic Residents in Experimental Caverns</h3>
+                <p class="pub-authors"><strong class="me">Francesco Mazzei</strong>, Paolo Francesco Scaramuzzino, Luca Bernardi, Corrado Gargiulo</p>
+                <p class="pub-venue" lang="en">Poster · EP-R&amp;D Day 2024, CERN, Geneva · May 2024</p>
+                <p class="pub-venue" lang="it">Poster · EP-R&amp;D Day 2024, CERN, Ginevra · mag 2024</p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.17181/2m2xt-xhc84">DOI</a>
+                </p>
+              </div>
+            </article>
 
             <article class="pub" id="pub-aps-2023">
               <span class="badge" style="--badge: #7a3e9d">APS</span>
@@ -256,10 +289,109 @@
                 </p>
               </div>
             </article>
+
+            <article class="pub" id="pub-erf-2022">
+              <span class="badge" style="--badge: #2e7d32">ERF</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Magnetic Torque Calculation on an Electromagnetic Motor in an External Uniform Magnetic Field</h3>
+                <p class="pub-authors"><strong class="me">Francesco Mazzei</strong>, Lorenzo Teofili, Corrado Gargiulo, Fabio Curti</p>
+                <p class="pub-venue" lang="en">Poster · European Robotics Forum (ERF 2022), Rotterdam, The Netherlands · Jun 2022</p>
+                <p class="pub-venue" lang="it">Poster · European Robotics Forum (ERF 2022), Rotterdam, Paesi Bassi · giu 2022</p>
+              </div>
+            </article>
           </div>
 
-          <!-- ---------- 2022 ---------- -->
-          <h2 class="year">2022</h2>
+          <!-- ---------- Reports and proposals ---------- -->
+          <h2 class="year" id="reports"><span lang="en">Reports and proposals</span><span lang="it">Rapporti e proposte</span></h2>
+          <div class="pubs">
+            <article class="pub" id="pub-eprd-report-2026">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Strategic R&amp;D Programme on Technologies for Future Experiments — Annual Report 2025</h3>
+                <p class="pub-authors">EP-R&amp;D Programme</p>
+                <p class="pub-venue">CERN-EP-RDET-2026-001 · CERN, 2026</p>
+                <p class="pub-note" lang="en">Contributed the sections on Work Package 4.2.</p>
+                <p class="pub-note" lang="it">Autore delle sezioni sul Work Package 4.2.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2955137">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-drd8-2025">
+              <span class="badge" style="--badge: #455a64">DRD8</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Mechanics and Cooling of Future Vertex and Tracking Systems</h3>
+                <p class="pub-authors">DRD8 Collaboration</p>
+                <p class="pub-venue" lang="en">Proposal to the CERN Detector Research and Development Committee · CERN-DRDC-2025-002, 2025</p>
+                <p class="pub-venue" lang="it">Proposta al CERN Detector Research and Development Committee · CERN-DRDC-2025-002, 2025</p>
+                <p class="pub-note" lang="en">Contributor to the proposal.</p>
+                <p class="pub-note" lang="it">Ho contribuito alla proposta.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2922888">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-report-2025">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Strategic R&amp;D Programme on Technologies for Future Experiments — Annual Report 2024</h3>
+                <p class="pub-authors">EP-R&amp;D Programme</p>
+                <p class="pub-venue">CERN-EP-RDET-2025-004 · CERN, 2025</p>
+                <p class="pub-note" lang="en">Contributed the sections on Work Package 4.2.</p>
+                <p class="pub-note" lang="it">Autore delle sezioni sul Work Package 4.2.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2926426">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-report-2024">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Strategic R&amp;D Programme on Technologies for Future Experiments — Annual Report 2023 and Phase-I Closeout</h3>
+                <p class="pub-authors">EP-R&amp;D Programme</p>
+                <p class="pub-venue">CERN-EP-RDET-2024-001 · CERN, 2024</p>
+                <p class="pub-note" lang="en">Contributed the sections on Work Package 4.2.</p>
+                <p class="pub-note" lang="it">Autore delle sezioni sul Work Package 4.2.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2891650">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-report-2023-ext">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Extension of the R&amp;D Programme on Technologies for Future Experiments</h3>
+                <p class="pub-authors">EP-R&amp;D Programme</p>
+                <p class="pub-venue">CERN-EP-RDET-2023-001 · CERN, 2023</p>
+                <p class="pub-note" lang="en">Contributed the sections on Work Package 4.2.</p>
+                <p class="pub-note" lang="it">Autore delle sezioni sul Work Package 4.2.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2850809">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-eprd-report-2023">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Strategic R&amp;D Programme on Technologies for Future Experiments — Annual Report 2022</h3>
+                <p class="pub-authors">EP-R&amp;D Programme</p>
+                <p class="pub-venue">CERN-EP-RDET-2023-002 · CERN, 2023</p>
+                <p class="pub-note" lang="en">Contributed the sections on Work Package 4.2.</p>
+                <p class="pub-note" lang="it">Autore delle sezioni sul Work Package 4.2.</p>
+                <p class="pub-links">
+                  <a href="https://cds.cern.ch/record/2852748">CERN CDS</a>
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <!-- ---------- Thesis ---------- -->
+          <h2 class="year" id="theses"><span lang="en">Thesis</span><span lang="it">Tesi</span></h2>
           <div class="pubs">
             <article class="pub" id="pub-thesis-2022">
               <span class="badge" style="--badge: #822433"><span lang="en">Thesis</span><span lang="it">Tesi</span></span>
@@ -275,7 +407,6 @@
             </article>
           </div>
 
-          <!-- TODO: "Magnetic Torque Calculation on an Electromagnetic Motor in an External Uniform Magnetic Field" — venue and year not found yet -->
         </div>
       </section>
     </main>

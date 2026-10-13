@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=4" />
-    <script src="js/prefs.js?v=4"></script>
-    <script src="js/main.js?v=4" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=6" />
+    <script src="js/prefs.js?v=6"></script>
+    <script src="js/main.js?v=6" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -32,29 +32,62 @@
       <section class="section">
         <div class="container">
           <h1 class="page-title"><span lang="en">Teaching</span><span lang="it">Didattica</span></h1>
-          <p class="section-intro" lang="en">Students I have supervised and thesis opportunities.</p>
-          <p class="section-intro" lang="it">Studenti che ho seguito e proposte di tesi.</p>
+          <p class="section-intro" lang="en">Student projects I have co-supervised and thesis opportunities.</p>
+          <p class="section-intro" lang="it">Progetti di studenti che ho co-supervisionato e proposte di tesi.</p>
 
-          <!-- TODO: supervised theses, newest first, with each student's consent. Template:
-          <h2 class="group-title"><span lang="en">Supervised theses</span><span lang="it">Tesi seguite</span></h2>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th scope="col"><span lang="en">Year</span><span lang="it">Anno</span></th>
-                  <th scope="col"><span lang="en">Student</span><span lang="it">Studente</span></th>
-                  <th scope="col"><span lang="en">Level</span><span lang="it">Livello</span></th>
-                  <th scope="col"><span lang="en">Thesis</span><span lang="it">Tesi</span></th>
-                  <th scope="col"><span lang="en">University</span><span lang="it">Università</span></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>[year]</td><td>[name]</td><td><span lang="en">Master's</span><span lang="it">Magistrale</span></td><td>[thesis title]</td><td>[university]</td></tr>
-                <tr><td>[year]</td><td>[name]</td><td><span lang="en">Bachelor's</span><span lang="it">Triennale</span></td><td>[thesis title]</td><td>[university]</td></tr>
-              </tbody>
-            </table>
+          <!-- ---------- Co-supervised student projects (newest first) ---------- -->
+          <h2 class="group-title"><span lang="en">Co-supervised student projects</span><span lang="it">Progetti di studenti co-supervisionati</span></h2>
+          <p lang="en">
+            Student projects carried out within the CERN robotic blimp activity, co-supervised with P. F. Scaramuzzino and C. Gargiulo. Each contributed to
+            the system described in my PhD thesis.
+          </p>
+          <p lang="it">
+            Progetti di studenti svolti nell'ambito dell'attività sul dirigibile robotico del CERN, co-supervisionati con P. F. Scaramuzzino e C. Gargiulo.
+            Ognuno ha contribuito al sistema descritto nella mia tesi di dottorato.
+          </p>
+          <div class="pubs">
+            <article class="pub">
+              <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
+              <div class="pub-body">
+                <h3 class="pub-title" lang="fr">Conception, adaptation et optimisation de la carte électronique (PCB) d'un BLIMP (dirigeable) robotisé</h3>
+                <p class="pub-authors">Loris Porret</p>
+                <p class="pub-venue">Université Savoie Mont Blanc, IUT d'Annecy · 2026</p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.17181/y6kzd-c2v87">DOI</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub">
+              <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
+              <div class="pub-body">
+                <h3 class="pub-title">Structural and Propulsion Optimisation of the CERN Robotic Blimp</h3>
+                <p class="pub-authors">Christian Hedley Barraud</p>
+                <p class="pub-venue">
+                  <span lang="en">University of Bath, Department of Mechanical Engineering · 2025</span>
+                  <span lang="it">University of Bath, Dipartimento di Ingegneria Meccanica · 2025</span>
+                </p>
+                <p class="pub-links">
+                  <a href="https://doi.org/10.17181/3ed9j-02w05">DOI</a>
+                </p>
+              </div>
+            </article>
+
+            <article class="pub" id="pub-cern-report-2024">
+              <span class="badge" style="--badge: #0033a0">CERN Summer Student</span>
+              <div class="pub-body">
+                <h3 class="pub-title">Advancements on Aerial Robotic Systems and Sensor Technologies for Future HEP Detectors</h3>
+                <p class="pub-authors">Chi Kit Chan</p>
+                <p class="pub-venue">
+                  <span lang="en">CERN Summer Student Programme report · CERN-STUDENTS-Note-2024-110 · 2024</span>
+                  <span lang="it">Relazione del CERN Summer Student Programme · CERN-STUDENTS-Note-2024-110 · 2024</span>
+                </p>
+                <p class="pub-links">
+                  <a href="https://repository.cern/records/xg481-h9w68">CERN repository</a>
+                </p>
+              </div>
+            </article>
           </div>
-          -->
 
           <h2 class="group-title"><span lang="en">Thesis opportunities</span><span lang="it">Proposte di tesi</span></h2>
           <p lang="en">
