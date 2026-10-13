@@ -979,6 +979,36 @@ th {
   background: color-mix(in srgb, #ff0000 10%, transparent);
 }
 
+/* Two-column grid of activity cards (one column on phones) */
+.interests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.interest {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.interest h2 {
+  font-size: 1.15rem;
+  margin-bottom: 0.6rem;
+}
+
+.interest p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 700px) {
+  .interests-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* --------------------------------------------------------------------------
    11. Footer
    -------------------------------------------------------------------------- */

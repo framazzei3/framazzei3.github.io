@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Personal · Francesco Mazzei</title>
-    <meta name="description" content="Francesco Mazzei outside research: music and drum covers." />
+    <meta name="description" content="Francesco Mazzei outside research: music, running and travel." />
     <meta name="author" content="Francesco Mazzei" />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=10" />
-    <script src="js/prefs.js?v=9"></script>
-    <script src="js/main.js?v=9" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=11" />
+    <script src="js/prefs.js?v=11"></script>
+    <script src="js/main.js?v=11" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -27,7 +27,7 @@
     <main id="main">
       <!-- ===================================================================
            PERSONAL — activities outside research.
-           TODO: add other activities and interests (one <h2 class="group-title"> block each)
+           Two-column cards: copy an <article class="interest"> block to add an activity.
            =================================================================== -->
       <section class="section">
         <div class="container">
@@ -35,22 +35,42 @@
           <p class="section-intro" lang="en">What I do outside research.</p>
           <p class="section-intro" lang="it">Cosa faccio fuori dalla ricerca.</p>
 
-          <!-- ---------- Music ---------- -->
-          <h2 class="group-title"><span lang="en">Music</span><span lang="it">Musica</span></h2>
-          <p lang="en">
-            I play the drums. On my YouTube channel, <strong>Fradrum</strong>, I post drum covers, some of them with sheet music, and the occasional bass
-            video.
-          </p>
-          <p lang="it">
-            Suono la batteria. Sul mio canale YouTube, <strong>Fradrum</strong>, pubblico cover di batteria, alcune con lo spartito, e ogni tanto qualche
-            video al basso.
-          </p>
-          <p>
-            <a class="button youtube-button" href="https://www.youtube.com/@fradrum97">
-              <svg class="icon" aria-hidden="true"><use href="#i-youtube" /></svg>
-              <span lang="en">Fradrum on YouTube</span><span lang="it">Fradrum su YouTube</span>
-            </a>
-          </p>
+          <div class="interests-grid">
+            <!-- ---------- Music ---------- -->
+            <article class="interest">
+              <h2><span lang="en">Music</span><span lang="it">Musica</span></h2>
+              <p lang="en">
+                I play the drums. On my YouTube channel, <strong>Fradrum</strong>, I post drum covers, some of them with sheet music, and the occasional
+                bass video.
+              </p>
+              <p lang="it">
+                Suono la batteria. Sul mio canale YouTube, <strong>Fradrum</strong>, pubblico cover di batteria, alcune con lo spartito, e ogni tanto
+                qualche video al basso.
+              </p>
+              <p>
+                <a class="button youtube-button" href="https://www.youtube.com/@fradrum97">
+                  <svg class="icon" aria-hidden="true"><use href="#i-youtube" /></svg>
+                  <span lang="en">Fradrum on YouTube</span><span lang="it">Fradrum su YouTube</span>
+                </a>
+              </p>
+            </article>
+
+            <!-- ---------- Sport ---------- -->
+            <!-- TODO: add details (races, distances, favourite routes) -->
+            <article class="interest">
+              <h2><span lang="en">Sport: running</span><span lang="it">Sport: corsa</span></h2>
+              <p lang="en">Running is my sport.</p>
+              <p lang="it">La corsa è il mio sport.</p>
+            </article>
+
+            <!-- ---------- Travel ---------- -->
+            <!-- TODO: add details (places, favourite trips, photos) -->
+            <article class="interest">
+              <h2><span lang="en">Travel</span><span lang="it">Viaggi</span></h2>
+              <p lang="en">I love travelling.</p>
+              <p lang="it">Amo viaggiare.</p>
+            </article>
+          </div>
         </div>
       </section>
     </main>

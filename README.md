@@ -10,7 +10,7 @@ research.html       Research projects
 publications.html   Publications
 teaching.html       Teaching
 cv.html             CV
-personal.html       Personal: music and the YouTube channel
+personal.html       Personal: music, running, travel
 css/style.css       all styles; colours are defined once at the top (light and dark)
 js/prefs.js         applies the saved theme and language before the page is drawn
 js/main.js          shared parts: menu, header buttons, footer, social links, icons
