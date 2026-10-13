@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Francesco Mazzei — shared page parts and behaviour
+   Francesco Mazzei: shared page parts and behaviour
    Every page includes this file. It builds the parts that are the same on all
    pages, so each one is edited in a single place:
 

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Francesco Mazzei — personal website
+   Francesco Mazzei, personal website
    Plain CSS, no build step. Shared by every page.
 
    1. Theme tokens (light / dark) and language switching
@@ -216,6 +216,16 @@ ol {
 .section-intro {
   color: var(--text-muted);
   margin-bottom: 2rem;
+}
+
+/* Short highlighted note, e.g. "section under construction" */
+.notice {
+  margin: -1rem 0 2rem;
+  padding: 0.6rem 0.9rem;
+  border-left: 3px solid var(--accent);
+  border-radius: 0 8px 8px 0;
+  background: var(--accent-soft);
+  font-size: 0.92rem;
 }
 
 .group-title {
@@ -550,71 +560,8 @@ ol {
 
 /* --------------------------------------------------------------------------
    6. Research
+   Projects use the same compact cards as the publications (section 7).
    -------------------------------------------------------------------------- */
-.projects {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
-}
-
-.project {
-  padding: 1.5rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.project h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.35rem;
-}
-
-.project h4 {
-  font-size: 1rem;
-  margin: 1.25rem 0 0.4rem;
-}
-
-.project-meta {
-  font-size: 0.85rem;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-}
-
-.project-summary {
-  color: var(--text-muted);
-  font-style: italic;
-}
-
-.project ul {
-  margin: 0 0 1em;
-}
-
-.project li {
-  margin-bottom: 0.3rem;
-}
-
-.tools {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* "Related work" links at the end of a project */
-.related {
-  font-size: 0.88rem;
-}
-
-.related li {
-  margin-bottom: 0.35rem;
-}
-
-@media (max-width: 860px) {
-  .projects {
-    grid-template-columns: 1fr;
-  }
-}
 
 /* --------------------------------------------------------------------------
    7. Publications
@@ -1071,8 +1018,7 @@ th {
     background: none !important;
   }
 
-  .pub,
-  .project {
+  .pub {
     box-shadow: none;
     break-inside: avoid;
   }

@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=13" />
-    <script src="js/prefs.js?v=12"></script>
-    <script src="js/main.js?v=12" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=14" />
+    <script src="js/prefs.js?v=14"></script>
+    <script src="js/main.js?v=14" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -26,8 +26,7 @@
 
     <main id="main">
       <!-- ===================================================================
-           RESEARCH — one <article class="project"> per project.
-           Each project has an English block and an Italian block.
+           RESEARCH: compact cards, one <article class="pub"> per project.
            TODO: review the Italian translation
            =================================================================== -->
       <section class="section">
@@ -35,220 +34,94 @@
           <h1 class="page-title"><span lang="en">Research</span><span lang="it">Ricerca</span></h1>
           <p class="section-intro" lang="en">Robots and instruments for extreme environments, from detector caverns to space.</p>
           <p class="section-intro" lang="it">Robot e strumenti per ambienti estremi, dalle caverne dei rivelatori allo spazio.</p>
+          <p class="notice" lang="en">This section is being set up: the sub-projects of my PhD, with their GitHub repositories, will be added soon.</p>
+          <p class="notice" lang="it">Sezione in allestimento: presto aggiungerò i sottoprogetti del dottorato, con i relativi repository GitHub.</p>
 
           <!-- ---------- Robotics at CERN ---------- -->
           <h2 class="group-title"><span lang="en">Robotics at CERN</span><span lang="it">Robotica al CERN</span></h2>
-          <div class="projects">
-            <!-- Project: ALICE cavern mapping -->
-            <article class="project" lang="en">
-              <header>
-                <p class="project-meta">PhD project · CERN EP-DT · 2023 – present</p>
-                <h3>Aerial mapping of the ALICE cavern</h3>
-                <p class="project-summary">A lighter-than-air robot that maps magnetic field and radiation inside a particle-physics detector cavern.</p>
-              </header>
-              <h4>The problem</h4>
-              <p>
-                Detector caverns at the LHC combine strong magnetic fields, ionising radiation, large volumes and fragile equipment. Mapping the field and
-                radiation environment by hand is slow and leaves gaps, and conventional drones — with fast propellers, heavy batteries and actuators disturbed
-                by the field — are a risk close to the detector.
-              </p>
-              <h4>What I built</h4>
-              <p>A blimp-based aerial platform designed for these conditions:</p>
-              <ul>
-                <li><strong>Electronics:</strong> Arduino Portenta H7 and Raspberry Pi Zero on custom KiCad PCBs</li>
-                <li><strong>Control:</strong> cascade PID control, with heading from a motion-capture system</li>
-                <li><strong>Localization:</strong> ArUco fiducial markers and motion capture</li>
-                <li><strong>Sensing:</strong> Hall-effect magnetometry (TMAG5273) and Timepix3 radiation detection (MiniPIX)</li>
-                <li><strong>Metrology:</strong> uncertainty propagated following the GUM, from localization error to the final field map</li>
-              </ul>
-              <h4>Results</h4>
-              <!-- TODO: mapped volume, field range, measurement uncertainty, number of flights, photo and video -->
-              <p class="muted">Results and media will be added here.</p>
-              <h4>Related work</h4>
-              <ul class="related">
-                <li><a href="publications.html#pub-frontiers-2026">Robotic Airship for Measurement and Validation of a CERN Detector Stray Magnetic Field (Frontiers in Robotics and AI, 2026)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2026">Measurement and Validation of ALICE Fringe Magnetic Field Using an Aerial Robot (EP-R&amp;D Day 2026)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2025">Autonomous Blimp for Inspection and Magnetic Mapping in Experimental Cavern (EP-R&amp;D Day 2025)</a></li>
-                <li><a href="publications.html#pub-airships-2024">Development of Small Airships for Indoor Exploration and Inspection of the CERN Underground Facilities (Airship Conference 2024)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2024">Future Robotic Residents in Experimental Caverns (EP-R&amp;D Day 2024)</a></li>
-              </ul>
-            </article>
-            <article class="project" lang="it">
-              <header>
-                <p class="project-meta">Progetto di dottorato · CERN EP-DT · 2023 – oggi</p>
-                <h3>Mappatura aerea della caverna di ALICE</h3>
-                <p class="project-summary">
-                  Un robot più leggero dell'aria che mappa campo magnetico e radiazione all'interno della caverna di un rivelatore di fisica delle
-                  particelle.
+          <div class="pubs">
+            <!-- TODO: add results (mapped volume, field range, uncertainty, flights), photos and the GitHub repositories of the sub-projects -->
+            <article class="pub">
+              <span class="badge" style="--badge: #0033a0">PhD</span>
+              <div class="pub-body">
+                <h3 class="pub-title"><span lang="en">Aerial mapping of the ALICE cavern</span><span lang="it">Mappatura aerea della caverna di ALICE</span></h3>
+                <p class="pub-venue" lang="en">PhD project · CERN EP-DT · since Nov 2023</p>
+                <p class="pub-venue" lang="it">Progetto di dottorato · CERN EP-DT · da nov 2023</p>
+                <p class="pub-note" lang="en">
+                  A lighter-than-air robot that maps the magnetic field and radiation inside the ALICE detector cavern: custom electronics on KiCad PCBs, cascade PID control, ArUco and motion-capture localisation, Hall-effect magnetometry and Timepix3 radiation detection, with uncertainty propagated following the GUM.
                 </p>
-              </header>
-              <h4>Il problema</h4>
-              <p>
-                Le caverne dei rivelatori di LHC uniscono campi magnetici intensi, radiazione ionizzante, grandi volumi e apparecchiature delicate. Mappare
-                a mano il campo e l'ambiente di radiazione è lento e lascia zone scoperte, e i droni convenzionali — con eliche veloci, batterie pesanti e
-                attuatori disturbati dal campo — sono un rischio vicino al rivelatore.
-              </p>
-              <h4>Cosa ho costruito</h4>
-              <p>Una piattaforma aerea basata su un dirigibile, progettata per queste condizioni:</p>
-              <ul>
-                <li><strong>Elettronica:</strong> Arduino Portenta H7 e Raspberry Pi Zero su PCB custom progettati in KiCad</li>
-                <li><strong>Controllo:</strong> controllo PID in cascata, con l'orientamento fornito da un sistema di motion capture</li>
-                <li><strong>Localizzazione:</strong> marker fiduciali ArUco e motion capture</li>
-                <li><strong>Sensori:</strong> magnetometria a effetto Hall (TMAG5273) e rivelazione di radiazione Timepix3 (MiniPIX)</li>
-                <li><strong>Metrologia:</strong> incertezza propagata secondo la GUM, dall'errore di localizzazione fino alla mappa di campo finale</li>
-              </ul>
-              <h4>Risultati</h4>
-              <p class="muted">Risultati e contenuti multimediali verranno aggiunti qui.</p>
-              <h4>Lavori collegati</h4>
-              <ul class="related">
-                <li><a href="publications.html#pub-frontiers-2026">Robotic Airship for Measurement and Validation of a CERN Detector Stray Magnetic Field (Frontiers in Robotics and AI, 2026)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2026">Measurement and Validation of ALICE Fringe Magnetic Field Using an Aerial Robot (EP-R&amp;D Day 2026)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2025">Autonomous Blimp for Inspection and Magnetic Mapping in Experimental Cavern (EP-R&amp;D Day 2025)</a></li>
-                <li><a href="publications.html#pub-airships-2024">Development of Small Airships for Indoor Exploration and Inspection of the CERN Underground Facilities (Airship Conference 2024)</a></li>
-                <li><a href="publications.html#pub-eprd-day-2024">Future Robotic Residents in Experimental Caverns (EP-R&amp;D Day 2024)</a></li>
-              </ul>
+                <p class="pub-note" lang="it">
+                  Un robot più leggero dell'aria che mappa campo magnetico e radiazione nella caverna del rivelatore ALICE: elettronica custom su PCB progettati in KiCad, controllo PID in cascata, localizzazione con marker ArUco e motion capture, magnetometria a effetto Hall e rivelazione di radiazione Timepix3, con incertezza propagata secondo la GUM.
+                </p>
+                <p class="pub-links">
+                  <a href="publications.html#pub-frontiers-2026">Frontiers 2026</a>
+                  <a href="publications.html#pub-eprd-day-2026">EP-R&amp;D Day 2026</a>
+                  <a href="publications.html#pub-airships-2024">Airship Conference 2024</a>
+                </p>
+              </div>
             </article>
 
-            <!-- Project: UAVs in strong magnetic fields -->
-            <article class="project" lang="en">
-              <header>
-                <p class="project-meta">CERN EP-DT · internship and Junior Robotics Engineer · 2021 – 2022</p>
-                <h3>Flying robots in strong magnetic fields</h3>
-                <p class="project-summary">Modelling and controlling the magnetic disturbances that detector fields induce on UAV actuators.</p>
-              </header>
-              <p>
-                Robots that inspect particle detectors must fly inside the detector's own magnetic field, which pushes and twists the electric motors that
-                drive them.
-              </p>
-              <ul>
-                <li>
-                  Designed, built and tested a UAV for environmental inspection of CERN's harsh areas, studying how the detector field disturbs its actuation
-                  system.
-                </li>
-                <li>
-                  Developed theoretical models of the magnetic forces and torques acting on electromagnetic actuators in an external field, and benchmarked
-                  them against experiments.
-                </li>
-                <li>Designed control algorithms that integrate these disturbance models to keep the flight safe inside the field.</li>
-                <li>Developed a guidance, navigation and control (GNC) flight-software simulator for blimps in the detector caverns.</li>
-                <li>Assembled a blimp prototype with an Arduino control board and tested it with a PhaseSpace motion-capture system.</li>
-              </ul>
-              <p class="tools">Tools: FEM electromagnetic simulation (FEMM, CST), CATIA, MATLAB, Python.</p>
-              <h4>Related work</h4>
-              <ul class="related">
-                <li><a href="publications.html#pub-mechatronics-2026">Modeling mechanical disturbances induced by high intensity magnetic fields on electric motors (Mechatronics, 2026)</a></li>
-                <li><a href="publications.html#pub-robotics-2025">Experimental Characterization of Miniature DC Motors for Robotics in High Magnetic Field Environments (Robotics, 2025)</a></li>
-                <li><a href="publications.html#pub-frontiers-2023">Mission analysis, dynamics and robust control of an indoor blimp in a CERN detector magnetic environment (Frontiers in Robotics and AI, 2023)</a></li>
-                <li><a href="publications.html#pub-erf-2022">Magnetic Torque Calculation on an Electromagnetic Motor in an External Uniform Magnetic Field (ERF 2022)</a></li>
-                <li><a href="publications.html#pub-thesis-2022">Dynamic interaction and control of an indoor blimp inside the CERN FCC-hh magnetic environment (MSc thesis)</a></li>
-              </ul>
-            </article>
-            <article class="project" lang="it">
-              <header>
-                <p class="project-meta">CERN EP-DT · tirocinio e Junior Robotics Engineer · 2021 – 2022</p>
-                <h3>Robot volanti in campi magnetici intensi</h3>
-                <p class="project-summary">Modellare e controllare i disturbi magnetici che i campi dei rivelatori inducono sugli attuatori dei droni.</p>
-              </header>
-              <p>
-                I robot che ispezionano i rivelatori di particelle devono volare dentro il campo magnetico del rivelatore stesso, che spinge e fa ruotare i
-                motori elettrici che li muovono.
-              </p>
-              <ul>
-                <li>
-                  Ho progettato, costruito e testato un drone per l'ispezione ambientale delle aree ostili del CERN, studiando come il campo del rivelatore
-                  disturba il suo sistema di attuazione.
-                </li>
-                <li>
-                  Ho sviluppato modelli teorici delle forze e delle coppie magnetiche che agiscono su attuatori elettromagnetici in un campo esterno, e li ho
-                  confrontati con gli esperimenti.
-                </li>
-                <li>Ho progettato algoritmi di controllo che integrano questi modelli di disturbo per garantire un volo sicuro dentro il campo.</li>
-                <li>Ho sviluppato un simulatore del software di volo di guida, navigazione e controllo (GNC) per dirigibili nelle caverne dei rivelatori.</li>
-                <li>Ho assemblato un prototipo di dirigibile con una scheda di controllo Arduino e l'ho testato con un sistema di motion capture PhaseSpace.</li>
-              </ul>
-              <p class="tools">Strumenti: simulazione elettromagnetica FEM (FEMM, CST), CATIA, MATLAB, Python.</p>
-              <h4>Lavori collegati</h4>
-              <ul class="related">
-                <li><a href="publications.html#pub-mechatronics-2026">Modeling mechanical disturbances induced by high intensity magnetic fields on electric motors (Mechatronics, 2026)</a></li>
-                <li><a href="publications.html#pub-robotics-2025">Experimental Characterization of Miniature DC Motors for Robotics in High Magnetic Field Environments (Robotics, 2025)</a></li>
-                <li><a href="publications.html#pub-frontiers-2023">Mission analysis, dynamics and robust control of an indoor blimp in a CERN detector magnetic environment (Frontiers in Robotics and AI, 2023)</a></li>
-                <li><a href="publications.html#pub-erf-2022">Magnetic Torque Calculation on an Electromagnetic Motor in an External Uniform Magnetic Field (ERF 2022)</a></li>
-                <li><a href="publications.html#pub-thesis-2022">Dynamic interaction and control of an indoor blimp inside the CERN FCC-hh magnetic environment (MSc thesis)</a></li>
-              </ul>
+            <article class="pub">
+              <span class="badge" style="--badge: #0033a0">CERN</span>
+              <div class="pub-body">
+                <h3 class="pub-title"><span lang="en">Flying robots in strong magnetic fields</span><span lang="it">Robot volanti in campi magnetici intensi</span></h3>
+                <p class="pub-venue" lang="en">CERN EP-DT · Internship and Junior Robotics Engineer · 2021 to 2022</p>
+                <p class="pub-venue" lang="it">CERN EP-DT · Tirocinio e Junior Robotics Engineer · dal 2021 al 2022</p>
+                <p class="pub-note" lang="en">
+                  Models of the magnetic forces and torques that detector fields exert on electromagnetic actuators, validated by experiment and built into the flight control; UAV and blimp prototypes tested with motion capture, and a GNC flight-software simulator for blimps in the caverns.
+                </p>
+                <p class="pub-note" lang="it">
+                  Modelli delle forze e delle coppie magnetiche che i campi dei rivelatori esercitano sugli attuatori elettromagnetici, validati sperimentalmente e integrati nel controllo di volo; prototipi di drone e dirigibile testati con motion capture, e un simulatore del software di volo GNC per dirigibili nelle caverne.
+                </p>
+                <p class="pub-links">
+                  <a href="publications.html#pub-mechatronics-2026">Mechatronics 2026</a>
+                  <a href="publications.html#pub-robotics-2025">Robotics 2025</a>
+                  <a href="publications.html#pub-frontiers-2023">Frontiers 2023</a>
+                  <a href="publications.html#pub-erf-2022">ERF 2022</a>
+                </p>
+              </div>
             </article>
           </div>
 
           <!-- ---------- Space ---------- -->
           <h2 class="group-title"><span lang="en">Space</span><span lang="it">Spazio</span></h2>
-          <div class="projects">
-            <!-- Project: PLATO -->
-            <article class="project" lang="en">
-              <header>
-                <p class="project-meta">INAF · Payload System Engineer · March – October 2023</p>
-                <h3>PLATO camera system engineering</h3>
-                <p class="project-summary">Payload system engineering for the cameras of ESA's PLATO exoplanet mission at INAF.</p>
-              </header>
-              <p>
-                <a href="https://www.esa.int/Science_Exploration/Space_Science/Plato">PLATO</a> is an ESA mission that will search for Earth-like planets
-                around Sun-like stars with an array of 26 cameras.
-              </p>
-              <p>As a member of the Camera System Engineering team in the PLATO Camera Project Office I:</p>
-              <ul>
-                <li>managed camera requirements and the updates of the camera MBSE model, ensuring its integration into the mission model developed by ESA;</li>
-                <li>reviewed and updated technical documentation and monitored compliance with system requirements;</li>
-                <li>managed deviations arising during camera integration and calibration.</li>
-              </ul>
-            </article>
-            <article class="project" lang="it">
-              <header>
-                <p class="project-meta">INAF · Payload System Engineer · marzo – ottobre 2023</p>
-                <h3>Ingegneria di sistema delle camere di PLATO</h3>
-                <p class="project-summary">Ingegneria di sistema del payload per le camere della missione PLATO dell'ESA dedicata agli esopianeti, all'INAF.</p>
-              </header>
-              <p>
-                <a href="https://www.esa.int/Science_Exploration/Space_Science/Plato">PLATO</a> è una missione dell'ESA che cercherà pianeti simili alla Terra
-                attorno a stelle simili al Sole con una schiera di 26 camere.
-              </p>
-              <p>Come membro del team Camera System Engineering nel PLATO Camera Project Office ho:</p>
-              <ul>
-                <li>gestito i requisiti delle camere e gli aggiornamenti del modello MBSE delle camere, assicurandone l'integrazione nel modello di missione sviluppato dall'ESA;</li>
-                <li>revisionato e aggiornato la documentazione tecnica e verificato la conformità ai requisiti di sistema;</li>
-                <li>gestito le deviazioni emerse durante l'integrazione e la calibrazione delle camere.</li>
-              </ul>
+          <div class="pubs">
+            <article class="pub">
+              <span class="badge" style="--badge: #1a5f9e">INAF · ESA</span>
+              <div class="pub-body">
+                <h3 class="pub-title"><span lang="en">PLATO camera system engineering</span><span lang="it">Ingegneria di sistema delle camere di PLATO</span></h3>
+                <p class="pub-venue" lang="en">INAF · Payload System Engineer · Mar 2023 to Oct 2023</p>
+                <p class="pub-venue" lang="it">INAF · Payload System Engineer · da mar 2023 a ott 2023</p>
+                <p class="pub-note" lang="en">
+                  Payload system engineering for the 26 cameras of ESA's PLATO exoplanet mission: camera requirements and MBSE model, integrated into ESA's mission model; technical documentation, requirement compliance and deviations during camera integration and calibration.
+                </p>
+                <p class="pub-note" lang="it">
+                  Ingegneria di sistema del payload per le 26 camere della missione PLATO dell'ESA dedicata agli esopianeti: requisiti e modello MBSE delle camere, integrato nel modello di missione dell'ESA; documentazione tecnica, conformità ai requisiti e deviazioni durante integrazione e calibrazione delle camere.
+                </p>
+                <p class="pub-links">
+                  <a href="publications.html#pub-spie-2024">SPIE 2024</a>
+                  <a href="publications.html#pub-plato-2025">PLATO mission 2025</a>
+                </p>
+              </div>
             </article>
 
-            <!-- Project: ISU SHSSP -->
-            <article class="project" lang="en">
-              <header>
-                <p class="project-meta">International Space University · University of South Australia, Adelaide · January – February 2023</p>
-                <h3>International Space University SHSSP 2023</h3>
-                <p class="project-summary">Interdisciplinary space studies programme in Adelaide, with a partial scholarship from ESA.</p>
-              </header>
-              <p>
-                The Southern Hemisphere Space Studies Program is an intensive interdisciplinary, intercultural and international programme covering the
-                technical, legal, business and policy sides of the space sector. I attended with a partial scholarship from ESA.
-              </p>
-              <p>
-                Related work: <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a>
-                and
-                <a href="publications.html#pub-iac-balloon"><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a>.
-              </p>
-            </article>
-            <article class="project" lang="it">
-              <header>
-                <p class="project-meta">International Space University · University of South Australia, Adelaide · gennaio – febbraio 2023</p>
-                <h3>International Space University SHSSP 2023</h3>
-                <p class="project-summary">Programma interdisciplinare di studi spaziali ad Adelaide, con una borsa di studio parziale dell'ESA.</p>
-              </header>
-              <p>
-                Il Southern Hemisphere Space Studies Program è un programma intensivo interdisciplinare, interculturale e internazionale che copre gli aspetti
-                tecnici, legali, economici e politici del settore spaziale. Vi ho partecipato con una borsa di studio parziale dell'ESA.
-              </p>
-              <p>
-                Lavori collegati:
-                <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a> e
-                <a href="publications.html#pub-iac-balloon"><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a>.
-              </p>
+            <article class="pub">
+              <span class="badge" style="--badge: #00205b">ISU</span>
+              <div class="pub-body">
+                <h3 class="pub-title">International Space University SHSSP 2023</h3>
+                <p class="pub-venue" lang="en">International Space University · Adelaide · Jan 2023 to Feb 2023</p>
+                <p class="pub-venue" lang="it">International Space University · Adelaide · da gen 2023 a feb 2023</p>
+                <p class="pub-note" lang="en">
+                  Southern Hemisphere Space Studies Program: an intensive interdisciplinary course on the technical, legal, business and policy sides of the space sector, attended with a partial scholarship from ESA.
+                </p>
+                <p class="pub-note" lang="it">
+                  Southern Hemisphere Space Studies Program: un corso intensivo e interdisciplinare sugli aspetti tecnici, legali, economici e politici del settore spaziale, frequentato con una borsa di studio parziale dell'ESA.
+                </p>
+                <p class="pub-links">
+                  <a href="publications.html#pub-iac-moon">IAC 2023, Moon</a>
+                  <a href="publications.html#pub-iac-balloon">IAC 2023, balloon</a>
+                </p>
+              </div>
             </article>
           </div>
 
@@ -262,8 +135,8 @@
               <span class="badge" style="--badge: #1a5f9e">Spacecraft Design</span>
               <div class="pub-body">
                 <h3 class="pub-title">AODCS Analysis and Design for the 6U HyonoSat CubeSat</h3>
-                <p class="pub-venue" lang="en">Group project (7 students) · Spacecraft Design · Mar – Jun 2021</p>
-                <p class="pub-venue" lang="it">Progetto di gruppo (7 studenti) · Spacecraft Design · mar – giu 2021</p>
+                <p class="pub-venue" lang="en">Group project (7 students) · Spacecraft Design · Mar to Jun 2021</p>
+                <p class="pub-venue" lang="it">Progetto di gruppo (7 studenti) · Spacecraft Design · da mar a giu 2021</p>
                 <p class="pub-note" lang="en">
                   Attitude and orbit determination and control for a hyperspectral Earth-observation CubeSat: orbit propagation and disturbance torques, GNSS orbit determination, low-thrust orbit maintenance, Kalman-filter attitude estimation, B-dot detumbling and nadir pointing with four reaction wheels.
                 </p>
@@ -277,13 +150,13 @@
               <span class="badge" style="--badge: #7a3e9d">Space Robotic Systems</span>
               <div class="pub-body">
                 <h3 class="pub-title"><span lang="en">Space manipulator: kinematics, dynamics and control</span><span lang="it">Manipolatore spaziale: cinematica, dinamica e controllo</span></h3>
-                <p class="pub-venue" lang="en">Final exercise · Space Robotic Systems · Mar – Jun 2021</p>
-                <p class="pub-venue" lang="it">Esercizio finale · Space Robotic Systems · mar – giu 2021</p>
+                <p class="pub-venue" lang="en">Final exercise · Space Robotic Systems · Mar to Jun 2021</p>
+                <p class="pub-venue" lang="it">Esercizio finale · Space Robotic Systems · da mar a giu 2021</p>
                 <p class="pub-note" lang="en">
-                  Forward and inverse kinematics (Denavit–Hartenberg), workspace, trajectory generation with quintic polynomials and parabolic blends, Newton–Euler dynamics, linear and nonlinear control, and robustness to errors in the arm model.
+                  Forward and inverse kinematics (Denavit-Hartenberg), workspace, trajectory generation with quintic polynomials and parabolic blends, Newton-Euler dynamics, linear and nonlinear control, and robustness to errors in the arm model.
                 </p>
                 <p class="pub-note" lang="it">
-                  Cinematica diretta e inversa (Denavit–Hartenberg), spazio di lavoro, generazione di traiettorie con polinomi di quinto ordine e raccordi parabolici, dinamica di Newton–Eulero, controllo lineare e non lineare, e robustezza agli errori nel modello dei bracci.
+                  Cinematica diretta e inversa (Denavit-Hartenberg), spazio di lavoro, generazione di traiettorie con polinomi di quinto ordine e raccordi parabolici, dinamica di Newton-Eulero, controllo lineare e non lineare, e robustezza agli errori nel modello dei bracci.
                 </p>
               </div>
             </article>
@@ -292,8 +165,8 @@
               <span class="badge" style="--badge: #7a3e9d">Space Robotic Systems</span>
               <div class="pub-body">
                 <h3 class="pub-title"><span lang="en">Lunar rover: autonomous localisation</span><span lang="it">Rover lunare: localizzazione autonoma</span></h3>
-                <p class="pub-venue" lang="en">Final exercise · Space Robotic Systems · Mar – Jun 2021</p>
-                <p class="pub-venue" lang="it">Esercizio finale · Space Robotic Systems · mar – giu 2021</p>
+                <p class="pub-venue" lang="en">Final exercise · Space Robotic Systems · Mar to Jun 2021</p>
+                <p class="pub-venue" lang="it">Esercizio finale · Space Robotic Systems · da mar a giu 2021</p>
                 <p class="pub-note" lang="en">
                   Trajectory planning between craters and ridges, dead-reckoning localisation from odometry with uncertainty ellipses, and an extended Kalman filter fusing odometry with a lidar terrain mapper.
                 </p>
@@ -307,8 +180,8 @@
               <span class="badge" style="--badge: #0b6e8a">Space Missions and Systems</span>
               <div class="pub-body">
                 <h3 class="pub-title"><span lang="en">Attitude determination of BepiColombo MPO</span><span lang="it">Determinazione d'assetto di BepiColombo MPO</span></h3>
-                <p class="pub-venue" lang="en">Homework 2 · Space Missions and Systems · Apr – May 2020</p>
-                <p class="pub-venue" lang="it">Homework 2 · Space Missions and Systems · apr – mag 2020</p>
+                <p class="pub-venue" lang="en">Homework 2 · Space Missions and Systems · Apr to May 2020</p>
+                <p class="pub-venue" lang="it">Homework 2 · Space Missions and Systems · da apr a mag 2020</p>
                 <p class="pub-note" lang="en">
                   Attitude of the Mercury Planetary Orbiter estimated from four star trackers, a sun sensor and gyroscopes with the TRIAD, QUEST and multiplicative extended Kalman filter algorithms, including angular rate and gyro bias estimation.
                 </p>
@@ -322,8 +195,8 @@
               <span class="badge" style="--badge: #0b6e8a">Space Missions and Systems</span>
               <div class="pub-body">
                 <h3 class="pub-title"><span lang="en">Orbit determination with a batch estimator</span><span lang="it">Determinazione orbitale con stimatore batch</span></h3>
-                <p class="pub-venue" lang="en">Homework 1 · Space Missions and Systems · Mar – Apr 2020</p>
-                <p class="pub-venue" lang="it">Homework 1 · Space Missions and Systems · mar – apr 2020</p>
+                <p class="pub-venue" lang="en">Homework 1 · Space Missions and Systems · Mar to Apr 2020</p>
+                <p class="pub-venue" lang="it">Homework 1 · Space Missions and Systems · da mar a apr 2020</p>
                 <p class="pub-note" lang="en">
                   Initial state of a spacecraft in an eccentric equatorial Earth orbit estimated from 1261 range and range-rate measurements, with solar radiation pressure, the gravitational parameter and the solar constant, and the growth of the state uncertainty over a month.
                 </p>
@@ -337,13 +210,13 @@
               <span class="badge" style="--badge: #c0392b">Space Propulsion Lab</span>
               <div class="pub-body">
                 <h3 class="pub-title">Sapienza Rocketry Challenge</h3>
-                <p class="pub-venue" lang="en">Team project · Space Propulsion laboratory · Feb – Jun 2019</p>
-                <p class="pub-venue" lang="it">Progetto di gruppo · Laboratorio di Propulsione Spaziale · feb – giu 2019</p>
+                <p class="pub-venue" lang="en">Team project · Space Propulsion laboratory · Feb to Jun 2019</p>
+                <p class="pub-venue" lang="it">Progetto di gruppo · Laboratorio di Propulsione Spaziale · da feb a giu 2019</p>
                 <p class="pub-note" lang="en">
-                  Design, construction and launch of a single-stage model rocket with a commercial solid motor (class C and D): MATLAB trajectory simulation compared with the flight data from a launch in Segni–Colleferro, design reviews and post-flight analysis.
+                  Design, construction and launch of a single-stage model rocket with a commercial solid motor (class C and D): MATLAB trajectory simulation compared with the flight data from a launch in Segni-Colleferro, design reviews and post-flight analysis.
                 </p>
                 <p class="pub-note" lang="it">
-                  Progettazione, costruzione e lancio di un modello di razzo monostadio con motore commerciale a propellente solido (classe C e D): simulazione della traiettoria in MATLAB confrontata con i dati di volo di un lancio a Segni–Colleferro, design review e analisi post-volo.
+                  Progettazione, costruzione e lancio di un modello di razzo monostadio con motore commerciale a propellente solido (classe C e D): simulazione della traiettoria in MATLAB confrontata con i dati di volo di un lancio a Segni-Colleferro, design review e analisi post-volo.
                 </p>
               </div>
             </article>

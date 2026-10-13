@@ -1,4 +1,4 @@
-# Francesco Mazzei — personal website
+# Francesco Mazzei, personal website
 
 Source of <https://framazzei3.github.io>: hand-written HTML, CSS and a little JavaScript. There is no build step and nothing to install.
 

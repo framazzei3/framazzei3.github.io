@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Early preferences — loaded in <head> of every page, before the page is drawn,
+   Early preferences: loaded in <head> of every page, before the page is drawn,
    so the saved theme and language apply without a flash.
 
    Theme:    "system" (default) | "light" | "dark"   → <html data-theme="…">
