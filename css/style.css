@@ -410,40 +410,73 @@ ol {
   color: var(--text-muted);
 }
 
-/* Social icon row (used in About and footer) */
+/* Social icon row (used in About and footer).
+   Each logo is shown in its official brand colour, set below per link. */
 .social {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .social a {
+  --brand: var(--text);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   border: 1px solid var(--border);
   border-radius: 50%;
-  color: var(--text);
+  color: var(--brand);
   transition:
     color 0.15s,
     border-color 0.15s,
-    background 0.15s;
+    background 0.15s,
+    transform 0.15s;
 }
 
 .social a:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--accent-soft);
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+  transform: translateY(-1px);
 }
 
 .social .icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
+}
+
+.social .mail {
+  --brand: var(--accent);
+}
+
+.social .scholar {
+  --brand: #4285f4;
+}
+
+.social .orcid {
+  --brand: #a6ce39;
+}
+
+.social .inspire {
+  --brand: #00b8d4;
+}
+
+.social .linkedin {
+  --brand: #0a66c2;
+}
+
+.social .github {
+  --brand: var(--text);
+}
+
+.social .github:hover {
+  color: var(--bg);
 }
 
 @media (max-width: 760px) {
