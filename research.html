@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Research · Francesco Mazzei</title>
+    <meta name="description" content="Robots and instruments for extreme environments, from detector caverns to space." />
+    <meta name="author" content="Francesco Mazzei" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css?v=4" />
+    <script src="js/prefs.js?v=4"></script>
+    <script src="js/main.js?v=4" defer></script>
+  </head>
+
+  <!-- Header, menu and footer are added by js/main.js -->
+  <body data-page="research">
+    <noscript>
+      <nav class="noscript-nav container">
+        <a href="index.html">About</a> · <a href="news.html">News</a> · <a href="research.html">Research</a> ·
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a>
+      </nav>
+    </noscript>
+
+    <main id="main">
+      <!-- ===================================================================
+           RESEARCH — one <article class="project"> per project.
+           Each project has an English block and an Italian block.
+           TODO: review the Italian translation
+           =================================================================== -->
+      <section class="section">
+        <div class="container">
+          <h1 class="page-title"><span lang="en">Research</span><span lang="it">Ricerca</span></h1>
+          <p class="section-intro" lang="en">Robots and instruments for extreme environments, from detector caverns to space.</p>
+          <p class="section-intro" lang="it">Robot e strumenti per ambienti estremi, dalle caverne dei rivelatori allo spazio.</p>
+
+          <!-- ---------- Robotics at CERN ---------- -->
+          <h2 class="group-title"><span lang="en">Robotics at CERN</span><span lang="it">Robotica al CERN</span></h2>
+          <div class="projects">
+            <!-- Project: ALICE cavern mapping -->
+            <article class="project" lang="en">
+              <header>
+                <p class="project-meta">PhD project · CERN EP-DT · 2023 – present</p>
+                <h3>Aerial mapping of the ALICE cavern</h3>
+                <p class="project-summary">A lighter-than-air robot that maps magnetic field and radiation inside a particle-physics detector cavern.</p>
+              </header>
+              <h4>The problem</h4>
+              <p>
+                Detector caverns at the LHC combine strong magnetic fields, ionising radiation, large volumes and fragile equipment. Mapping the field and
+                radiation environment by hand is slow and leaves gaps, and conventional drones — with fast propellers, heavy batteries and actuators disturbed
+                by the field — are a risk close to the detector.
+              </p>
+              <h4>What I built</h4>
+              <p>A blimp-based aerial platform designed for these conditions:</p>
+              <ul>
+                <li><strong>Electronics:</strong> Arduino Portenta H7 and Raspberry Pi Zero on custom KiCad PCBs</li>
+                <li><strong>Control:</strong> cascade PID control, with heading from a motion-capture system</li>
+                <li><strong>Localization:</strong> ArUco fiducial markers and motion capture</li>
+                <li><strong>Sensing:</strong> Hall-effect magnetometry (TMAG5273) and Timepix3 radiation detection (MiniPIX)</li>
+                <li><strong>Metrology:</strong> uncertainty propagated following the GUM, from localization error to the final field map</li>
+              </ul>
+              <h4>Results</h4>
+              <!-- TODO: mapped volume, field range, measurement uncertainty, number of flights, photo and video -->
+              <p class="muted">Results and media will be added here.</p>
+            </article>
+            <article class="project" lang="it">
+              <header>
+                <p class="project-meta">Progetto di dottorato · CERN EP-DT · 2023 – oggi</p>
+                <h3>Mappatura aerea della caverna di ALICE</h3>
+                <p class="project-summary">
+                  Un robot più leggero dell'aria che mappa campo magnetico e radiazione all'interno della caverna di un rivelatore di fisica delle
+                  particelle.
+                </p>
+              </header>
+              <h4>Il problema</h4>
+              <p>
+                Le caverne dei rivelatori di LHC uniscono campi magnetici intensi, radiazione ionizzante, grandi volumi e apparecchiature delicate. Mappare
+                a mano il campo e l'ambiente di radiazione è lento e lascia zone scoperte, e i droni convenzionali — con eliche veloci, batterie pesanti e
+                attuatori disturbati dal campo — sono un rischio vicino al rivelatore.
+              </p>
+              <h4>Cosa ho costruito</h4>
+              <p>Una piattaforma aerea basata su un dirigibile, progettata per queste condizioni:</p>
+              <ul>
+                <li><strong>Elettronica:</strong> Arduino Portenta H7 e Raspberry Pi Zero su PCB custom progettati in KiCad</li>
+                <li><strong>Controllo:</strong> controllo PID in cascata, con l'orientamento fornito da un sistema di motion capture</li>
+                <li><strong>Localizzazione:</strong> marker fiduciali ArUco e motion capture</li>
+                <li><strong>Sensori:</strong> magnetometria a effetto Hall (TMAG5273) e rivelazione di radiazione Timepix3 (MiniPIX)</li>
+                <li><strong>Metrologia:</strong> incertezza propagata secondo la GUM, dall'errore di localizzazione fino alla mappa di campo finale</li>
+              </ul>
+              <h4>Risultati</h4>
+              <p class="muted">Risultati e contenuti multimediali verranno aggiunti qui.</p>
+            </article>
+
+            <!-- Project: UAVs in strong magnetic fields -->
+            <article class="project" lang="en">
+              <header>
+                <p class="project-meta">CERN EP-DT · internship and Junior Robotics Engineer · 2021 – 2022</p>
+                <h3>Flying robots in strong magnetic fields</h3>
+                <p class="project-summary">Modelling and controlling the magnetic disturbances that detector fields induce on UAV actuators.</p>
+              </header>
+              <p>
+                Robots that inspect particle detectors must fly inside the detector's own magnetic field, which pushes and twists the electric motors that
+                drive them.
+              </p>
+              <ul>
+                <li>
+                  Designed, built and tested a UAV for environmental inspection of CERN's harsh areas, studying how the detector field disturbs its actuation
+                  system.
+                </li>
+                <li>
+                  Developed theoretical models of the magnetic forces and torques acting on electromagnetic actuators in an external field, and benchmarked
+                  them against experiments.
+                </li>
+                <li>Designed control algorithms that integrate these disturbance models to keep the flight safe inside the field.</li>
+                <li>Developed a guidance, navigation and control (GNC) flight-software simulator for blimps in the detector caverns.</li>
+                <li>Assembled a blimp prototype with an Arduino control board and tested it with a PhaseSpace motion-capture system.</li>
+              </ul>
+              <p class="tools">Tools: FEM electromagnetic simulation (FEMM, CST), CATIA, MATLAB, Python.</p>
+            </article>
+            <article class="project" lang="it">
+              <header>
+                <p class="project-meta">CERN EP-DT · tirocinio e Junior Robotics Engineer · 2021 – 2022</p>
+                <h3>Robot volanti in campi magnetici intensi</h3>
+                <p class="project-summary">Modellare e controllare i disturbi magnetici che i campi dei rivelatori inducono sugli attuatori dei droni.</p>
+              </header>
+              <p>
+                I robot che ispezionano i rivelatori di particelle devono volare dentro il campo magnetico del rivelatore stesso, che spinge e fa ruotare i
+                motori elettrici che li muovono.
+              </p>
+              <ul>
+                <li>
+                  Ho progettato, costruito e testato un drone per l'ispezione ambientale delle aree ostili del CERN, studiando come il campo del rivelatore
+                  disturba il suo sistema di attuazione.
+                </li>
+                <li>
+                  Ho sviluppato modelli teorici delle forze e delle coppie magnetiche che agiscono su attuatori elettromagnetici in un campo esterno, e li ho
+                  confrontati con gli esperimenti.
+                </li>
+                <li>Ho progettato algoritmi di controllo che integrano questi modelli di disturbo per garantire un volo sicuro dentro il campo.</li>
+                <li>Ho sviluppato un simulatore del software di volo di guida, navigazione e controllo (GNC) per dirigibili nelle caverne dei rivelatori.</li>
+                <li>Ho assemblato un prototipo di dirigibile con una scheda di controllo Arduino e l'ho testato con un sistema di motion capture PhaseSpace.</li>
+              </ul>
+              <p class="tools">Strumenti: simulazione elettromagnetica FEM (FEMM, CST), CATIA, MATLAB, Python.</p>
+            </article>
+          </div>
+
+          <!-- ---------- Space ---------- -->
+          <h2 class="group-title"><span lang="en">Space</span><span lang="it">Spazio</span></h2>
+          <div class="projects">
+            <!-- Project: PLATO -->
+            <article class="project" lang="en">
+              <header>
+                <p class="project-meta">INAF · Payload System Engineer · March – October 2023</p>
+                <h3>PLATO camera system engineering</h3>
+                <p class="project-summary">Payload system engineering for the cameras of ESA's PLATO exoplanet mission at INAF.</p>
+              </header>
+              <p>
+                <a href="https://www.esa.int/Science_Exploration/Space_Science/Plato">PLATO</a> is an ESA mission that will search for Earth-like planets
+                around Sun-like stars with an array of 26 cameras.
+              </p>
+              <p>As a member of the Camera System Engineering team in the PLATO Camera Project Office I:</p>
+              <ul>
+                <li>managed camera requirements and the updates of the camera MBSE model, ensuring its integration into the mission model developed by ESA;</li>
+                <li>reviewed and updated technical documentation and monitored compliance with system requirements;</li>
+                <li>managed deviations arising during camera integration and calibration.</li>
+              </ul>
+            </article>
+            <article class="project" lang="it">
+              <header>
+                <p class="project-meta">INAF · Payload System Engineer · marzo – ottobre 2023</p>
+                <h3>Ingegneria di sistema delle camere di PLATO</h3>
+                <p class="project-summary">Ingegneria di sistema del payload per le camere della missione PLATO dell'ESA dedicata agli esopianeti, all'INAF.</p>
+              </header>
+              <p>
+                <a href="https://www.esa.int/Science_Exploration/Space_Science/Plato">PLATO</a> è una missione dell'ESA che cercherà pianeti simili alla Terra
+                attorno a stelle simili al Sole con una schiera di 26 camere.
+              </p>
+              <p>Come membro del team Camera System Engineering nel PLATO Camera Project Office ho:</p>
+              <ul>
+                <li>gestito i requisiti delle camere e gli aggiornamenti del modello MBSE delle camere, assicurandone l'integrazione nel modello di missione sviluppato dall'ESA;</li>
+                <li>revisionato e aggiornato la documentazione tecnica e verificato la conformità ai requisiti di sistema;</li>
+                <li>gestito le deviazioni emerse durante l'integrazione e la calibrazione delle camere.</li>
+              </ul>
+            </article>
+
+            <!-- Project: ISU SHSSP -->
+            <article class="project" lang="en">
+              <header>
+                <p class="project-meta">International Space University · University of South Australia, Adelaide · January – February 2023</p>
+                <h3>International Space University SHSSP 2023</h3>
+                <p class="project-summary">Interdisciplinary space studies programme in Adelaide, with a partial scholarship from ESA.</p>
+              </header>
+              <p>
+                The Southern Hemisphere Space Studies Program is an intensive interdisciplinary, intercultural and international programme covering the
+                technical, legal, business and policy sides of the space sector. I attended with a partial scholarship from ESA.
+              </p>
+              <p>
+                Related work: <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a>
+                and
+                <a href="publications.html#pub-iac-balloon"><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a>.
+              </p>
+            </article>
+            <article class="project" lang="it">
+              <header>
+                <p class="project-meta">International Space University · University of South Australia, Adelaide · gennaio – febbraio 2023</p>
+                <h3>International Space University SHSSP 2023</h3>
+                <p class="project-summary">Programma interdisciplinare di studi spaziali ad Adelaide, con una borsa di studio parziale dell'ESA.</p>
+              </header>
+              <p>
+                Il Southern Hemisphere Space Studies Program è un programma intensivo interdisciplinare, interculturale e internazionale che copre gli aspetti
+                tecnici, legali, economici e politici del settore spaziale. Vi ho partecipato con una borsa di studio parziale dell'ESA.
+              </p>
+              <p>
+                Lavori collegati:
+                <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a> e
+                <a href="publications.html#pub-iac-balloon"><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a>.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
