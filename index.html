@@ -21,12 +21,13 @@
     <meta property="og:image" content="https://framazzei3.github.io/img/profile.jpg" />
 
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css" />
+    <!-- Bump ?v= after editing css/js so browsers fetch the new file instead of a cached copy -->
+    <link rel="stylesheet" href="css/style.css?v=2" />
     <!-- Marks that JavaScript is available, so the mobile menu can collapse -->
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <script src="js/main.js" defer></script>
+    <script src="js/main.js?v=2" defer></script>
   </head>
 
   <body>
@@ -49,6 +50,10 @@
         <rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="1.8" />
         <circle cx="8" cy="8" r="1.1" fill="currentColor" />
         <path d="M8 11v6M12 17v-6M12 13.5a2.5 2.5 0 0 1 5 0V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+      </symbol>
+      <symbol id="i-scholar" viewBox="0 0 24 24">
+        <path d="M2.5 9.5 12 4l9.5 5.5L12 15z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+        <path d="M6.5 12v4.2c0 1.6 2.5 3.3 5.5 3.3s5.5-1.7 5.5-3.3V12M21.5 9.5v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
       </symbol>
       <symbol id="i-pin" viewBox="0 0 24 24">
         <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
@@ -164,7 +169,12 @@
                   <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
                 </a>
               </li>
-              <!-- TODO: add Google Scholar (the part after "user=" in your Scholar profile URL), GitHub and INSPIRE-HEP links if wanted -->
+              <li>
+                <a href="https://scholar.google.com/citations?user=2Do8txEAAAAJ" aria-label="Google Scholar">
+                  <svg class="icon" aria-hidden="true"><use href="#i-scholar" /></svg>
+                </a>
+              </li>
+              <!-- TODO: add GitHub and INSPIRE-HEP links if wanted -->
             </ul>
             <p class="contact-note"></p>
           </aside>
@@ -326,6 +336,7 @@
           <h2 id="publications-title" class="section-title">Publications</h2>
           <p class="section-intro">
             Journal articles, conference papers, reports and theses, newest first. Full list on
+            <a href="https://scholar.google.com/citations?user=2Do8txEAAAAJ">Google Scholar</a> and
             <a href="https://orcid.org/0000-0003-4888-1428">ORCID</a>.
           </p>
 
@@ -749,6 +760,11 @@
           <li>
             <a href="https://www.linkedin.com/in/francesco-mazzei-843b7a200" aria-label="LinkedIn">
               <svg class="icon" aria-hidden="true"><use href="#i-linkedin" /></svg>
+            </a>
+          </li>
+          <li>
+            <a href="https://scholar.google.com/citations?user=2Do8txEAAAAJ" aria-label="Google Scholar">
+              <svg class="icon" aria-hidden="true"><use href="#i-scholar" /></svg>
             </a>
           </li>
         </ul>

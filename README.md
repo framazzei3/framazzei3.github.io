@@ -26,6 +26,7 @@ Double-click `index.html`. It works offline in any browser.
 - **Research project:** copy an `<article class="project">` block.
 - **CV PDF:** save it as `files/CV_Francesco_Mazzei.pdf` and uncomment the download link in the `CV` section.
 - **Colours:** edit the variables at the top of `css/style.css`.
+- **After editing CSS or JS:** bump the `?v=` number on the `style.css` and `main.js` links in `index.html`, so visitors' browsers load the new version instead of a cached one.
 
 Open TODOs are left as HTML comments; search `index.html` for `TODO`.
 
