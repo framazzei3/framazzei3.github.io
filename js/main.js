@@ -247,9 +247,10 @@
     window.addEventListener("hashchange", openTarget);
   }
 
-  // External links (papers, DOIs, profiles) open in a new tab, so the site stays open
-  Array.prototype.forEach.call(document.querySelectorAll('a[href^="http"]'), function (link) {
-    if (link.hostname === window.location.hostname) return;
+  // External links (papers, DOIs, profiles) and PDF files open in a new tab, so the site stays open
+  Array.prototype.forEach.call(document.querySelectorAll('a[href^="http"], a[href$=".pdf"]'), function (link) {
+    var isPdf = /\.pdf$/i.test(link.getAttribute("href"));
+    if (!isPdf && link.hostname === window.location.hostname) return;
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener");
   });

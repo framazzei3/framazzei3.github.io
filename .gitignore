@@ -1,0 +1,3 @@
+# Source presentations (large, with videos): only the PDFs in files/ are published
+*.pptx
+*.ppt
