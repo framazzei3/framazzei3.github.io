@@ -213,6 +213,11 @@ ol {
   margin-bottom: 0.4rem;
 }
 
+/* More room when the page title is followed directly by content */
+.page-title + :not(.section-intro) {
+  margin-top: 1.75rem;
+}
+
 .section-intro {
   color: var(--text-muted);
   margin-bottom: 2rem;
@@ -220,7 +225,7 @@ ol {
 
 /* Short highlighted note, e.g. "section under construction" */
 .notice {
-  margin: -1rem 0 2rem;
+  margin: 0 0 2rem;
   padding: 0.6rem 0.9rem;
   border-left: 3px solid var(--accent);
   border-radius: 0 8px 8px 0;
@@ -229,12 +234,12 @@ ol {
 }
 
 .group-title {
-  font-size: 0.8rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin: 2rem 0 1rem;
+  color: var(--text);
+  margin: 2.25rem 0 1rem;
 }
 
 .button {
@@ -934,11 +939,37 @@ th {
 }
 
 .interest {
+  overflow: hidden;
   padding: 1.25rem 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
+}
+
+/* Photo at the top of an activity card; .placeholder is the empty frame shown until a photo is added */
+.interest-photo {
+  display: block;
+  width: calc(100% + 3rem);
+  margin: -1.25rem -1.5rem 1.1rem;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.interest-photo.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-alt);
+  border-bottom: 1px dashed var(--border);
+  color: var(--text-muted);
+}
+
+.interest-photo.placeholder .icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  opacity: 0.6;
 }
 
 .interest h2 {
