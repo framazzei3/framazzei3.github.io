@@ -979,43 +979,6 @@ th {
   background: color-mix(in srgb, #ff0000 10%, transparent);
 }
 
-/* Grid of video thumbnails */
-.videos {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.video {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text);
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.video:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-.video img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  background: var(--bg-alt);
-}
-
-.video span {
-  padding: 0.6rem 0.75rem;
-}
-
 /* --------------------------------------------------------------------------
    11. Footer
    -------------------------------------------------------------------------- */
