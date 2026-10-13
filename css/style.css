@@ -560,104 +560,89 @@ ol {
 
 /* --------------------------------------------------------------------------
    8. Publications
-   Two-column card grid; image on top, venue badge over the image.
+   Compact cards in a grid (3 columns on wide screens, 1 on phones).
    -------------------------------------------------------------------------- */
 .year {
   font-family: var(--font-serif);
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-muted);
-  margin: 2.5rem 0 1rem;
-  padding-bottom: 0.4rem;
+  margin: 1.75rem 0 0.75rem;
+  padding-bottom: 0.3rem;
   border-bottom: 1px solid var(--border);
 }
 
 .pubs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.75rem;
+  align-items: start;
 }
 
 .pub {
-  position: relative;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  padding: 0.75rem 0.9rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
+  border-radius: 8px;
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    box-shadow 0.15s ease,
+    border-color 0.15s ease;
 }
 
 .pub:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-hover);
   border-color: var(--accent);
+  box-shadow: var(--shadow);
 }
 
 .pub:target {
-  border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
-}
-
-.pub-img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  background: #fff;
-  border-bottom: 1px solid var(--border);
 }
 
 /* Venue badge: colour is set per paper with style="--badge: #hex" */
 .badge {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  padding: 0.25em 0.7em;
-  border-radius: 6px;
+  align-self: flex-start;
+  margin-bottom: 0.4rem;
+  padding: 0.1em 0.55em;
+  border-radius: 4px;
   background: var(--badge, var(--accent));
   color: #fff;
-  font-size: 0.78rem;
+  font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.02em;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .pub-body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  padding: 1.1rem 1.25rem 1.25rem;
 }
 
 .pub-title {
-  font-size: 1.05rem;
-  line-height: 1.35;
-  margin-bottom: 0.5rem;
+  font-size: 0.92rem;
+  line-height: 1.3;
+  margin-bottom: 0.3rem;
 }
 
 .pub-authors {
-  font-size: 0.9rem;
-  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+  margin-bottom: 0.2rem;
 }
 
 .pub-authors .me {
   color: var(--text);
-  text-decoration: underline;
-  text-decoration-color: var(--accent);
-  text-underline-offset: 3px;
+  font-weight: 600;
 }
 
 .pub-venue,
 .pub-note {
-  font-size: 0.88rem;
+  font-size: 0.76rem;
+  line-height: 1.4;
   color: var(--text-muted);
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.2rem;
 }
 
 .pub-note {
@@ -667,16 +652,16 @@ ol {
 .pub-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: auto 0 0;
-  padding-top: 0.6rem;
+  gap: 0.3rem;
+  margin: 0;
+  padding-top: 0.35rem;
 }
 
 .pub-links a {
-  padding: 0.2em 0.75em;
+  padding: 0.05em 0.6em;
   border: 1px solid var(--border);
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.72rem;
   font-weight: 600;
   text-decoration: none;
 }
@@ -688,8 +673,8 @@ ol {
 
 /* Collapsible abstract (native <details>, no JavaScript) */
 .abstract {
-  margin-top: 0.75rem;
-  font-size: 0.9rem;
+  margin-top: 0.35rem;
+  font-size: 0.78rem;
 }
 
 .abstract summary {
@@ -701,12 +686,6 @@ ol {
 .abstract p {
   margin: 0.5rem 0 0;
   color: var(--text-muted);
-}
-
-@media (max-width: 760px) {
-  .pubs {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* --------------------------------------------------------------------------
@@ -879,17 +858,12 @@ th {
   *::after {
     transition: none !important;
   }
-
-  .pub:hover {
-    transform: none;
-  }
 }
 
 @media print {
   .site-header,
   .site-footer,
   .skip-link,
-  .pub-img,
   .badge {
     display: none;
   }

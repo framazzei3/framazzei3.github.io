@@ -8,7 +8,7 @@ Source of <https://framazzei3.github.io>: a single hand-written page in plain HT
 index.html        the whole site: about, news, research, publications, teaching, CV, footer
 css/style.css     all styles; colours are defined once at the top (light and dark)
 js/main.js        mobile menu, current-section highlight, footer year
-img/              profile photo, favicon and publication preview images
+img/              profile photo and favicon
 files/            downloadable files (e.g. the CV PDF)
 .nojekyll         tells GitHub Pages to serve the files as they are
 ```
@@ -22,7 +22,7 @@ Double-click `index.html`. It works offline in any browser.
 ## Common edits
 
 - **News:** add a new `<li>` at the top of the list in the `NEWS` section.
-- **Publication:** copy an existing `<article class="pub">` block, change its text and links, and put a 16:9 image in `img/publications/`. The badge colour is set by `style="--badge: #hex"`.
+- **Publication:** copy an existing `<article class="pub">` block, change its text and links. The badge colour is set by `style="--badge: #hex"`.
 - **Research project:** copy an `<article class="project">` block.
 - **CV PDF:** save it as `files/CV_Francesco_Mazzei.pdf` and uncomment the download link in the `CV` section.
 - **Colours:** edit the variables at the top of `css/style.css`.
