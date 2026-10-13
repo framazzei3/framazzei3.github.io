@@ -7,13 +7,12 @@
    3. Layout helpers
    4. Header and navigation
    5. About
-   6. News
-   7. Research
-   8. Publications
-   9. Teaching
-   10. CV
-   11. Footer
-   12. Motion and print
+   6. Research
+   7. Publications
+   8. Teaching
+   9. CV
+   10. Footer
+   11. Motion and print
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -549,46 +548,7 @@ ol {
 }
 
 /* --------------------------------------------------------------------------
-   6. News
-   -------------------------------------------------------------------------- */
-.news {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.news li {
-  display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
-  gap: 1rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.news li:last-child {
-  border-bottom: 0;
-}
-
-.news time {
-  color: var(--accent);
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  white-space: nowrap;
-}
-
-.news p {
-  margin: 0;
-}
-
-@media (max-width: 520px) {
-  .news li {
-    grid-template-columns: 1fr;
-    gap: 0.15rem;
-  }
-}
-
-/* --------------------------------------------------------------------------
-   7. Research
+   6. Research
    -------------------------------------------------------------------------- */
 .projects {
   display: grid;
@@ -656,17 +616,111 @@ ol {
 }
 
 /* --------------------------------------------------------------------------
-   8. Publications
+   7. Publications
    Compact cards in a grid (3 columns on wide screens, 1 on phones).
    -------------------------------------------------------------------------- */
-.year {
+/* Category filter buttons (need JavaScript, hidden without it) */
+.pub-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+html:not(.js) .pub-filter {
+  display: none;
+}
+
+.pub-filter button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.pub-filter button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pub-filter button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--bg);
+}
+
+/* Small number next to a category name */
+.count {
+  display: inline-block;
+  min-width: 1.5em;
+  padding: 0 0.4em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pub-filter button[aria-pressed="true"] .count {
+  background: color-mix(in srgb, var(--bg) 25%, transparent);
+  color: var(--bg);
+}
+
+/* Collapsible category: click the heading to open or close it */
+.pub-group {
+  margin-top: 1.5rem;
+}
+
+.pub-group > summary {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  list-style: none;
+}
+
+.pub-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Chevron: points right when closed, down when open */
+.pub-group > summary::before {
+  content: "";
+  width: 0.5rem;
+  height: 0.5rem;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: rotate(-45deg);
+  transition: transform 0.15s ease;
+}
+
+.pub-group[open] > summary::before {
+  transform: rotate(45deg);
+}
+
+.pub-group > summary:hover .group-heading,
+.pub-group > summary:hover::before {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.group-heading {
+  margin: 0;
   font-family: var(--font-serif);
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-muted);
-  margin: 1.75rem 0 0.75rem;
-  padding-bottom: 0.3rem;
-  border-bottom: 1px solid var(--border);
 }
 
 .pubs {
@@ -786,7 +840,7 @@ ol {
 }
 
 /* --------------------------------------------------------------------------
-   9. Teaching
+   8. Teaching
    -------------------------------------------------------------------------- */
 .table-wrap {
   overflow-x: auto;
@@ -811,7 +865,7 @@ th {
 }
 
 /* --------------------------------------------------------------------------
-   10. CV
+   9. CV
    -------------------------------------------------------------------------- */
 .cv-grid {
   display: grid;
@@ -909,7 +963,7 @@ th {
 }
 
 /* --------------------------------------------------------------------------
-   11. Footer
+   10. Footer
    -------------------------------------------------------------------------- */
 .site-footer {
   padding: 2rem 0;
@@ -943,7 +997,7 @@ th {
 }
 
 /* --------------------------------------------------------------------------
-   12. Motion and print
+   11. Motion and print
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   html {

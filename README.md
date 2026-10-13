@@ -6,7 +6,6 @@ Source of <https://framazzei3.github.io>: hand-written HTML, CSS and a little Ja
 
 ```
 index.html          About (home page)
-news.html           News
 research.html       Research projects
 publications.html   Publications
 teaching.html       Teaching
@@ -44,8 +43,8 @@ The header button cycles **System → Light → Dark**. *System* follows the dev
 
 ## Common edits
 
-- **News:** in `news.html`, add a new `<li>` at the top of the list.
-- **Publication:** in `publications.html`, copy an `<article class="pub">` block and change its text and links. The badge colour is set by `style="--badge: #hex"`.
+- **Publication:** in `publications.html`, copy an `<article class="pub">` block into the right category and change its text and links. The badge colour is set by `style="--badge: #hex"`. The counts in the category filter update by themselves.
+- **New publication category:** copy a `<details class="pub-group">` block with a new `id`, and add a filter button with the same `data-filter` value.
 - **Research project:** in `research.html`, copy an English `<article class="project" lang="en">` and its Italian twin.
 - **Menu or social links:** edit the SITE SETTINGS block in `js/main.js`.
 - **New page:** copy an existing page, change `data-page` on `<body>`, and add it to `PAGES` in `js/main.js`.

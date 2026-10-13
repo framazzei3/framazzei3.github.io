@@ -18,7 +18,6 @@
      ------------------------------------------------------------------------ */
   var PAGES = [
     { id: "about", href: "index.html", en: "About", it: "Chi sono" },
-    { id: "news", href: "news.html", en: "News", it: "News" },
     { id: "research", href: "research.html", en: "Research", it: "Ricerca" },
     { id: "publications", href: "publications.html", en: "Publications", it: "Pubblicazioni" },
     { id: "teaching", href: "teaching.html", en: "Teaching", it: "Didattica" },
@@ -201,6 +200,50 @@
   });
 
   renderLanguage();
+
+  // Publications: category filter and collapsible groups (<details class="pub-group">)
+  var groups = Array.prototype.slice.call(document.querySelectorAll(".pub-group"));
+  var filterButtons = Array.prototype.slice.call(document.querySelectorAll(".pub-filter [data-filter]"));
+
+  if (groups.length) {
+    // Counts are worked out here, so adding a paper needs no manual update
+    var total = 0;
+    groups.forEach(function (group) {
+      var n = group.querySelectorAll(".pub").length;
+      total += n;
+      group.querySelector("summary .count").textContent = n;
+      var button = document.querySelector('.pub-filter [data-filter="' + group.id + '"] .count');
+      if (button) button.textContent = n;
+    });
+    var all = document.querySelector('.pub-filter [data-filter="all"] .count');
+    if (all) all.textContent = total;
+
+    filterButtons.forEach(function (button) {
+      button.addEventListener("click", function () {
+        var choice = button.getAttribute("data-filter");
+        filterButtons.forEach(function (b) {
+          b.setAttribute("aria-pressed", String(b === button));
+        });
+        groups.forEach(function (group) {
+          var show = choice === "all" || group.id === choice;
+          group.hidden = !show;
+          if (show) group.open = true;
+        });
+      });
+    });
+
+    // A link such as publications.html#pub-erf-2022 opens the group that contains it
+    var openTarget = function () {
+      var target = window.location.hash && document.getElementById(window.location.hash.slice(1));
+      var group = target && target.closest(".pub-group");
+      if (!group) return;
+      group.hidden = false;
+      group.open = true;
+      target.scrollIntoView();
+    };
+    openTarget();
+    window.addEventListener("hashchange", openTarget);
+  }
 
   // External links (papers, DOIs, profiles) open in a new tab, so the site stays open
   Array.prototype.forEach.call(document.querySelectorAll('a[href^="http"]'), function (link) {
