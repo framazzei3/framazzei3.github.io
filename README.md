@@ -16,6 +16,7 @@ js/prefs.js         applies the saved theme and language before the page is draw
 js/main.js          shared parts: menu, header buttons, footer, social links, icons
 img/                profile photo and favicon
 files/              downloadable files (e.g. the CV PDF)
+materiale/          working material (presentations, reports): stays on this computer, ignored by git
 .nojekyll           tells GitHub Pages to serve the files as they are
 ```
 

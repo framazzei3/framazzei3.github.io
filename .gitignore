@@ -1,3 +1,3 @@
-# Source presentations (large, with videos): only the PDFs in files/ are published
-*.pptx
-*.ppt
+# Working material (presentations, LinkedIn export, ...): kept on this computer only.
+# Files meant for the site go in files/.
+materiale/
