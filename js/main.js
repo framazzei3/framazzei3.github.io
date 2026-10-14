@@ -18,7 +18,7 @@
      ------------------------------------------------------------------------ */
   var PAGES = [
     { id: "about", href: "index.html", en: "About", it: "Chi sono" },
-    { id: "research", href: "research.html", en: "Research", it: "Ricerca" },
+    { id: "projects", href: "projects.html", en: "Projects", it: "Progetti" },
     { id: "publications", href: "publications.html", en: "Publications", it: "Pubblicazioni" },
     { id: "teaching", href: "teaching.html", en: "Teaching", it: "Didattica" },
     { id: "cv", href: "cv.html", en: "CV", it: "CV" },
@@ -270,6 +270,31 @@
     link.setAttribute("target", "_blank");
     link.setAttribute("rel", "noopener");
   });
+
+  // Contents menu on project pages: highlight the section currently in view
+  var tocLinks = Array.prototype.slice.call(document.querySelectorAll(".toc a[href^='#']"));
+  if (tocLinks.length) {
+    var sections = tocLinks.map(function (link) {
+      return document.getElementById(link.getAttribute("href").slice(1));
+    });
+
+    var markActive = function () {
+      var offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--header-h"), 10) + 40;
+      var current = 0;
+      sections.forEach(function (section, i) {
+        if (section && section.getBoundingClientRect().top <= offset) current = i;
+      });
+      // At the bottom of the page the last sections may never reach the top: mark the last one
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) current = sections.length - 1;
+      tocLinks.forEach(function (link, i) {
+        link.classList.toggle("active", i === current);
+      });
+    };
+
+    markActive();
+    window.addEventListener("scroll", markActive, { passive: true });
+    window.addEventListener("resize", markActive);
+  }
 
   // Mobile menu
   var toggle = document.querySelector(".nav-toggle");

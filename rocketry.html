@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sapienza Rocketry Challenge · Francesco Mazzei</title>
+    <meta name="description" content="Design, simulation and launch of a model rocket carrying an egg, Space Propulsion Laboratory, Sapienza University of Rome, 2019." />
+    <meta name="author" content="Francesco Mazzei" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css?v=24" />
+    <script src="js/prefs.js?v=16"></script>
+    <script src="js/main.js?v=19" defer></script>
+  </head>
+
+  <!-- Header, menu and footer are added by js/main.js.
+       data-page keeps "Projects" highlighted in the menu; data-title-* set the tab title. -->
+  <body data-page="projects" data-title-en="Sapienza Rocketry Challenge" data-title-it="Sapienza Rocketry Challenge">
+    <noscript>
+      <nav class="noscript-nav container">
+        <a href="index.html">About</a> · <a href="projects.html">Projects</a> ·
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
+      </nav>
+    </noscript>
+
+    <main id="main">
+      <!-- ===================================================================
+           PROJECT PAGE: Sapienza Rocketry Challenge, Space Propulsion Laboratory 2019.
+           Figures and photos in img/rocketry/, reports in files/.
+           Originals in D:\UNIVERSITA'\LAB Propulsione Spaziale (not published).
+           TODO: review the Italian translation
+           =================================================================== -->
+      <section class="section">
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#mission"><span lang="en">Mission</span><span lang="it">Missione</span></a></li>
+              <li><a href="#feasibility"><span lang="en">Feasibility study</span><span lang="it">Studio di fattibilità</span></a></li>
+              <li><a href="#design"><span lang="en">Design</span><span lang="it">Progetto</span></a></li>
+              <li><a href="#simulation"><span lang="en">Flight simulation</span><span lang="it">Simulazione del volo</span></a></li>
+              <li><a href="#launch"><span lang="en">Launch</span><span lang="it">Lancio</span></a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#reports"><span lang="en">Reports</span><span lang="it">Report</span></a></li>
+            </ol>
+          </nav>
+
+          <div class="project-body">
+            <p class="back-link">
+              <a href="projects.html"><span lang="en">Back to Projects</span><span lang="it">Torna a Progetti</span></a>
+            </p>
+
+            <h1 class="page-title" id="overview">Sapienza Rocketry Challenge</h1>
+            <p class="section-intro" lang="en">Space Propulsion Laboratory, Sapienza University of Rome, February to May 2019</p>
+            <p class="section-intro" lang="it">Laboratorio di Propulsione Spaziale, Sapienza Università di Roma, da febbraio a maggio 2019</p>
+
+            <p class="lead" lang="en">
+              In the Space Propulsion Laboratory course, run with AVIO, our team of four designed, simulated, built and launched a model rocket with a
+              commercial solid motor. The rocket had to carry a raw egg and a flight recorder, bring them back intact, and land the payload as close
+              as possible to the flight time we had predicted.
+            </p>
+            <p class="lead" lang="it">
+              Nel corso di Laboratorio di Propulsione Spaziale, organizzato con AVIO, il nostro team di quattro persone ha progettato, simulato,
+              costruito e lanciato un modello di razzo con motore commerciale a propellente solido. Il razzo doveva portare un uovo crudo e un
+              registratore di volo, riportarli a terra intatti e far atterrare il payload il più vicino possibile al tempo di volo previsto.
+            </p>
+
+            <!-- Key numbers: nominal predictions from the Critical Design Review -->
+            <ul class="facts">
+              <li><strong>85 m</strong><span lang="en">predicted apogee</span><span lang="it">apogeo previsto</span></li>
+              <li><strong>31.5 s</strong><span lang="en">predicted payload flight time</span><span lang="it">tempo di volo previsto del payload</span></li>
+              <li><strong>4.2</strong><span lang="en">stability margin (calibres)</span><span lang="it">margine di stabilità (calibri)</span></li>
+              <li><strong>317.5 g</strong><span lang="en">lift-off mass</span><span lang="it">massa al decollo</span></li>
+            </ul>
+
+            <h2 class="group-title" id="mission"><span lang="en">Mission</span><span lang="it">Missione</span></h2>
+            <ul lang="en">
+              <li>Carry a 60 g egg and a 30 g flight recorder (altimeter and battery) to an altitude between 50 and 130 m.</li>
+              <li>Recover payload and rocket separately, each under its own parachute.</li>
+              <li>Payload descent rate between 2.5 and 4 m/s, rocket descent rate below 8 m/s.</li>
+              <li>Only the motors provided by the organisers, with no staging or clustering.</li>
+              <li>Predict the flight time of the payload, from launch to landing, as accurately as possible.</li>
+            </ul>
+            <ul lang="it">
+              <li>Portare un uovo da 60 g e un registratore di volo da 30 g (altimetro e batteria) a una quota tra 50 e 130 m.</li>
+              <li>Recuperare payload e razzo separatamente, ciascuno con il proprio paracadute.</li>
+              <li>Velocità di discesa del payload tra 2,5 e 4 m/s, del razzo sotto 8 m/s.</li>
+              <li>Solo i motori forniti dagli organizzatori, senza stadi né motori in parallelo.</li>
+              <li>Prevedere il più accuratamente possibile il tempo di volo del payload, dal lancio all'atterraggio.</li>
+            </ul>
+
+            <h2 class="group-title" id="feasibility"><span lang="en">Feasibility study</span><span lang="it">Studio di fattibilità</span></h2>
+            <p lang="en">
+              In the Preliminary Design Review we compared the five motors allowed by the organisers (Estes C6, C11 and D12, Weco D7, Klima D9). For
+              each one we computed altitude performance charts, apogee and coasting time as a function of lift-off mass and drag, and checked them
+              against the altitude limits and the motor ejection delay. We then defined a nominal configuration for a light and a heavy egg and
+              studied best and worst cases. The class C motors met the requirements only with very light rockets and were very sensitive to
+              uncertainties, while the class D motors gave the smallest spread in the flight data and were the most suitable for the mission.
+            </p>
+            <p lang="it">
+              Nella Preliminary Design Review abbiamo confrontato i cinque motori ammessi dagli organizzatori (Estes C6, C11 e D12, Weco D7, Klima D9).
+              Per ognuno abbiamo calcolato le altitude performance charts, apogeo e tempo di coasting in funzione della massa al decollo e della
+              resistenza, e le abbiamo confrontate con i limiti di quota e con il ritardo di espulsione del motore. Abbiamo poi definito una
+              configurazione nominale per un uovo leggero e uno pesante e studiato i casi migliore e peggiore. I motori di classe C rispettavano i
+              requisiti solo con razzi molto leggeri ed erano molto sensibili alle incertezze, mentre quelli di classe D davano la dispersione minore
+              dei dati di volo ed erano i più adatti alla missione.
+            </p>
+
+            <h2 class="group-title" id="design"><span lang="en">Design</span><span lang="it">Progetto</span></h2>
+            <p lang="en">
+              The final design, presented in the Critical Design Review, uses an Estes D12-3 motor (16.8 N·s total impulse, 1.65 s burn, 3 s ejection
+              delay). The rocket is about 1.1 m long: a 60 mm aft section with four fins, a slimmer 40 mm central section joined by two transitions,
+              and a 60 mm forward section with the nose cone, which holds the egg and the flight recorder.
+            </p>
+            <p lang="it">
+              Il progetto finale, presentato nella Critical Design Review, usa un motore Estes D12-3 (impulso totale 16,8 N·s, combustione di 1,65 s,
+              ritardo di espulsione di 3 s). Il razzo è lungo circa 1,1 m: una sezione posteriore da 60 mm con quattro alette, una sezione centrale
+              più sottile da 40 mm collegata da due raccordi, e una sezione anteriore da 60 mm con l'ogiva, che contiene l'uovo e il registratore di
+              volo.
+            </p>
+            <p lang="en">
+              We estimated the centre of gravity from the mass of each component and the centre of pressure with the Barrowman method. With the
+              centre of gravity at 499 mm and the centre of pressure at 750 mm from the tip, the stability margin is 4.2 calibres, inside the target
+              range of 3 to 5. Even if the two transitions gave no stabilising contribution, the margin would still be 2.2.
+            </p>
+            <p lang="it">
+              Abbiamo stimato il baricentro dalla massa di ogni componente e il centro di pressione con il metodo di Barrowman. Con il baricentro a
+              499 mm e il centro di pressione a 750 mm dalla punta, il margine di stabilità è di 4,2 calibri, dentro l'intervallo obiettivo tra 3 e 5.
+              Anche se i due raccordi non dessero alcun contributo stabilizzante, il margine sarebbe comunque 2,2.
+            </p>
+
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/rocketry/model-3d.png" width="1198" height="471" loading="lazy" alt="3D model of the rocket: nose cone, slim central body and four fins" />
+                <figcaption><span lang="en">3D model of the rocket</span><span lang="it">Modello 3D del razzo</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/rocketry/stability.png" width="1645" height="265" loading="lazy" alt="Side view of the rocket with the centre of gravity at 498.96 mm and the centre of pressure at 749.78 mm from the tip" />
+                <figcaption>
+                  <span lang="en">Centre of gravity (499 mm) and centre of pressure (750 mm), measured from the tip</span
+                  ><span lang="it">Baricentro (499 mm) e centro di pressione (750 mm), misurati dalla punta</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="simulation"><span lang="en">Flight simulation</span><span lang="it">Simulazione del volo</span></h2>
+            <p lang="en">
+              We wrote a MATLAB simulation of the vertical flight in three phases. The powered phase, with the thrust curve from the manufacturer and
+              a decreasing mass, was integrated numerically with the explicit Euler method; coasting to apogee and the descent of payload and rocket
+              under their parachutes were solved analytically. We then repeated the simulation for best and worst values of mass, total impulse, drag
+              and air density, and for launch angles between 60° and 90°.
+            </p>
+            <p lang="it">
+              Abbiamo scritto una simulazione in MATLAB del volo verticale in tre fasi. La fase propulsa, con la curva di spinta del costruttore e la
+              massa variabile, è stata integrata numericamente con il metodo di Eulero esplicito; il coasting fino all'apogeo e la discesa di payload
+              e razzo con i rispettivi paracadute sono stati risolti analiticamente. Abbiamo poi ripetuto la simulazione per i valori migliori e
+              peggiori di massa, impulso totale, resistenza e densità dell'aria, e per angoli di rampa tra 60° e 90°.
+            </p>
+            <ul lang="en">
+              <li>Apogee: 85 ± 7 m</li>
+              <li>Coasting time: 3.08 ± 0.19 s, close to the 3 s ejection delay of the motor</li>
+              <li>Payload descent rate: 3.2 m/s</li>
+              <li>Payload flight time: 31.5 ± 1.3 s</li>
+              <li>With a 60° launch angle the apogee would drop to 52 m, still above the minimum; up to 85° the effect is negligible.</li>
+            </ul>
+            <ul lang="it">
+              <li>Apogeo: 85 ± 7 m</li>
+              <li>Tempo di coasting: 3,08 ± 0,19 s, vicino al ritardo di espulsione di 3 s del motore</li>
+              <li>Velocità di discesa del payload: 3,2 m/s</li>
+              <li>Tempo di volo del payload: 31,5 ± 1,3 s</li>
+              <li>Con un angolo di rampa di 60° l'apogeo scenderebbe a 52 m, comunque sopra il minimo; fino a 85° l'effetto è trascurabile.</li>
+            </ul>
+
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/rocketry/flight-profile.png" width="594" height="467" loading="lazy" alt="Simulated velocity and altitude over time, from lift-off to landing" />
+                <figcaption>
+                  <span lang="en">Simulated velocity and altitude, from lift-off to landing</span
+                  ><span lang="it">Velocità e quota simulate, dal decollo all'atterraggio</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="launch"><span lang="en">Launch</span><span lang="it">Lancio</span></h2>
+            <p lang="en">
+              After building the rocket and passing the structural and stability checks, we launched it at the final event of the course on 25 May
+              2019, at the rugby field in Segni, near Rome. The day included the project presentations, the launches, and the comparison between the
+              recorded telemetry and each team's flight predictions.
+            </p>
+            <p lang="it">
+              Dopo la costruzione del razzo e le prove strutturali e di stabilità, lo abbiamo lanciato all'evento finale del corso, il 25 maggio 2019,
+              al campo da rugby di Segni, vicino a Roma. La giornata comprendeva la presentazione dei progetti, i lanci e il confronto tra la
+              telemetria registrata e le previsioni di volo di ogni team.
+            </p>
+            <div class="gallery">
+              <figure class="portrait">
+                <img src="img/rocketry/launch-pad.jpg" width="568" height="1001" loading="lazy" alt="The rocket climbing above the launch pad, leaving a trail of smoke over the rugby field" />
+                <figcaption><span lang="en">Lift-off from the launch pad</span><span lang="it">Il decollo dalla rampa</span></figcaption>
+              </figure>
+              <figure class="portrait">
+                <img src="img/rocketry/launch-climb.jpg" width="607" height="903" loading="lazy" alt="The rocket climbing against a cloudy sky" />
+                <figcaption><span lang="en">Climbing towards apogee</span><span lang="it">In salita verso l'apogeo</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="team">Team</h2>
+            <p>Francesco Mazzei, Daniel Odeven, Marco Pustorino, Alessandro Vittor</p>
+
+            <h2 class="group-title" id="reports"><span lang="en">Reports</span><span lang="it">Report</span></h2>
+            <p class="pub-links">
+              <a href="files/rocketry-cdr-2019.pdf"><span lang="en">Critical Design Review (PDF, in Italian)</span><span lang="it">Critical Design Review (PDF)</span></a>
+              <a href="files/rocketry-pdr-2019.pdf"><span lang="en">Preliminary Design Review (PDF, in Italian)</span><span lang="it">Preliminary Design Review (PDF)</span></a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

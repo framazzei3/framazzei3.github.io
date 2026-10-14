@@ -3,35 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Research · Francesco Mazzei</title>
+    <title>Projects · Francesco Mazzei</title>
     <meta name="description" content="Robots and instruments for extreme environments, from detector caverns to space." />
     <meta name="author" content="Francesco Mazzei" />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=21" />
+    <link rel="stylesheet" href="css/style.css?v=24" />
     <script src="js/prefs.js?v=16"></script>
-    <script src="js/main.js?v=18" defer></script>
+    <script src="js/main.js?v=19" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
-  <body data-page="research">
+  <body data-page="projects">
     <noscript>
       <nav class="noscript-nav container">
-        <a href="index.html">About</a> · <a href="research.html">Research</a> ·
+        <a href="index.html">About</a> · <a href="projects.html">Projects</a> ·
         <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
       </nav>
     </noscript>
 
     <main id="main">
       <!-- ===================================================================
-           RESEARCH: compact cards, one <article class="pub"> per project.
+           PROJECTS: compact cards, one <article class="pub"> per project.
            TODO: review the Italian translation
            =================================================================== -->
       <section class="section">
         <div class="container">
-          <h1 class="page-title"><span lang="en">Research</span><span lang="it">Ricerca</span></h1>
+          <h1 class="page-title"><span lang="en">Projects</span><span lang="it">Progetti</span></h1>
           <p class="notice" lang="en">This section is being set up: the sub-projects of my PhD, with their GitHub repositories, will be added soon.</p>
           <p class="notice" lang="it">Sezione in allestimento: presto aggiungerò i sottoprogetti del dottorato, con i relativi repository GitHub.</p>
 
@@ -124,7 +124,7 @@
                 </div>
               </article>
 
-              <article class="pub">
+              <article class="pub linked">
                 <span class="badge" style="--badge: #00205b">ISU</span>
                 <div class="pub-body">
                   <h3 class="pub-title"><a href="isu.html">International Space University SHSSP 2023</a></h3>
@@ -179,10 +179,13 @@
                 </div>
               </article>
 
-              <article class="pub">
+              <article class="pub linked">
+                <img class="pub-cover" src="img/lunar-rover/cover.jpg" width="683" height="392" loading="lazy" alt="" />
                 <span class="badge" style="--badge: #7a3e9d">Space Robotic Systems</span>
                 <div class="pub-body">
-                  <h3 class="pub-title"><span lang="en">Lunar rover: autonomous localisation</span><span lang="it">Rover lunare: localizzazione autonoma</span></h3>
+                  <h3 class="pub-title">
+                    <a href="lunar-rover.html"><span lang="en">Lunar rover: autonomous localisation</span><span lang="it">Rover lunare: localizzazione autonoma</span></a>
+                  </h3>
                   <p class="pub-venue" lang="en">Final exercise · Space Robotic Systems · Mar to Jun 2021</p>
                   <p class="pub-venue" lang="it">Esercizio finale · Space Robotic Systems · da mar a giu 2021</p>
                   <p class="pub-note" lang="en">
@@ -190,6 +193,9 @@
                   </p>
                   <p class="pub-note" lang="it">
                     Pianificazione della traiettoria evitando crateri e creste, localizzazione con sola odometria (dead reckoning) ed ellissi di incertezza, e un filtro di Kalman esteso che fonde odometria e un mappatore lidar del terreno.
+                  </p>
+                  <p class="partner-logos">
+                    <img src="img/logos/sapienza.svg" width="40" height="40" alt="Sapienza University of Rome" />
                   </p>
                 </div>
               </article>
@@ -224,17 +230,22 @@
                 </div>
               </article>
 
-              <article class="pub">
+              <article class="pub linked">
+                <img class="pub-cover" src="img/rocketry/cover.jpg" width="568" height="320" loading="lazy" alt="" />
                 <span class="badge" style="--badge: #c0392b">Space Propulsion Lab</span>
                 <div class="pub-body">
-                  <h3 class="pub-title">Sapienza Rocketry Challenge</h3>
-                  <p class="pub-venue" lang="en">Team project · Space Propulsion laboratory · Feb to Jun 2019</p>
-                  <p class="pub-venue" lang="it">Progetto di gruppo · Laboratorio di Propulsione Spaziale · da feb a giu 2019</p>
+                  <h3 class="pub-title"><a href="rocketry.html">Sapienza Rocketry Challenge</a></h3>
+                  <p class="pub-venue" lang="en">Team project · Space Propulsion laboratory · Feb to May 2019</p>
+                  <p class="pub-venue" lang="it">Progetto di gruppo · Laboratorio di Propulsione Spaziale · da feb a mag 2019</p>
                   <p class="pub-note" lang="en">
-                    Design, construction and launch of a single-stage model rocket with a commercial solid motor (class C and D): MATLAB trajectory simulation compared with the flight data from a launch in Segni-Colleferro, design reviews and post-flight analysis.
+                    Design, simulation, construction and launch of a model rocket with a commercial solid motor, carrying an egg and a flight recorder: motor trade-off, Barrowman stability analysis, MATLAB flight simulation with uncertainties, and launch in Segni.
                   </p>
                   <p class="pub-note" lang="it">
-                    Progettazione, costruzione e lancio di un modello di razzo monostadio con motore commerciale a propellente solido (classe C e D): simulazione della traiettoria in MATLAB confrontata con i dati di volo di un lancio a Segni-Colleferro, design review e analisi post-volo.
+                    Progettazione, simulazione, costruzione e lancio di un modello di razzo con motore commerciale a propellente solido, con a bordo un uovo e un registratore di volo: scelta del motore, analisi di stabilità con il metodo di Barrowman, simulazione del volo in MATLAB con incertezze, e lancio a Segni.
+                  </p>
+                  <p class="partner-logos">
+                    <img src="img/logos/sapienza.svg" width="40" height="40" alt="Sapienza University of Rome" />
+                    <img src="img/logos/avio.svg" width="80" height="40" alt="AVIO" />
                   </p>
                 </div>
               </article>
