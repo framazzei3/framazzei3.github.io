@@ -850,6 +850,71 @@ th {
   border: 2px solid var(--accent);
 }
 
+/* Institution logos sit on the line in place of the dot */
+.timeline.with-logos {
+  margin-left: 21px;
+  padding-left: 2.75rem;
+}
+
+.timeline.with-logos > li {
+  min-height: 3.5rem;
+}
+
+.timeline.with-logos > li::before {
+  display: none;
+}
+
+/* One or two logos, stacked along the line; the background hides the line behind them */
+.cv-logos {
+  position: absolute;
+  left: calc(-2.75rem - 21px);
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg);
+}
+
+.cv-logo {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+/* Employer in front, partner institution behind it to the right */
+.cv-logos.pair {
+  left: calc(-2.75rem - 31px);
+  background: none;
+}
+
+.cv-logo-front {
+  position: relative;
+  z-index: 1;
+  display: block;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.cv-logo.cv-logo-back {
+  position: absolute;
+  left: 33px;
+  top: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+/* Dark logos turn white on the dark theme */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .cv-logo.mono-dark {
+    filter: brightness(0) invert(1);
+  }
+}
+
+:root[data-theme="dark"] .cv-logo.mono-dark {
+  filter: brightness(0) invert(1);
+}
+
 .timeline h3 {
   font-size: 1rem;
   margin-bottom: 0.15rem;
@@ -867,6 +932,10 @@ th {
   color: var(--accent);
   margin-bottom: 0.15rem;
   font-variant-numeric: tabular-nums;
+}
+
+.timeline .org {
+  margin-bottom: 0.1rem;
 }
 
 .where {
