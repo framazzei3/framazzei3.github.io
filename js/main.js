@@ -235,6 +235,16 @@
       });
     });
 
+    // Expand all / Collapse all: opens or closes every visible group
+    Array.prototype.forEach.call(document.querySelectorAll("[data-toggle-all]"), function (button) {
+      button.addEventListener("click", function () {
+        var open = button.getAttribute("data-toggle-all") === "open";
+        groups.forEach(function (group) {
+          group.open = open;
+        });
+      });
+    });
+
     // A link such as publications.html#pub-erf-2022 opens the group that contains it
     var openTarget = function () {
       var target = window.location.hash && document.getElementById(window.location.hash.slice(1));

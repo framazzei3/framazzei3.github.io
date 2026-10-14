@@ -609,6 +609,24 @@ html:not(.js) .pub-filter {
   color: var(--bg);
 }
 
+/* Expand all / Collapse all: plain text buttons at the end of the filter row */
+.pub-toggle-all {
+  display: inline-flex;
+  gap: 0.25rem;
+  margin-left: auto;
+}
+
+.pub-filter .pub-toggle-all button {
+  border-color: transparent;
+  background: none;
+  color: var(--text-muted);
+}
+
+.pub-filter .pub-toggle-all button:hover {
+  border-color: transparent;
+  color: var(--accent);
+}
+
 /* Small number next to a category name */
 .count {
   display: inline-block;

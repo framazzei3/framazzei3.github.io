@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=15" />
-    <script src="js/prefs.js?v=15"></script>
-    <script src="js/main.js?v=15" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=16" />
+    <script src="js/prefs.js?v=16"></script>
+    <script src="js/main.js?v=16" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js -->
@@ -35,116 +35,137 @@
           <p class="section-intro" lang="en">Student projects I have supervised and outreach activities.</p>
           <p class="section-intro" lang="it">Progetti di studenti che ho seguito e attività di divulgazione.</p>
 
-          <!-- ---------- Supervised student projects (newest first) ---------- -->
-          <h2 class="group-title"><span lang="en">Student projects</span><span lang="it">Progetti di studenti</span></h2>
-          <div class="pubs">
-            <article class="pub">
-              <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
-              <div class="pub-body">
-                <h3 class="pub-title" lang="fr">Conception, adaptation et optimisation de la carte électronique (PCB) d'un BLIMP (dirigeable) robotisé</h3>
-                <p class="pub-authors">Loris Porret</p>
-                <p class="pub-venue">Université Savoie Mont Blanc, IUT d'Annecy · 2026</p>
-                <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
-                <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
-                <p class="pub-links">
-                  <a href="https://doi.org/10.17181/y6kzd-c2v87">DOI</a>
-                </p>
-              </div>
-            </article>
-
-            <article class="pub">
-              <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
-              <div class="pub-body">
-                <h3 class="pub-title">Structural and Propulsion Optimisation of the CERN Robotic Blimp</h3>
-                <p class="pub-authors">Christian Hedley Barraud</p>
-                <p class="pub-venue">
-                  <span lang="en">University of Bath, Department of Mechanical Engineering · 2025</span>
-                  <span lang="it">University of Bath, Dipartimento di Ingegneria Meccanica · 2025</span>
-                </p>
-                <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
-                <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
-                <p class="pub-links">
-                  <a href="https://doi.org/10.17181/3ed9j-02w05">DOI</a>
-                </p>
-              </div>
-            </article>
-
-            <article class="pub" id="pub-cern-report-2024">
-              <span class="badge" style="--badge: #0033a0">CERN Summer Student</span>
-              <div class="pub-body">
-                <h3 class="pub-title">Advancements on Aerial Robotic Systems and Sensor Technologies for Future HEP Detectors</h3>
-                <p class="pub-authors">Chi Kit Chan</p>
-                <p class="pub-venue">
-                  <span lang="en">CERN Summer Student Programme report · CERN-STUDENTS-Note-2024-110 · 2024</span>
-                  <span lang="it">Relazione del CERN Summer Student Programme · CERN-STUDENTS-Note-2024-110 · 2024</span>
-                </p>
-                <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
-                <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
-                <p class="pub-links">
-                  <a href="https://repository.cern/records/xg481-h9w68">CERN repository</a>
-                </p>
-              </div>
-            </article>
-
-            <article class="pub">
-              <span class="badge" style="--badge: #0033a0">CERN Summer Student</span>
-              <div class="pub-body">
-                <h3 class="pub-title">Optimization problems in the development of a blimp to monitor radiation levels in the CERN FCC environment</h3>
-                <p class="pub-authors">Vedant Rautela</p>
-                <p class="pub-venue">
-                  <span lang="en">CERN Summer Student Programme 2022 · Northeastern University · Poster at the APS March Meeting 2023</span>
-                  <span lang="it">CERN Summer Student Programme 2022 · Northeastern University · Poster all'APS March Meeting 2023</span>
-                </p>
-                <p class="pub-links">
-                  <a href="publications.html#pub-aps-2023"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></a>
-                </p>
-              </div>
-            </article>
+          <!-- Category filter (shown only with JavaScript; js/main.js). Each data-filter matches a group id below. -->
+          <div class="pub-filter" role="group" aria-label="Filter by category">
+            <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="it">Tutti</span> <span class="count">6</span></button>
+            <button type="button" data-filter="students" aria-pressed="false"><span lang="en">Student projects</span><span lang="it">Progetti di studenti</span> <span class="count">4</span></button>
+            <button type="button" data-filter="outreach" aria-pressed="false"><span lang="en">Outreach</span><span lang="it">Divulgazione</span> <span class="count">2</span></button>
+            <span class="pub-toggle-all">
+              <button type="button" data-toggle-all="open"><span lang="en">Expand all</span><span lang="it">Espandi tutto</span></button>
+              <button type="button" data-toggle-all="close"><span lang="en">Collapse all</span><span lang="it">Comprimi tutto</span></button>
+            </span>
           </div>
+
+          <!-- ---------- Supervised student projects (newest first) ---------- -->
+          <details class="pub-group" id="students" open>
+            <summary>
+              <h2 class="group-heading"><span lang="en">Student projects</span><span lang="it">Progetti di studenti</span></h2>
+              <span class="count">4</span>
+            </summary>
+            <div class="pubs">
+              <article class="pub">
+                <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
+                <div class="pub-body">
+                  <h3 class="pub-title" lang="fr">Conception, adaptation et optimisation de la carte électronique (PCB) d'un BLIMP (dirigeable) robotisé</h3>
+                  <p class="pub-authors">Loris Porret</p>
+                  <p class="pub-venue">Université Savoie Mont Blanc, IUT d'Annecy · 2026</p>
+                  <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
+                  <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
+                  <p class="pub-links">
+                    <a href="https://doi.org/10.17181/y6kzd-c2v87">DOI</a>
+                  </p>
+                </div>
+              </article>
+
+              <article class="pub">
+                <span class="badge" style="--badge: #0b6e8a"><span lang="en">Bachelor's thesis</span><span lang="it">Tesi triennale</span></span>
+                <div class="pub-body">
+                  <h3 class="pub-title">Structural and Propulsion Optimisation of the CERN Robotic Blimp</h3>
+                  <p class="pub-authors">Christian Hedley Barraud</p>
+                  <p class="pub-venue">
+                    <span lang="en">University of Bath, Department of Mechanical Engineering · 2025</span>
+                    <span lang="it">University of Bath, Dipartimento di Ingegneria Meccanica · 2025</span>
+                  </p>
+                  <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
+                  <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
+                  <p class="pub-links">
+                    <a href="https://doi.org/10.17181/3ed9j-02w05">DOI</a>
+                  </p>
+                </div>
+              </article>
+
+              <article class="pub" id="pub-cern-report-2024">
+                <span class="badge" style="--badge: #0033a0">CERN Summer Student</span>
+                <div class="pub-body">
+                  <h3 class="pub-title">Advancements on Aerial Robotic Systems and Sensor Technologies for Future HEP Detectors</h3>
+                  <p class="pub-authors">Chi Kit Chan</p>
+                  <p class="pub-venue">
+                    <span lang="en">CERN Summer Student Programme report · CERN-STUDENTS-Note-2024-110 · 2024</span>
+                    <span lang="it">Relazione del CERN Summer Student Programme · CERN-STUDENTS-Note-2024-110 · 2024</span>
+                  </p>
+                  <p class="pub-note" lang="en">Co-supervised with P. F. Scaramuzzino and C. Gargiulo.</p>
+                  <p class="pub-note" lang="it">Co-supervisione con P. F. Scaramuzzino e C. Gargiulo.</p>
+                  <p class="pub-links">
+                    <a href="https://repository.cern/records/xg481-h9w68">CERN repository</a>
+                  </p>
+                </div>
+              </article>
+
+              <article class="pub">
+                <span class="badge" style="--badge: #0033a0">CERN Summer Student</span>
+                <div class="pub-body">
+                  <h3 class="pub-title">Optimization problems in the development of a blimp to monitor radiation levels in the CERN FCC environment</h3>
+                  <p class="pub-authors">Vedant Rautela</p>
+                  <p class="pub-venue">
+                    <span lang="en">CERN Summer Student Programme 2022 · Northeastern University · Poster at the APS March Meeting 2023</span>
+                    <span lang="it">CERN Summer Student Programme 2022 · Northeastern University · Poster all'APS March Meeting 2023</span>
+                  </p>
+                  <p class="pub-links">
+                    <a href="publications.html#pub-aps-2023"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></a>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </details>
 
           <!-- ---------- Outreach ---------- -->
-          <h2 class="group-title"><span lang="en">Outreach</span><span lang="it">Divulgazione</span></h2>
-          <div class="pubs">
-            <article class="pub">
-              <span class="badge" style="--badge: #2e7d32"><span lang="en">Lesson 1</span><span lang="it">Lezione 1</span></span>
-              <div class="pub-body">
-                <h3 class="pub-title">Il volo spaziale</h3>
-                <p class="pub-venue" lang="en">Spaceflight · I.C. Fratelli Bandiera, Rome · School year 2021/2022</p>
-                <p class="pub-venue" lang="it">I.C. Fratelli Bandiera, Roma · Anno scolastico 2021/2022</p>
-                <p class="pub-note" lang="en">
-                  What space is; what spaceflight is; atmospheric versus space flight; types of spaceflight; the phases of a space flight, from launch to
-                  landing; the challenges of spaceflight for the human body.
-                </p>
-                <p class="pub-note" lang="it">
-                  Che cos'è lo spazio; che cos'è il volo spaziale; differenza tra volo atmosferico e volo spaziale; tipologie di volo spaziale; le fasi del
-                  volo spaziale, dal lancio all'atterraggio; le problematiche del volo spaziale per il corpo umano.
-                </p>
-                <p class="pub-links">
-                  <a href="files/il-volo-spaziale.pdf"><span lang="en">Slides (PDF, 11 MB)</span><span lang="it">Slide (PDF, 11 MB)</span></a>
-                </p>
-              </div>
-            </article>
+          <details class="pub-group" id="outreach" open>
+            <summary>
+              <h2 class="group-heading"><span lang="en">Outreach</span><span lang="it">Divulgazione</span></h2>
+              <span class="count">2</span>
+            </summary>
+            <div class="pubs">
+              <article class="pub">
+                <span class="badge" style="--badge: #2e7d32"><span lang="en">Lesson 1</span><span lang="it">Lezione 1</span></span>
+                <div class="pub-body">
+                  <h3 class="pub-title">Il volo spaziale</h3>
+                  <p class="pub-venue" lang="en">Spaceflight · I.C. Fratelli Bandiera, Rome · School year 2021/2022</p>
+                  <p class="pub-venue" lang="it">I.C. Fratelli Bandiera, Roma · Anno scolastico 2021/2022</p>
+                  <p class="pub-note" lang="en">
+                    What space is; what spaceflight is; atmospheric versus space flight; types of spaceflight; the phases of a space flight, from launch to
+                    landing; the challenges of spaceflight for the human body.
+                  </p>
+                  <p class="pub-note" lang="it">
+                    Che cos'è lo spazio; che cos'è il volo spaziale; differenza tra volo atmosferico e volo spaziale; tipologie di volo spaziale; le fasi del
+                    volo spaziale, dal lancio all'atterraggio; le problematiche del volo spaziale per il corpo umano.
+                  </p>
+                  <p class="pub-links">
+                    <a href="files/il-volo-spaziale.pdf"><span lang="en">Slides (PDF, 11 MB)</span><span lang="it">Slide (PDF, 11 MB)</span></a>
+                  </p>
+                </div>
+              </article>
 
-            <article class="pub">
-              <span class="badge" style="--badge: #2e7d32"><span lang="en">Lesson 2</span><span lang="it">Lezione 2</span></span>
-              <div class="pub-body">
-                <h3 class="pub-title">Le missioni spaziali</h3>
-                <p class="pub-venue" lang="en">Space missions · I.C. Fratelli Bandiera, Rome · School year 2021/2022</p>
-                <p class="pub-venue" lang="it">I.C. Fratelli Bandiera, Roma · Anno scolastico 2021/2022</p>
-                <p class="pub-note" lang="en">
-                  What a space mission is and why we go to space; the life cycle of a mission; the history of space exploration, from the first rockets and
-                  Sputnik to the Moon landings, the space stations and the missions to the Solar System.
-                </p>
-                <p class="pub-note" lang="it">
-                  Che cos'è una missione spaziale e perché andiamo nello spazio; il ciclo di vita di una missione; la storia dell'esplorazione spaziale, dai
-                  primi razzi e lo Sputnik allo sbarco sulla Luna, alle stazioni spaziali e alle missioni nel Sistema solare.
-                </p>
-                <p class="pub-links">
-                  <a href="files/le-missioni-spaziali.pdf"><span lang="en">Slides (PDF, 10 MB)</span><span lang="it">Slide (PDF, 10 MB)</span></a>
-                </p>
-              </div>
-            </article>
-          </div>
+              <article class="pub">
+                <span class="badge" style="--badge: #2e7d32"><span lang="en">Lesson 2</span><span lang="it">Lezione 2</span></span>
+                <div class="pub-body">
+                  <h3 class="pub-title">Le missioni spaziali</h3>
+                  <p class="pub-venue" lang="en">Space missions · I.C. Fratelli Bandiera, Rome · School year 2021/2022</p>
+                  <p class="pub-venue" lang="it">I.C. Fratelli Bandiera, Roma · Anno scolastico 2021/2022</p>
+                  <p class="pub-note" lang="en">
+                    What a space mission is and why we go to space; the life cycle of a mission; the history of space exploration, from the first rockets and
+                    Sputnik to the Moon landings, the space stations and the missions to the Solar System.
+                  </p>
+                  <p class="pub-note" lang="it">
+                    Che cos'è una missione spaziale e perché andiamo nello spazio; il ciclo di vita di una missione; la storia dell'esplorazione spaziale, dai
+                    primi razzi e lo Sputnik allo sbarco sulla Luna, alle stazioni spaziali e alle missioni nel Sistema solare.
+                  </p>
+                  <p class="pub-links">
+                    <a href="files/le-missioni-spaziali.pdf"><span lang="en">Slides (PDF, 10 MB)</span><span lang="it">Slide (PDF, 10 MB)</span></a>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </details>
         </div>
       </section>
     </main>
