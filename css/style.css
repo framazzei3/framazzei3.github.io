@@ -951,6 +951,7 @@ th {
 .interest-photo {
   display: block;
   width: calc(100% + 3rem);
+  max-width: none;
   margin: -1.25rem -1.5rem 1.1rem;
   aspect-ratio: 16 / 9;
   object-fit: cover;
