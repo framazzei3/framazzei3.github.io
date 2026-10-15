@@ -1033,6 +1033,9 @@ html:not(.js) .pub-filter {
 }
 
 .pub-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
   padding: 0.05em 0.6em;
   border: 1px solid var(--border);
   border-radius: 999px;
