@@ -4,15 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lunar rover localisation · Francesco Mazzei</title>
-    <meta name="description" content="Trajectory planning, dead reckoning and extended Kalman filter localisation for a simulated lunar rover, Space Robotic Systems, Sapienza University of Rome, 2021." />
+    <meta name="description" content="Trajectory planning, dead reckoning and consistent Kalman filter localisation for a simulated lunar rover, Space Robotic Systems, Sapienza University of Rome, 2021, revisited in 2026." />
     <meta name="author" content="Francesco Mazzei" />
     <meta name="color-scheme" content="light dark" />
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=24" />
+    <link rel="stylesheet" href="css/style.css?v=25" />
     <script src="js/prefs.js?v=16"></script>
-    <script src="js/main.js?v=19" defer></script>
+    <script src="js/main.js?v=20" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js.
@@ -27,9 +27,9 @@
 
     <main id="main">
       <!-- ===================================================================
-           PROJECT PAGE: lunar rover localisation, Space Robotic Systems 2020/2021.
-           Figures in img/lunar-rover/ (taken from the report), report in files/.
-           Originals in D:\UNIVERSITA'\Space Robotics systems\03 Esame Rover\Consegna (not published).
+           PROJECT PAGE: lunar rover localisation, Space Robotic Systems 2020/2021, revisited in 2026.
+           Figures in img/lunar-rover/, produced by the rewritten code in
+           E:\Archivio\03_Paper_e_Report\Paper_Moon_Rover\lunar-rover-localisation (main.m and monte_carlo.m).
            TODO: review the Italian translation
            =================================================================== -->
       <section class="section">
@@ -43,8 +43,8 @@
               <li><a href="#planning"><span lang="en">Trajectory planning</span><span lang="it">Pianificazione</span></a></li>
               <li><a href="#dead-reckoning">Dead reckoning</a></li>
               <li><a href="#ekf"><span lang="en">Kalman filter</span><span lang="it">Filtro di Kalman</span></a></li>
-              <li><a href="#report">Report</a></li>
-            </ol>
+              <li><a href="#consistency"><span lang="en">Filter consistency</span><span lang="it">Consistenza del filtro</span></a></li>
+              <li><a href="#code"><span lang="en">Code</span><span lang="it">Codice</span></a></li>            </ol>
           </nav>
 
           <div class="project-body">
@@ -53,26 +53,30 @@
             </p>
 
             <h1 class="page-title" id="overview"><span lang="en">Lunar rover: autonomous localisation</span><span lang="it">Rover lunare: localizzazione autonoma</span></h1>
-            <p class="section-intro" lang="en">Final exercise, Space Robotic Systems, Sapienza University of Rome, 2020/2021</p>
-            <p class="section-intro" lang="it">Esercizio finale, Space Robotic Systems, Sapienza Università di Roma, 2020/2021</p>
+            <p class="section-intro" lang="en">Final exercise, Space Robotic Systems, Sapienza University of Rome, 2020/2021, revisited in 2026</p>
+            <p class="section-intro" lang="it">Esercizio finale, Space Robotic Systems, Sapienza Università di Roma, 2020/2021, ripreso nel 2026</p>
 
             <p class="lead" lang="en">
               A rover on the Moon has to cross tens of kilometres between craters and ridges and know where it is along the way. In this MATLAB
               project I planned and controlled its path, then tested two onboard localisation systems: odometry alone, and odometry fused with a
-              lidar that ranges known landmarks through an extended Kalman filter.
+              lidar that ranges known landmarks in a Kalman filter. In 2026 I rewrote the code from scratch, fixed several errors of the original
+              version, and found that the standard extended Kalman filter is badly overconfident on this problem; the results below come from the
+              revised code.
             </p>
             <p class="lead" lang="it">
               Un rover sulla Luna deve percorrere decine di chilometri tra crateri e creste e sapere dove si trova lungo il percorso. In questo
               progetto in MATLAB ho pianificato e controllato il suo percorso, poi ho testato due sistemi di localizzazione di bordo: la sola
-              odometria, e l'odometria fusa con un lidar che misura la distanza da punti di riferimento noti tramite un filtro di Kalman esteso.
+              odometria, e l'odometria fusa con un lidar che misura la distanza da punti di riferimento noti in un filtro di Kalman. Nel 2026 ho
+              riscritto il codice da zero, corretto diversi errori della versione originale, e scoperto che il filtro di Kalman esteso standard è
+              fortemente troppo ottimista su questo problema; i risultati qui sotto vengono dal codice rivisto.
             </p>
 
-            <!-- Key numbers from the report -->
+            <!-- Key numbers from results/summary.txt and results/monte_carlo.txt -->
             <ul class="facts">
-              <li><strong>45.6 h</strong><span lang="en">to reach the final target</span><span lang="it">per raggiungere il target finale</span></li>
-              <li><strong>2 km/h</strong><span lang="en">maximum speed</span><span lang="it">velocità massima</span></li>
-              <li><strong>17</strong><span lang="en">landmarks seen by the lidar</span><span lang="it">punti di riferimento per il lidar</span></li>
-              <li><strong>10⁵</strong><span lang="en">less uncertainty with the Kalman filter</span><span lang="it">incertezza in meno con il filtro di Kalman</span></li>
+              <li><strong>45.3 h</strong><span lang="en">to drive 76 km to the final target</span><span lang="it">per percorrere 76 km fino al target finale</span></li>
+              <li><strong>5.7 km</strong><span lang="en">final error with odometry alone</span><span lang="it">errore finale con la sola odometria</span></li>
+              <li><strong>51 m</strong><span lang="en">RMS error of the final Kalman filter</span><span lang="it">errore RMS del filtro di Kalman finale</span></li>
+              <li><strong>14% → 78%</strong><span lang="en">errors inside the 95% ellipse</span><span lang="it">errori dentro l'ellisse al 95%</span></li>
             </ul>
 
             <h2 class="group-title" id="problem"><span lang="en">The problem</span><span lang="it">Il problema</span></h2>
@@ -89,109 +93,156 @@
             <ol lang="en">
               <li>Plan a safe trajectory to both targets and control the rover along it.</li>
               <li>Reconstruct the trajectory onboard with the odometer only (dead reckoning) and judge whether it is safe.</li>
-              <li>Reconstruct it again fusing odometry and lidar ranges in an extended Kalman filter, so that the path and its uncertainty ellipses avoid every hazard.</li>
+              <li>Reconstruct it again fusing odometry and lidar measurements in a Kalman filter, so that the path and its uncertainty ellipses avoid every hazard.</li>
             </ol>
             <ol lang="it">
               <li>Pianificare una traiettoria sicura verso i due target e controllare il rover lungo di essa.</li>
               <li>Ricostruire la traiettoria a bordo con il solo odometro (dead reckoning) e valutare se è sicura.</li>
-              <li>Ricostruirla di nuovo fondendo odometria e misure del lidar in un filtro di Kalman esteso, in modo che il percorso e le sue ellissi di incertezza evitino ogni ostacolo.</li>
+              <li>Ricostruirla di nuovo fondendo odometria e misure del lidar in un filtro di Kalman, in modo che il percorso e le sue ellissi di incertezza evitino ogni ostacolo.</li>
             </ol>
 
             <h2 class="group-title" id="planning"><span lang="en">Trajectory planning and control</span><span lang="it">Pianificazione e controllo</span></h2>
             <p lang="en">
-              I built the path from waypoints placed on landmarks between the hazards, joined by straight segments with parabolic blends, and
+              I built the path from via points placed on landmarks between the hazards, joined by straight segments with parabolic blends and
               travelled at 95% of the maximum speed. Two controllers drive the rover along it: a moving target follower, with a PI law on speed to
               keep 500 m behind the reference and a proportional law on steering, and a move to a point controller that takes over in the last
-              800 m before each target. The equations of motion were integrated with ode45. The rover stops for 2.5 h at the first target and
-              reaches the second after 45.6 h, following the planned path closely.
+              800 m before each target. The rover reaches the first target after 28.6 h, stops there for half an hour, and reaches the second after
+              45.3 h, staying 2.5 km away from every ridge.
             </p>
             <p lang="it">
               Ho costruito il percorso a partire da punti di via posti sui punti di riferimento tra gli ostacoli, collegati da segmenti rettilinei
               con raccordi parabolici e percorsi al 95% della velocità massima. Due controllori guidano il rover lungo il percorso: un inseguimento di
               un bersaglio mobile, con una legge PI sulla velocità per restare 500 m dietro al riferimento e una legge proporzionale sullo sterzo, e
-              un controllo verso un punto che subentra negli ultimi 800 m prima di ogni target. Le equazioni del moto sono state integrate con ode45.
-              Il rover si ferma 2,5 h al primo target e raggiunge il secondo dopo 45,6 h, seguendo da vicino il percorso pianificato.
+              un controllo verso un punto che subentra negli ultimi 800 m prima di ogni target. Il rover raggiunge il primo target dopo 28,6 h, vi
+              sosta mezz'ora, e raggiunge il secondo dopo 45,3 h, restando a 2,5 km da ogni cresta.
             </p>
             <div class="gallery">
               <figure class="diagram">
-                <img src="img/lunar-rover/planned-trajectory.png" width="565" height="786" loading="lazy" alt="Lunar map with the planned and the executed trajectory overlapping, from the start point to the two targets through the waypoints" />
-                <figcaption><span lang="en">Planned and executed trajectory, through the waypoints</span><span lang="it">Traiettoria pianificata ed eseguita, attraverso i punti di via</span></figcaption>
-              </figure>
-              <figure class="diagram">
-                <img src="img/lunar-rover/landmarks.jpg" width="427" height="690" loading="lazy" alt="Lunar map with the 17 known landmarks as yellow circles, the start point and the two targets" />
-                <figcaption><span lang="en">The 17 known landmarks, used as waypoints and by the lidar</span><span lang="it">I 17 punti di riferimento noti, usati come punti di via e dal lidar</span></figcaption>
+                <img src="img/lunar-rover/planned-trajectory.jpg" width="587" height="855" loading="lazy" alt="Lunar map with the reference and the driven trajectory overlapping, from the start point to the two targets through the via points" />
+                <figcaption><span lang="en">Reference and driven trajectory, through the via points</span><span lang="it">Traiettoria di riferimento e percorsa, attraverso i punti di via</span></figcaption>
               </figure>
               <figure class="wide diagram">
-                <img src="img/lunar-rover/velocity-steering.png" width="1258" height="520" loading="lazy" alt="Rover speed in km/h and steering angle in degrees over about 46 hours" />
-                <figcaption><span lang="en">Speed (left) and steering angle (right) over time, in hours</span><span lang="it">Velocità (sinistra) e angolo di sterzata (destra) nel tempo, in ore</span></figcaption>
+                <img src="img/lunar-rover/velocity-steering.png" width="1400" height="552" loading="lazy" alt="Rover speed, up to 2 km/h, and steering angle over about 45 hours, with the stop at the first target" />
+                <figcaption><span lang="en">Speed (left) and steering angle (right) over time</span><span lang="it">Velocità (sinistra) e angolo di sterzata (destra) nel tempo</span></figcaption>
               </figure>
             </div>
 
             <h2 class="group-title" id="dead-reckoning">Dead reckoning</h2>
             <p lang="en">
-              Taking the executed path as the truth, I simulated odometer readings with Gaussian noise (3 cm on distance, 0.8° on heading) and
-              propagated the pose and its covariance step by step. The error accumulates: the uncertainty ellipses keep growing, the square root of
-              the covariance determinant rises monotonically, and on the second leg the reconstructed path and its ellipses cross the large crater.
-              Odometry alone is therefore not safe over tens of kilometres; it is only usable over short legs starting from a well known position,
-              or when corrected by external measurements such as ranges to known landmarks.
+              Taking the driven path as the truth, I simulated odometer readings every 4.8 minutes with Gaussian noise (3 cm on distance, 0.8° on
+              heading) and propagated the pose and its covariance step by step. The error accumulates: after 76 km the estimate is 5.7 km off, the
+              95% ellipses grow to several kilometres and cross the large crater and the ridges, and the square root of the covariance determinant
+              rises steadily. Odometry alone is not safe over tens of kilometres; it is only usable over short legs from a well known position, or
+              when corrected by external measurements such as ranges to known landmarks.
             </p>
             <p lang="it">
-              Prendendo il percorso eseguito come verità, ho simulato le letture dell'odometro con rumore gaussiano (3 cm sulla distanza, 0,8°
-              sulla direzione) e propagato passo dopo passo la posa e la sua covarianza. L'errore si accumula: le ellissi di incertezza continuano a
-              crescere, la radice quadrata del determinante della covarianza aumenta in modo monotono, e nel secondo tratto il percorso ricostruito e
-              le sue ellissi attraversano il grande cratere. La sola odometria quindi non è sicura su decine di chilometri; è utilizzabile solo su
-              tratti brevi partendo da una posizione ben nota, oppure se corretta da misure esterne come le distanze da punti di riferimento noti.
+              Prendendo il percorso effettivo come verità, ho simulato le letture dell'odometro ogni 4,8 minuti con rumore gaussiano (3 cm sulla
+              distanza, 0,8° sulla direzione) e propagato passo dopo passo la posa e la sua covarianza. L'errore si accumula: dopo 76 km la stima è
+              sbagliata di 5,7 km, le ellissi al 95% crescono fino a diversi chilometri e attraversano il grande cratere e le creste, e la radice
+              quadrata del determinante della covarianza cresce costantemente. La sola odometria non è sicura su decine di chilometri; è utilizzabile
+              solo su tratti brevi partendo da una posizione ben nota, oppure se corretta da misure esterne come le distanze da punti di riferimento
+              noti.
             </p>
             <div class="gallery">
               <figure class="diagram">
-                <img src="img/lunar-rover/dead-reckoning-map.png" width="645" height="644" loading="lazy" alt="Lunar map with the dead reckoning trajectory and uncertainty ellipses growing until they cover the large crater" />
-                <figcaption><span lang="en">Dead reckoning: the ellipses grow until they cover the crater</span><span lang="it">Dead reckoning: le ellissi crescono fino a coprire il cratere</span></figcaption>
+                <img src="img/lunar-rover/dead-reckoning-map.jpg" width="587" height="855" loading="lazy" alt="Lunar map with the dead reckoning trajectory in white drifting from the true one in red, and 95% uncertainty ellipses growing until they cover the large crater" />
+                <figcaption><span lang="en">Dead reckoning (white) against the true path (red), with 95% ellipses</span><span lang="it">Dead reckoning (bianco) rispetto al percorso vero (rosso), con ellissi al 95%</span></figcaption>
               </figure>
               <figure class="diagram">
-                <img src="img/lunar-rover/covariance-dead-reckoning.png" width="779" height="557" loading="lazy" alt="Square root of the covariance determinant rising steadily over 45 hours" />
-                <figcaption><span lang="en">Square root of the covariance determinant, always growing</span><span lang="it">Radice quadrata del determinante della covarianza, sempre in crescita</span></figcaption>
-              </figure>
-              <figure class="wide diagram">
-                <img src="img/lunar-rover/dead-reckoning-vs-true.jpg" width="708" height="588" loading="lazy" alt="True and dead reckoning trajectories drifting apart, with uncertainty ellipses" />
-                <figcaption><span lang="en">True (red) and reconstructed (blue) trajectory drifting apart</span><span lang="it">Traiettoria vera (rosso) e ricostruita (blu) che si allontanano</span></figcaption>
+                <img src="img/lunar-rover/ekf-map.jpg" width="587" height="855" loading="lazy" alt="Lunar map with the trajectory reconstructed by the Kalman filter over the true one, its small ellipses and the 17 yellow landmarks" />
+                <figcaption><span lang="en">The same path reconstructed by the Kalman filter, with the 17 landmarks</span><span lang="it">Lo stesso percorso ricostruito dal filtro di Kalman, con i 17 punti di riferimento</span></figcaption>
               </figure>
             </div>
 
-            <h2 class="group-title" id="ekf"><span lang="en">Extended Kalman filter</span><span lang="it">Filtro di Kalman esteso</span></h2>
+            <h2 class="group-title" id="ekf"><span lang="en">Kalman filter</span><span lang="it">Filtro di Kalman</span></h2>
             <p lang="en">
-              In the third task an onboard lidar measures range and bearing (2 cm and 0.3° noise) to the closest of 17 known landmarks whenever one
-              is within 3 km. Between measurements the filter predicts with dead reckoning; when a landmark is in view, it corrects the state and
-              covariance through the Kalman gain. The reconstructed path now stays within a few hundred metres of the true one, the 95% uncertainty
-              ellipses grow only on short stretches without landmarks and shrink again at the next measurement, and neither the path nor the
-              ellipses touch a crater or a ridge. The square root of the covariance determinant ends up five orders of magnitude below the
-              dead reckoning case.
+              In the third task an onboard lidar measures range and bearing (2 cm and 0.3° noise) to the closest known landmark whenever one is within
+              3 km. Between measurements the filter predicts with the same odometer readings as dead reckoning; when a landmark is in view, it
+              corrects the pose and the covariance. The uncertainty now grows only on the stretches without landmarks and collapses at the next
+              measurement: the reconstructed path stays close to the true one and, with its 95% ellipses, 2.4 km away from every ridge.
             </p>
             <p lang="it">
-              Nel terzo task un lidar di bordo misura distanza e angolo (rumore di 2 cm e 0,3°) rispetto al più vicino dei 17 punti di riferimento
-              noti, quando uno di essi si trova entro 3 km. Tra una misura e l'altra il filtro fa la predizione con il dead reckoning; quando un punto
-              di riferimento è visibile, corregge stato e covarianza tramite il guadagno di Kalman. Il percorso ricostruito ora resta entro poche
-              centinaia di metri da quello vero, le ellissi di incertezza al 95% crescono solo su brevi tratti senza punti di riferimento e si
-              riducono di nuovo alla misura successiva, e né il percorso né le ellissi toccano crateri o creste. La radice quadrata del determinante
-              della covarianza risulta di cinque ordini di grandezza inferiore rispetto al dead reckoning.
+              Nel terzo task un lidar di bordo misura distanza e angolo (rumore di 2 cm e 0,3°) rispetto al punto di riferimento noto più vicino,
+              quando uno di essi si trova entro 3 km. Tra una misura e l'altra il filtro fa la predizione con le stesse letture dell'odometro del dead
+              reckoning; quando un punto di riferimento è visibile, corregge posa e covarianza. L'incertezza ora cresce solo nei tratti senza punti
+              di riferimento e crolla alla misura successiva: il percorso ricostruito resta vicino a quello vero e, con le sue ellissi al 95%, a
+              2,4 km da ogni cresta.
             </p>
             <div class="gallery">
-              <figure class="diagram">
-                <img src="img/lunar-rover/ekf-map.jpg" width="656" height="861" loading="lazy" alt="Lunar map with the trajectory reconstructed by the extended Kalman filter, its small uncertainty ellipses and the yellow landmarks" />
-                <figcaption><span lang="en">Trajectory reconstructed with the Kalman filter, with the landmarks in yellow</span><span lang="it">Traiettoria ricostruita con il filtro di Kalman, con i punti di riferimento in giallo</span></figcaption>
-              </figure>
-              <figure class="diagram">
-                <img src="img/lunar-rover/covariance-ekf.png" width="779" height="557" loading="lazy" alt="Square root of the covariance determinant with short peaks that drop back to near zero at each landmark measurement" />
-                <figcaption><span lang="en">Uncertainty peaks only between landmarks (scale ×10⁻⁵)</span><span lang="it">L'incertezza cresce solo tra un punto di riferimento e l'altro (scala ×10⁻⁵)</span></figcaption>
+              <figure class="wide diagram">
+                <img src="img/lunar-rover/sqrt-det-p.png" width="1400" height="565" loading="lazy" alt="Square root of the covariance determinant: steadily rising to about 3 for dead reckoning, and short peaks below 5e-5 that drop back at each landmark for the Kalman filter" />
+                <figcaption><span lang="en">Square root of the covariance determinant: dead reckoning (left) and Kalman filter (right)</span><span lang="it">Radice quadrata del determinante della covarianza: dead reckoning (sinistra) e filtro di Kalman (destra)</span></figcaption>
               </figure>
               <figure class="wide diagram">
-                <img src="img/lunar-rover/ekf-vs-true.png" width="708" height="592" loading="lazy" alt="True and Kalman filter trajectories overlapping, with very small uncertainty ellipses" />
-                <figcaption><span lang="en">True and reconstructed trajectory now overlap</span><span lang="it">Traiettoria vera e ricostruita ora si sovrappongono</span></figcaption>
+                <img src="img/lunar-rover/position-error.png" width="1400" height="811" loading="lazy" alt="Position error and 1 sigma uncertainty on a log scale over 45 hours: dead reckoning grows to kilometres, the Kalman filter stays between a metre and a few hundred metres" />
+                <figcaption><span lang="en">Position error (solid) and 1σ uncertainty (dashed), on a log scale</span><span lang="it">Errore di posizione (continuo) e incertezza 1σ (tratteggiata), in scala logaritmica</span></figcaption>
               </figure>
             </div>
 
-            <h2 class="group-title" id="report">Report</h2>
+            <h2 class="group-title" id="consistency"><span lang="en">Filter consistency</span><span lang="it">Consistenza del filtro</span></h2>
+            <p lang="en">
+              A filter is useful for hazard avoidance only if its ellipses are honest. Rewriting the code, I found that the standard extended Kalman
+              filter is not: its uncertainty collapses to about a metre at each lidar measurement while the real error stays tens of metres. Two
+              effects add up.
+            </p>
+            <p lang="it">
+              Un filtro serve per evitare gli ostacoli solo se le sue ellissi sono oneste. Riscrivendo il codice, ho scoperto che il filtro di
+              Kalman esteso standard non lo è: la sua incertezza crolla a circa un metro a ogni misura del lidar, mentre l'errore vero resta di
+              decine di metri. Si sommano due effetti.
+            </p>
+            <ul lang="en">
+              <li>
+                <strong>Unobservability.</strong> The lidar never sees two landmarks at once. Rotating the whole pose about the visible landmark leaves
+                range and bearing unchanged, so that direction is unobservable, but the standard EKF gains spurious information along it. The
+                observability constrained EKF (Huang, Mourikis and Roumeliotis) builds the propagation Jacobian so that this direction is preserved.
+              </li>
+              <li>
+                <strong>Nonlinearity.</strong> After a stretch without landmarks the position is uncertain by hundreds of metres, while the range is
+                accurate to 2 cm; over that spread the measurement model is metres away from linear. A second order filter accounts for its
+                curvature, and measurement underweighting, a technique from Space Shuttle and Orion navigation, keeps the first measurement after a
+                gap from being trusted too much.
+              </li>
+            </ul>
+            <ul lang="it">
+              <li>
+                <strong>Inosservabilità.</strong> Il lidar non vede mai due punti di riferimento insieme. Ruotando l'intera posa attorno al punto
+                visibile, distanza e angolo non cambiano, quindi quella direzione è inosservabile, ma l'EKF standard vi accumula informazione
+                spuria. L'EKF con vincolo di osservabilità (Huang, Mourikis e Roumeliotis) costruisce lo jacobiano della propagazione in modo da
+                preservare questa direzione.
+              </li>
+              <li>
+                <strong>Non linearità.</strong> Dopo un tratto senza punti di riferimento la posizione è incerta di centinaia di metri, mentre la
+                distanza è precisa a 2 cm; su quell'intervallo il modello di misura si discosta di metri da quello lineare. Un filtro del secondo
+                ordine tiene conto della sua curvatura, e l'underweighting delle misure, una tecnica nata per la navigazione dello Space Shuttle e di
+                Orion, evita che la prima misura dopo un tratto al buio sia presa troppo alla lettera.
+              </li>
+            </ul>
+            <p lang="en">
+              Over 50 Monte Carlo runs, the share of errors inside the 95% ellipse rises from 14% with the standard EKF to 78% with the second order,
+              observability constrained EKF with underweighting, its median normalised error matches the expected value, and the RMS position error
+              drops from 179 m to 51 m. The remaining outliers, right after the longest gaps, are the starting point for a paper on this problem.
+            </p>
+            <p lang="it">
+              Su 50 simulazioni Monte Carlo, la quota di errori dentro l'ellisse al 95% sale dal 14% dell'EKF standard al 78% dell'EKF del secondo
+              ordine con vincolo di osservabilità e underweighting, il suo errore normalizzato mediano coincide con il valore atteso, e l'errore
+              RMS di posizione scende da 179 m a 51 m. I casi anomali rimasti, subito dopo i tratti al buio più lunghi, sono il punto di partenza
+              per un articolo su questo problema.
+            </p>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/lunar-rover/monte-carlo-nees.png" width="1400" height="738" loading="lazy" alt="Mean normalised estimation error squared over 50 runs on a log scale: the standard EKF reaches ten million, the improved filters come progressively closer to the expected value of 3" />
+                <figcaption>
+                  <span lang="en">Mean normalised error over 50 runs: a consistent filter stays near 3</span
+                  ><span lang="it">Errore normalizzato medio su 50 simulazioni: un filtro consistente resta vicino a 3</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="code"><span lang="en">Code</span><span lang="it">Codice</span></h2>
+            <p lang="en">The MATLAB code, with the Monte Carlo analysis of the five filters, is on GitHub. It needs base MATLAB only.</p>
+            <p lang="it">Il codice MATLAB, con l'analisi Monte Carlo dei cinque filtri, è su GitHub. Richiede solo MATLAB di base.</p>
             <p class="pub-links">
-              <a href="files/lunar-rover-localisation-2021.pdf"><span lang="en">Final report (PDF, in Italian)</span><span lang="it">Report finale (PDF)</span></a>
+              <a href="https://github.com/framazzei3/lunar-rover-localisation"><span lang="en">GitHub repository</span><span lang="it">Repository GitHub</span></a>
             </p>
           </div>
         </div>

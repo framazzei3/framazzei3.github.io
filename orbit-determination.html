@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Orbit determination · Francesco Mazzei</title>
+    <meta name="description" content="Batch estimation of a spacecraft orbit, the Earth's gravitational parameter and the solar flux from range and range rate measurements, Space Missions and Systems, Sapienza University of Rome, 2020." />
+    <meta name="author" content="Francesco Mazzei" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css?v=25" />
+    <script src="js/prefs.js?v=16"></script>
+    <script src="js/main.js?v=20" defer></script>
+  </head>
+
+  <!-- Header, menu and footer are added by js/main.js.
+       data-page keeps "Projects" highlighted in the menu; data-title-* set the tab title. -->
+  <body data-page="projects" data-title-en="Orbit determination" data-title-it="Determinazione orbitale">
+    <noscript>
+      <nav class="noscript-nav container">
+        <a href="index.html">About</a> · <a href="projects.html">Projects</a> ·
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
+      </nav>
+    </noscript>
+
+    <main id="main">
+      <!-- ===================================================================
+           PROJECT PAGE: Homework 1, Space Missions and Systems 2019/2020.
+           Figures in img/orbit-determination/ (from the report; cover.svg drawn from the estimated orbit), report in files/.
+           Originals in D:\UNIVERSITA'\02_Magistrale - Space and Astronautical Eng\Space missions and systems\03_Homework1_Orbit_Determination (not published).
+           TODO: review the Italian translation
+           =================================================================== -->
+      <section class="section">
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#problem"><span lang="en">The problem</span><span lang="it">Il problema</span></a></li>
+              <li><a href="#estimator"><span lang="en">Batch estimator</span><span lang="it">Stimatore batch</span></a></li>
+              <li><a href="#results"><span lang="en">Results</span><span lang="it">Risultati</span></a></li>
+              <li><a href="#propagation"><span lang="en">Orbit and uncertainty</span><span lang="it">Orbita e incertezza</span></a></li>
+              <li><a href="#observables"><span lang="en">Range or range rate?</span><span lang="it">Range o range rate?</span></a></li>
+              <li><a href="#report">Report</a></li>
+            </ol>
+          </nav>
+
+          <div class="project-body">
+            <p class="back-link">
+              <a href="projects.html"><span lang="en">Back to Projects</span><span lang="it">Torna a Progetti</span></a>
+            </p>
+
+            <h1 class="page-title" id="overview">
+              <span lang="en">Orbit determination with a batch estimator</span><span lang="it">Determinazione orbitale con stimatore batch</span>
+            </h1>
+            <p class="section-intro" lang="en">Homework 1, Space Missions and Systems, Sapienza University of Rome, 2019/2020</p>
+            <p class="section-intro" lang="it">Homework 1, Space Missions and Systems, Sapienza Università di Roma, 2019/2020</p>
+
+            <p class="lead" lang="en">
+              A ground station on the equator tracks a spacecraft in an eccentric orbit around the Earth. From its range and range rate measurements I
+              estimated, in MATLAB, where the spacecraft was at the start of the tracking, together with two physical constants: the Earth's
+              gravitational parameter and the solar flux pushing on the spacecraft. I then propagated the orbit for a year and the uncertainty for a
+              month, and checked which kind of measurement carries more information on the two constants.
+            </p>
+            <p class="lead" lang="it">
+              Una stazione di terra sull'equatore segue uno spacecraft in orbita eccentrica intorno alla Terra. Dalle sue misure di range e range
+              rate ho stimato, in MATLAB, dove si trovava lo spacecraft all'inizio del tracciamento, insieme a due costanti fisiche: il parametro
+              gravitazionale terrestre e il flusso solare che spinge sullo spacecraft. Ho poi propagato l'orbita per un anno e l'incertezza per un
+              mese, e verificato quale tipo di misura porta più informazione sulle due costanti.
+            </p>
+
+            <!-- Key numbers from the report -->
+            <ul class="facts">
+              <li><strong>1261</strong><span lang="en">range and range rate pairs</span><span lang="it">coppie di range e range rate</span></li>
+              <li><strong>6</strong><span lang="en">parameters estimated</span><span lang="it">parametri stimati</span></li>
+              <li><strong>0.3 m</strong><span lang="en">uncertainty on the initial position</span><span lang="it">incertezza sulla posizione iniziale</span></li>
+              <li><strong>±0.03</strong><span lang="en">km³/s² on the Earth's μ</span><span lang="it">km³/s² sul μ terrestre</span></li>
+            </ul>
+
+            <h2 class="group-title" id="problem"><span lang="en">The problem</span><span lang="it">Il problema</span></h2>
+            <p lang="en">
+              The spacecraft is a flat plate of 10 m² and 100 kg, always facing the Earth, in an equatorial orbit with eccentricity 0.3 and a period
+              of about 5.3 hours. Besides the Earth's gravity, it feels the pressure of sunlight, with the Sun far away along the negative x axis. The
+              state to estimate has six components: position and velocity in the orbital plane, the gravitational parameter μ and the solar flux Φ.
+              The station rotates with the Earth and its position is known exactly; it provides range to 100 m and range rate to 1 cm/s, in
+              short passes over about a day and a half.
+            </p>
+            <p lang="it">
+              Lo spacecraft è una lastra piana di 10 m² e 100 kg, sempre rivolta verso la Terra, in orbita equatoriale con eccentricità 0,3 e un
+              periodo di circa 5,3 ore. Oltre alla gravità terrestre, risente della pressione della luce solare, con il Sole lontano lungo l'asse x
+              negativo. Lo stato da stimare ha sei componenti: posizione e velocità nel piano dell'orbita, il parametro gravitazionale μ e il flusso
+              solare Φ. La stazione ruota con la Terra e la sua posizione è nota esattamente; fornisce il range con precisione di 100 m e il range
+              rate di 1 cm/s, in brevi passaggi distribuiti su circa un giorno e mezzo.
+            </p>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/observables.png" width="1195" height="473" loading="lazy" alt="Observed range, between 5000 and 16000 km, and range rate, between minus 4 and 4 km/s, in separate passes over 140000 seconds" />
+                <figcaption><span lang="en">Observed range (left) and range rate (right), one arc per pass</span><span lang="it">Range (sinistra) e range rate (destra) osservati, un arco per passaggio</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="estimator"><span lang="en">Batch estimator</span><span lang="it">Stimatore batch</span></h2>
+            <p lang="en">
+              Both the dynamics and the measurements are nonlinear, so I linearised them around a reference trajectory, integrating the state
+              transition matrix along with the orbit, and corrected the initial state at each iteration with a batch least squares estimator. The
+              a priori estimate and its uncertainty enter as extra information; for the solar flux, which had none, I started from 1371 ± 5 W/m².
+            </p>
+            <p lang="it">
+              Sia la dinamica sia le misure sono non lineari, quindi le ho linearizzate attorno a una traiettoria di riferimento, integrando la
+              matrice di transizione insieme all'orbita, e ho corretto lo stato iniziale a ogni iterazione con uno stimatore batch ai minimi
+              quadrati. La stima a priori e la sua incertezza entrano come informazione aggiuntiva; per il flusso solare, che non l'aveva, sono
+              partito da 1371 ± 5 W/m².
+            </p>
+            <ul lang="en">
+              <li>
+                <strong>Weighted least squares.</strong> In the first four iterations the measurements are weighted with their nominal accuracy. The
+                residuals lose their dynamic signature after three iterations and become white noise around zero.
+              </li>
+              <li>
+                <strong>Minimum variance.</strong> Two more iterations weight each measurement with the variance actually observed in the residuals.
+                The fourth pass of range rate data is noisier than the others, so it gets a lower weight.
+              </li>
+            </ul>
+            <ul lang="it">
+              <li>
+                <strong>Minimi quadrati pesati.</strong> Nelle prime quattro iterazioni le misure sono pesate con la loro accuratezza nominale. I
+                residui perdono la firma dinamica dopo tre iterazioni e diventano rumore bianco attorno allo zero.
+              </li>
+              <li>
+                <strong>Minima varianza.</strong> Altre due iterazioni pesano ogni misura con la varianza effettivamente osservata nei residui. Il
+                quarto passaggio di dati di range rate è più rumoroso degli altri, quindi riceve un peso minore.
+              </li>
+            </ul>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/residuals-prefit.png" width="1214" height="501" loading="lazy" alt="Range and range rate residuals before the first correction, with large trends up to 60 km and 0.09 km/s in each pass" />
+                <figcaption><span lang="en">Residuals before the first correction: errors of tens of kilometres</span><span lang="it">Residui prima della prima correzione: errori di decine di chilometri</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/residuals-final.png" width="1214" height="507" loading="lazy" alt="Range and range rate residuals after the last iteration, scattered as noise around zero within 0.15 km and 0.002 km/s" />
+                <figcaption><span lang="en">Residuals after the last iteration: white noise around zero</span><span lang="it">Residui dopo l'ultima iterazione: rumore bianco attorno allo zero</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="results"><span lang="en">Results</span><span lang="it">Risultati</span></h2>
+            <p lang="en">
+              At convergence the residuals have zero mean and their sum of squares equals the number of measurements, as expected for white noise.
+              The initial position is known to about 0.3 m and the velocity to 0.2 mm/s, against the 20 km and 1 m/s of the a priori estimate.
+            </p>
+            <p lang="it">
+              A convergenza i residui hanno media nulla e la loro somma dei quadrati è pari al numero di misure, come atteso per un rumore bianco.
+              La posizione iniziale è nota con un'incertezza di circa 0,3 m e la velocità di 0,2 mm/s, contro i 20 km e 1 m/s della stima a
+              priori.
+            </p>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th><span lang="en">A priori</span><span lang="it">A priori</span></th>
+                    <th><span lang="en">Estimated</span><span lang="it">Stimato</span></th>
+                    <th><span lang="en">Uncertainty (1σ)</span><span lang="it">Incertezza (1σ)</span></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td>x</td><td>−10843 km</td><td>−10843.3905 km</td><td>0.33 m</td></tr>
+                  <tr><td>y</td><td>380 km</td><td>378.6597 km</td><td>0.23 m</td></tr>
+                  <tr><td>v<sub>x</sub></td><td>−0.2412 km/s</td><td>−0.2411819 km/s</td><td>0.15 mm/s</td></tr>
+                  <tr><td>v<sub>y</sub></td><td>−6.9066 km/s</td><td>−6.9065446 km/s</td><td>0.18 mm/s</td></tr>
+                  <tr><td>μ</td><td>398604 km³/s²</td><td>398600.012 km³/s²</td><td>0.032 km³/s²</td></tr>
+                  <tr><td>Φ</td><td>1371 W/m²</td><td>1367.1 W/m²</td><td>3.0 W/m²</td></tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h2 class="group-title" id="propagation"><span lang="en">Orbit and uncertainty over time</span><span lang="it">Orbita e incertezza nel tempo</span></h2>
+            <p lang="en">
+              Propagating the estimated state for a year shows the slow effect of solar radiation pressure: the eccentricity drops from 0.30000 to
+              0.29992 and the argument of perigee turns from 178° to about 178.5°. Propagating the covariance for a month, the uncertainty on
+              position and velocity grows, oscillating with each orbit, because no new measurements arrive. The uncertainty on μ and Φ stays
+              constant, since in the model they are constants and the state transition matrix leaves them unchanged.
+            </p>
+            <p lang="it">
+              Propagando lo stato stimato per un anno si vede l'effetto lento della pressione di radiazione solare: l'eccentricità scende da
+              0,30000 a 0,29992 e l'argomento del perigeo ruota da 178° a circa 178,5°. Propagando la covarianza per un mese, l'incertezza su
+              posizione e velocità cresce, oscillando a ogni orbita, perché non arrivano nuove misure. L'incertezza su μ e Φ resta costante,
+              perché nel modello sono costanti e la matrice di transizione le lascia invariate.
+            </p>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/eccentricity-perigee.png" width="1195" height="490" loading="lazy" alt="Over one year the eccentricity decreases linearly from 0.30000 to 0.29992 and the argument of perigee increases linearly from 178 to 178.46 degrees" />
+                <figcaption><span lang="en">Eccentricity (left) and argument of perigee (right) over one year</span><span lang="it">Eccentricità (sinistra) e argomento del perigeo (destra) in un anno</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/uncertainty-month.png" width="1214" height="985" loading="lazy" alt="Over one month the uncertainties on the two velocity components grow in oscillations, while those on mu and on the solar flux stay flat" />
+                <figcaption>
+                  <span lang="en">Uncertainty over one month: velocity components (top) grow, μ and Φ (bottom) stay constant</span
+                  ><span lang="it">Incertezza in un mese: le componenti della velocità (sopra) crescono, μ e Φ (sotto) restano costanti</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="observables"><span lang="en">Range or range rate?</span><span lang="it">Range o range rate?</span></h2>
+            <p lang="en">
+              To see which measurement constrains μ and Φ better, I compared the partial derivatives of range and range rate with respect to the two
+              parameters, scaled by their weights: these build the information matrix, whose inverse is the covariance. Range rate is far more
+              sensitive to both. Running the estimator with one kind of measurement at a time confirms it: with range rate alone the uncertainty
+              on μ is four times smaller than with range alone, and on Φ it drops from 5 to 3 W/m².
+            </p>
+            <p lang="it">
+              Per capire quale misura vincola meglio μ e Φ, ho confrontato le derivate parziali di range e range rate rispetto ai due parametri,
+              scalate per i loro pesi: sono queste a formare la matrice di informazione, la cui inversa è la covarianza. Il range rate è molto più
+              sensibile a entrambi. Ripetendo la stima con un solo tipo di misura alla volta si ha la conferma: con il solo range rate
+              l'incertezza su μ è quattro volte più piccola che con il solo range, e su Φ scende da 5 a 3 W/m².
+            </p>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/orbit-determination/partials.png" width="1195" height="429" loading="lazy" alt="Weighted partial derivatives of range, in blue and close to zero, and of range rate, in red and much larger, with respect to mu and to the solar flux over the passes" />
+                <figcaption>
+                  <span lang="en">Weighted partials with respect to μ (left) and Φ (right): range in blue, range rate in red</span
+                  ><span lang="it">Derivate parziali pesate rispetto a μ (sinistra) e Φ (destra): range in blu, range rate in rosso</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="report">Report</h2>
+            <p class="pub-links">
+              <a href="files/orbit-determination-2020.pdf"><span lang="en">Report (PDF, in Italian)</span><span lang="it">Report (PDF)</span></a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

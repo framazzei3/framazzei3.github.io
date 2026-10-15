@@ -933,15 +933,9 @@ html:not(.js) .pub-filter {
   box-shadow: 0 0 0 3px var(--accent-soft);
 }
 
-/* Whole card clickable: the title link stretches over the card */
+/* Whole card clickable (js/main.js follows the title link), text still selectable */
 .pub.linked {
-  position: relative;
-}
-
-.pub.linked .pub-title a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
+  cursor: pointer;
 }
 
 /* Optional cover image at the top of a card, edge to edge */

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BepiColombo attitude determination · Francesco Mazzei</title>
+    <meta name="description" content="Attitude determination of the BepiColombo Mercury Planetary Orbiter with TRIAD, QUEST and a multiplicative extended Kalman filter through a star tracker failure, Space Missions and Systems, Sapienza University of Rome, 2020." />
+    <meta name="author" content="Francesco Mazzei" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css?v=25" />
+    <script src="js/prefs.js?v=16"></script>
+    <script src="js/main.js?v=20" defer></script>
+  </head>
+
+  <!-- Header, menu and footer are added by js/main.js.
+       data-page keeps "Projects" highlighted in the menu; data-title-* set the tab title. -->
+  <body data-page="projects" data-title-en="BepiColombo attitude determination" data-title-it="Determinazione d'assetto di BepiColombo">
+    <noscript>
+      <nav class="noscript-nav container">
+        <a href="index.html">About</a> · <a href="projects.html">Projects</a> ·
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
+      </nav>
+    </noscript>
+
+    <main id="main">
+      <!-- ===================================================================
+           PROJECT PAGE: Homework 2, Space Missions and Systems 2019/2020.
+           Figures in img/attitude-determination/ (MATLAB plots of the report; cover.svg drawn from the sensor availability), report in files/.
+           Originals in D:\UNIVERSITA'\02_Magistrale - Space and Astronautical Eng\Space missions and systems\04_Homework2_Attitude_Determination (not published).
+           TODO: review the Italian translation
+           =================================================================== -->
+      <section class="section">
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#problem"><span lang="en">The problem</span><span lang="it">Il problema</span></a></li>
+              <li><a href="#static"><span lang="en">TRIAD and QUEST</span><span lang="it">TRIAD e QUEST</span></a></li>
+              <li><a href="#kalman"><span lang="en">Kalman filter</span><span lang="it">Filtro di Kalman</span></a></li>
+              <li><a href="#failure"><span lang="en">Star tracker failure</span><span lang="it">Guasto degli star tracker</span></a></li>
+              <li><a href="#comparison"><span lang="en">Comparison</span><span lang="it">Confronto</span></a></li>
+              <li><a href="#report">Report</a></li>
+            </ol>
+          </nav>
+
+          <div class="project-body">
+            <p class="back-link">
+              <a href="projects.html"><span lang="en">Back to Projects</span><span lang="it">Torna a Progetti</span></a>
+            </p>
+
+            <h1 class="page-title" id="overview">
+              <span lang="en">Attitude determination of BepiColombo MPO</span><span lang="it">Determinazione d'assetto di BepiColombo MPO</span>
+            </h1>
+            <p class="section-intro" lang="en">Homework 2, Space Missions and Systems, Sapienza University of Rome, 2019/2020</p>
+            <p class="section-intro" lang="it">Homework 2, Space Missions and Systems, Sapienza Università di Roma, 2019/2020</p>
+
+            <p class="lead" lang="en">
+              The Mercury Planetary Orbiter of ESA and JAXA's BepiColombo mission keeps its instruments pointed at Mercury. From simulated data of
+              its star trackers, Sun sensor and gyroscopes I estimated its attitude over 400 s, during which the star trackers fail and come back
+              one at a time. I wrote three algorithms in MATLAB, TRIAD, QUEST and a multiplicative extended Kalman filter, without toolbox functions,
+              and compared their errors and uncertainties.
+            </p>
+            <p class="lead" lang="it">
+              Il Mercury Planetary Orbiter della missione BepiColombo di ESA e JAXA tiene i suoi strumenti puntati verso Mercurio. Da dati simulati
+              dei suoi star tracker, del sensore solare e dei giroscopi ho stimato il suo assetto in 400 s, durante i quali gli star tracker si
+              guastano e tornano attivi uno alla volta. Ho scritto tre algoritmi in MATLAB, TRIAD, QUEST e un filtro di Kalman esteso
+              moltiplicativo, senza funzioni dei toolbox, e ne ho confrontato errori e incertezze.
+            </p>
+
+            <!-- Key numbers from the report plots -->
+            <ul class="facts">
+              <li><strong>3</strong><span lang="en">algorithms compared</span><span lang="it">algoritmi confrontati</span></li>
+              <li><strong>100 s</strong><span lang="en">with no star tracker</span><span lang="it">senza star tracker</span></li>
+              <li><strong>&lt; 1″</strong><span lang="en">Kalman filter uncertainty</span><span lang="it">incertezza del filtro di Kalman</span></li>
+              <li><strong>60″</strong><span lang="en">uncertainty after 100 s on gyros alone</span><span lang="it">incertezza dopo 100 s con i soli giroscopi</span></li>
+            </ul>
+
+            <h2 class="group-title" id="problem"><span lang="en">The problem</span><span lang="it">Il problema</span></h2>
+            <p lang="en">
+              The probe flies a polar 480 by 1500 km orbit around Mercury, pointing at the planet. Each of its three star trackers measures the
+              direction of three stars, the Sun sensor measures the direction of the Sun and the gyroscopes measure the angular rate, with noise and
+              a slowly drifting bias. The data cover 400 s in four phases: all sensors in the first 100 s, then a star tracker failure that leaves
+              only the Sun sensor and the gyroscopes, then the first star tracker back at 200 s and the other two at 300 s.
+            </p>
+            <p lang="it">
+              La sonda percorre un'orbita polare di 480 per 1500 km intorno a Mercurio, puntata verso il pianeta. Ciascuno dei tre star tracker
+              misura la direzione di tre stelle, il sensore solare misura la direzione del Sole e i giroscopi misurano la velocità angolare, con
+              rumore e un bias che varia lentamente. I dati coprono 400 s in quattro fasi: tutti i sensori nei primi 100 s, poi un guasto degli star
+              tracker che lascia solo il sensore solare e i giroscopi, poi il primo star tracker di nuovo attivo a 200 s e gli altri due a 300 s.
+            </p>
+            <div class="gallery">
+              <figure class="wide">
+                <img src="img/attitude-determination/cover.svg" width="1600" height="900" loading="lazy" alt="Timeline of the sensors over 400 seconds: the three star trackers work until 100 seconds, the first returns at 200 and the other two at 300, while the Sun sensor and the gyroscopes work throughout" />
+                <figcaption><span lang="en">Which sensors are available over the 400 s</span><span lang="it">Quali sensori sono disponibili nei 400 s</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="static"><span lang="en">TRIAD and QUEST</span><span lang="it">TRIAD e QUEST</span></h2>
+            <p lang="en">
+              Both methods find the attitude from the directions measured at a single instant, compared with the same directions known in the
+              inertial frame. TRIAD builds two orthogonal triads from exactly two directions; I ran it with a star and the Sun, and with two stars,
+              always from the first star tracker, the only one back at 200 s. QUEST solves Wahba's problem with all the measurements at once,
+              weighted by their accuracy: I found the largest eigenvalue with Newton-Raphson instead of a library eigensolver. For each method I
+              converted the quaternion error into roll, pitch and yaw errors and computed their covariance.
+            </p>
+            <p lang="it">
+              Entrambi i metodi ricavano l'assetto dalle direzioni misurate in un singolo istante, confrontate con le stesse direzioni note nel
+              riferimento inerziale. TRIAD costruisce due terne ortogonali a partire da esattamente due direzioni; l'ho applicato con una stella e il
+              Sole, e con due stelle, sempre dal primo star tracker, l'unico di nuovo attivo a 200 s. QUEST risolve il problema di Wahba con tutte le
+              misure insieme, pesate per la loro accuratezza: ho trovato l'autovalore massimo con Newton-Raphson invece di una funzione di libreria.
+              Per ogni metodo ho convertito l'errore sul quaternione in errori di rollio, beccheggio e imbardata e ne ho calcolato la covarianza.
+            </p>
+            <p lang="en">
+              Neither works between 100 and 200 s, when the only direction measured is the Sun. QUEST is several times more accurate than TRIAD, and
+              its uncertainty follows the number of stars available: larger with the first star tracker alone, smaller again from 300 s.
+            </p>
+            <p lang="it">
+              Nessuno dei due funziona tra 100 e 200 s, quando l'unica direzione misurata è quella del Sole. QUEST è molte volte più accurato di
+              TRIAD, e la sua incertezza segue il numero di stelle disponibili: più grande con il solo primo star tracker, di nuovo più piccola da
+              300 s.
+            </p>
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/attitude-determination/triad-errors.png" width="840" height="630" loading="lazy" alt="TRIAD roll, pitch and yaw errors over 400 seconds with one sigma bounds of about 12 arcseconds in roll and 60 in pitch and yaw, and a gap from 100 to 200 seconds" />
+                <figcaption><span lang="en">TRIAD: errors in arcseconds, with a gap during the failure</span><span lang="it">TRIAD: errori in secondi d'arco, con un vuoto durante il guasto</span></figcaption>
+              </figure>
+              <figure class="diagram">
+                <img src="img/attitude-determination/quest-errors-200-400.png" width="1062" height="822" loading="lazy" alt="QUEST roll, pitch and yaw errors from 200 to 400 seconds, with bounds shrinking at 300 seconds when all star trackers are back" />
+                <figcaption><span lang="en">QUEST from 200 s: the bounds shrink when all star trackers return</span><span lang="it">QUEST da 200 s: i limiti si stringono quando tornano tutti gli star tracker</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="kalman"><span lang="en">Multiplicative extended Kalman filter</span><span lang="it">Filtro di Kalman esteso moltiplicativo</span></h2>
+            <p lang="en">
+              The Kalman filter estimates the quaternion and the three gyro biases. It starts from the first QUEST solution, propagates the attitude
+              with the gyro rates through the quaternion kinematics, and corrects it with each new QUEST measurement. Unlike TRIAD and QUEST, it
+              carries the memory of all past measurements: within about 10 s its uncertainty falls below one arcsecond on all three axes.
+            </p>
+            <p lang="it">
+              Il filtro di Kalman stima il quaternione e i tre bias dei giroscopi. Parte dalla prima soluzione di QUEST, propaga l'assetto con le
+              velocità dei giroscopi attraverso la cinematica dei quaternioni, e lo corregge con ogni nuova misura di QUEST. A differenza di TRIAD
+              e QUEST, conserva la memoria di tutte le misure passate: in circa 10 s la sua incertezza scende sotto un secondo d'arco su tutti e
+              tre gli assi.
+            </p>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/attitude-determination/mekf-errors-0-100.png" width="835" height="669" loading="lazy" alt="Kalman filter roll, pitch and yaw errors over the first 100 seconds, with bounds converging below one arcsecond within about 10 seconds" />
+                <figcaption><span lang="en">Kalman filter in the first 100 s: below one arcsecond within seconds</span><span lang="it">Filtro di Kalman nei primi 100 s: sotto un secondo d'arco in pochi secondi</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="failure"><span lang="en">Through the star tracker failure</span><span lang="it">Attraverso il guasto degli star tracker</span></h2>
+            <p lang="en">
+              Between 100 and 200 s there is no attitude measurement to correct the filter, so I propagated the quaternion and the covariance with the
+              gyroscopes alone, keeping the bias at its last estimate. The process noise grows with the time since the last bias correction, so the
+              uncertainty rises steadily, to about 60 arcseconds after 100 s. At 200 s the filter restarts from the propagated state and converges
+              again, and the bias uncertainty, which had grown in the same way, collapses within a few tens of seconds.
+            </p>
+            <p lang="it">
+              Tra 100 e 200 s non c'è alcuna misura d'assetto per correggere il filtro, quindi ho propagato quaternione e covarianza con i soli
+              giroscopi, tenendo il bias all'ultimo valore stimato. Il rumore di processo cresce con il tempo trascorso dall'ultima correzione del
+              bias, quindi l'incertezza sale costantemente, fino a circa 60 secondi d'arco dopo 100 s. A 200 s il filtro riparte dallo stato
+              propagato e converge di nuovo, e l'incertezza sul bias, cresciuta allo stesso modo, crolla in poche decine di secondi.
+            </p>
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/attitude-determination/propagation-errors.png" width="937" height="738" loading="lazy" alt="Roll, pitch and yaw uncertainty growing from zero to about 60 arcseconds between 100 and 200 seconds while propagating with the gyroscopes" />
+                <figcaption><span lang="en">100 to 200 s: uncertainty grows on gyroscopes alone</span><span lang="it">Da 100 a 200 s: l'incertezza cresce con i soli giroscopi</span></figcaption>
+              </figure>
+              <figure class="diagram">
+                <img src="img/attitude-determination/mekf-errors-200-400.png" width="932" height="750" loading="lazy" alt="Kalman filter errors from 200 to 400 seconds, with bounds converging again below one arcsecond" />
+                <figcaption><span lang="en">From 200 s: the filter converges again</span><span lang="it">Da 200 s: il filtro converge di nuovo</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/attitude-determination/gyro-bias.png" width="1006" height="802" loading="lazy" alt="Estimated gyro bias on three axes with one sigma bounds that grow to 1e-5 radians per second during the failure and collapse after 200 seconds" />
+                <figcaption><span lang="en">Gyro bias estimate and its uncertainty over the 400 s</span><span lang="it">Stima del bias dei giroscopi e sua incertezza nei 400 s</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="comparison"><span lang="en">Comparison</span><span lang="it">Confronto</span></h2>
+            <p lang="en">
+              The three algorithms agree on the attitude, but not on how well they know it. TRIAD, limited to two directions at a time, has errors of
+              tens of arcseconds; QUEST, using every star with its own weight, gets down to a few arcseconds; the Kalman filter, which also uses the
+              gyroscopes and the history of the measurements, stays below one arcsecond and is the only one that keeps an estimate through the
+              failure. In all three, pitch and yaw are less accurate than roll.
+            </p>
+            <p lang="it">
+              I tre algoritmi concordano sull'assetto, ma non su quanto bene lo conoscono. TRIAD, limitato a due direzioni alla volta, ha errori di
+              decine di secondi d'arco; QUEST, usando ogni stella con il suo peso, scende a pochi secondi d'arco; il filtro di Kalman, che usa anche
+              i giroscopi e la storia delle misure, resta sotto un secondo d'arco ed è l'unico che mantiene una stima durante il guasto. In tutti e
+              tre, beccheggio e imbardata sono meno accurati del rollio.
+            </p>
+
+            <h2 class="group-title" id="report">Report</h2>
+            <p class="pub-links">
+              <a href="files/attitude-determination-2020.pdf"><span lang="en">Report (PDF, in Italian)</span><span lang="it">Report (PDF)</span></a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

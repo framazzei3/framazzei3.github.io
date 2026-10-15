@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HyonoSat AODCS · Francesco Mazzei</title>
+    <meta name="description" content="Attitude and orbit determination and control for the 6U HyonoSat CubeSat, Spacecraft Design team project, Sapienza University of Rome, 2021." />
+    <meta name="author" content="Francesco Mazzei" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="css/style.css?v=25" />
+    <script src="js/prefs.js?v=16"></script>
+    <script src="js/main.js?v=20" defer></script>
+  </head>
+
+  <!-- Header, menu and footer are added by js/main.js.
+       data-page keeps "Projects" highlighted in the menu; data-title-* set the tab title. -->
+  <body data-page="projects" data-title-en="HyonoSat AODCS" data-title-it="AODCS di HyonoSat">
+    <noscript>
+      <nav class="noscript-nav container">
+        <a href="index.html">About</a> · <a href="projects.html">Projects</a> ·
+        <a href="publications.html">Publications</a> · <a href="teaching.html">Teaching</a> · <a href="cv.html">CV</a> · <a href="personal.html">Personal</a>
+      </nav>
+    </noscript>
+
+    <main id="main">
+      <!-- ===================================================================
+           PROJECT PAGE: HyonoSat AODCS, Spacecraft Design 2020/2021.
+           Figures in img/aodcs/ (from the final report and presentation), report in files/.
+           Originals in D:\UNIVERSITA'\02_Magistrale - Space and Astronautical Eng\Spacecraft Design\03_Team_Project_AODCS (not published).
+           TODO: review the Italian translation
+           =================================================================== -->
+      <section class="section">
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#hardware"><span lang="en">Sensors and actuators</span><span lang="it">Sensori e attuatori</span></a></li>
+              <li><a href="#environment"><span lang="en">Orbit and environment</span><span lang="it">Orbita e ambiente</span></a></li>
+              <li><a href="#orbit"><span lang="en">Orbit determination and control</span><span lang="it">Determinazione e controllo d'orbita</span></a></li>
+              <li><a href="#attitude-determination"><span lang="en">Attitude determination</span><span lang="it">Determinazione d'assetto</span></a></li>
+              <li><a href="#attitude-control"><span lang="en">Attitude control</span><span lang="it">Controllo d'assetto</span></a></li>
+              <li><a href="#report">Report</a></li>
+            </ol>
+          </nav>
+
+          <div class="project-body">
+            <p class="back-link">
+              <a href="projects.html"><span lang="en">Back to Projects</span><span lang="it">Torna a Progetti</span></a>
+            </p>
+
+            <h1 class="page-title" id="overview">AODCS Analysis and Design for the 6U HyonoSat CubeSat</h1>
+            <p class="section-intro" lang="en">Team project, Spacecraft Design, Sapienza University of Rome, 2020/2021</p>
+            <p class="section-intro" lang="it">Progetto di gruppo, Spacecraft Design, Sapienza Università di Roma, 2020/2021</p>
+
+            <p class="lead" lang="en">
+              HyonoSat is a 6U CubeSat for Earth observation, designed by the whole Spacecraft Design class: a hyperspectral camera for land, water
+              and atmosphere, and two GPS receivers to measure the electron content of the ionosphere. Our team of seven designed its attitude and
+              orbit determination and control system (AODCS), which has to keep the camera and the S-band antenna pointed at the Earth, hold the
+              orbit and bring the satellite down at the end of the mission. We worked in MATLAB, STK and GMAT, together with the teams designing the
+              other subsystems.
+            </p>
+            <p class="lead" lang="it">
+              HyonoSat è un CubeSat 6U per l'osservazione della Terra, progettato da tutto il corso di Spacecraft Design: una camera iperspettrale
+              per suolo, acque e atmosfera, e due ricevitori GPS per misurare il contenuto elettronico della ionosfera. Il nostro gruppo di sette ha
+              progettato il sottosistema di determinazione e controllo di assetto e orbita (AODCS), che deve tenere la camera e l'antenna in banda S
+              puntate verso la Terra, mantenere l'orbita e far rientrare il satellite a fine missione. Abbiamo lavorato in MATLAB, STK e GMAT,
+              insieme ai gruppi che progettavano gli altri sottosistemi.
+            </p>
+
+            <!-- Key numbers from the report -->
+            <ul class="facts">
+              <li><strong>6U</strong><span lang="en">CubeSat in a 500 km Sun-synchronous orbit</span><span lang="it">CubeSat in orbita eliosincrona a 500 km</span></li>
+              <li><strong>&lt; 1°</strong><span lang="en">nadir pointing error</span><span lang="it">errore di puntamento al nadir</span></li>
+              <li><strong>30°/s</strong><span lang="en">initial tumbling damped by the B-dot</span><span lang="it">rotazione iniziale smorzata dal B-dot</span></li>
+              <li><strong>235 days</strong><span lang="en">to deorbit, instead of 4 years</span><span lang="it">per il rientro, invece di 4 anni</span></li>
+            </ul>
+
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/aodcs/cubesat-cad.jpg" width="1200" height="751" loading="lazy" alt="Two views of the CAD model of the 6U CubeSat, with its frame, electronics, batteries, reaction wheels and payload" />
+                <figcaption><span lang="en">HyonoSat, by the Structures and Mechanisms team</span><span lang="it">HyonoSat, dal gruppo Strutture e Meccanismi</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="hardware"><span lang="en">Sensors and actuators</span><span lang="it">Sensori e attuatori</span></h2>
+            <p lang="en">
+              After a market survey of CubeSat components, we chose the hardware for accuracy, mass, power and cost, and placed it on the satellite
+              with STK so that each sensor sees what it needs: the star tracker looks at deep space on the side away from the Sun, the sun sensor is
+              on the face that sees the Sun for part of the orbit.
+            </p>
+            <p lang="it">
+              Dopo un'analisi di mercato dei componenti per CubeSat, abbiamo scelto l'hardware in base ad accuratezza, massa, potenza e costo, e lo
+              abbiamo disposto sul satellite con STK in modo che ogni sensore veda ciò che gli serve: lo star tracker guarda lo spazio profondo dal
+              lato opposto al Sole, il sensore solare è sulla faccia che vede il Sole per parte dell'orbita.
+            </p>
+            <ul lang="en">
+              <li><strong>Sensors.</strong> A star tracker (30 arcsec), a two-axis sun sensor, a three-axis magnetometer and an inertial measurement unit, plus the GNSS receiver of the payload.</li>
+              <li><strong>Actuators.</strong> Three magnetorquers, one per axis, four reaction wheels in a pyramid, and two multiFEEP electric thrusters for orbit maintenance.</li>
+            </ul>
+            <ul lang="it">
+              <li><strong>Sensori.</strong> Uno star tracker (30 arcsec), un sensore solare a due assi, un magnetometro a tre assi e un'unità di misura inerziale, più il ricevitore GNSS del payload.</li>
+              <li><strong>Attuatori.</strong> Tre magnetorquer, uno per asse, quattro ruote di reazione a piramide, e due propulsori elettrici multiFEEP per il mantenimento dell'orbita.</li>
+            </ul>
+            <div class="gallery">
+              <figure class="wide">
+                <img src="img/aodcs/sensors-stk.jpg" width="1180" height="416" style="aspect-ratio: auto" loading="lazy" alt="STK view of the CubeSat over the Earth, with the body axes and the fields of view of its sensors drawn as coloured cones" />
+                <figcaption><span lang="en">Body axes and sensor fields of view in STK</span><span lang="it">Assi corpo e campi di vista dei sensori in STK</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="environment"><span lang="en">Orbit and environment</span><span lang="it">Orbita e ambiente</span></h2>
+            <p lang="en">
+              HyonoSat flies a noon and midnight Sun-synchronous orbit at about 500 km, inclined 97.4°. We propagated it in STK with J2 and modelled
+              the Earth's magnetic field both as a tilted dipole and with the IGRF model, which agree closely; the IGRF field drives the magnetometer
+              and magnetorquer simulations. The worst case disturbance torque, summing drag, magnetic, solar radiation and gravity gradient, is
+              1.4 × 10⁻⁶ N·m, with drag the largest at this altitude.
+            </p>
+            <p lang="it">
+              HyonoSat vola in un'orbita eliosincrona mezzogiorno e mezzanotte a circa 500 km, inclinata di 97,4°. L'abbiamo propagata in STK con
+              J2 e abbiamo modellato il campo magnetico terrestre sia come dipolo inclinato sia con il modello IGRF, che concordano bene; il campo
+              IGRF alimenta le simulazioni di magnetometro e magnetorquer. La coppia di disturbo nel caso peggiore, sommando resistenza
+              aerodinamica, disturbo magnetico, pressione di radiazione solare e gradiente di gravità, è 1,4 × 10⁻⁶ N·m, con la resistenza
+              aerodinamica dominante a questa quota.
+            </p>
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/aodcs/orbit-3d.jpg" width="529" height="372" loading="lazy" alt="STK 3D view of the polar orbit of HyonoSat around the Earth" />
+                <figcaption><span lang="en">The orbit in STK</span><span lang="it">L'orbita in STK</span></figcaption>
+              </figure>
+              <figure class="diagram">
+                <img src="img/aodcs/ground-track.jpg" width="658" height="377" loading="lazy" alt="Ground track of HyonoSat on a world map" />
+                <figcaption><span lang="en">Ground track</span><span lang="it">Traccia a terra</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="orbit"><span lang="en">Orbit determination and control</span><span lang="it">Determinazione e controllo d'orbita</span></h2>
+            <p lang="en">
+              We compared three ways to know where the satellite is: SGP4 propagation from TLEs generated in STK, batch estimation from range and
+              range rate measured by ground stations, and batch estimation from the onboard GNSS receiver, both in GMAT. The GNSS receiver is the
+              most accurate and is already on board for the payload, so it was our choice.
+            </p>
+            <p lang="it">
+              Abbiamo confrontato tre modi per sapere dove si trova il satellite: la propagazione SGP4 da TLE generati in STK, la stima batch da
+              misure di range e range rate delle stazioni di terra, e la stima batch dal ricevitore GNSS di bordo, entrambe in GMAT. Il ricevitore
+              GNSS è il più accurato ed è già a bordo per il payload, quindi è stata la nostra scelta.
+            </p>
+            <ul lang="en">
+              <li>
+                <strong>Orbit maintenance.</strong> A Lyapunov feedback law on equinoctial elements commands two multiFEEP thrusters at half thrust,
+                firing in sunlight while the payload is off. It keeps the orbit within the 20 km band and the inclination on target for the 5 year
+                mission, also after an initial injection error.
+              </li>
+              <li>
+                <strong>Deorbiting.</strong> We compared natural decay, a drag sail and a dedicated thruster. Left alone, HyonoSat reenters in about
+                4 years, well within the 25 year rule; turning the steerable solar panels into the flow brings this down to about 235 days with no
+                extra hardware, which was our choice.
+              </li>
+            </ul>
+            <ul lang="it">
+              <li>
+                <strong>Mantenimento dell'orbita.</strong> Una legge di controllo di Lyapunov sugli elementi equinoziali comanda due propulsori
+                multiFEEP a metà spinta, accesi alla luce del Sole mentre il payload è spento. Mantiene l'orbita entro la fascia di 20 km e
+                l'inclinazione sul valore nominale per i 5 anni di missione, anche dopo un errore iniziale di immissione.
+              </li>
+              <li>
+                <strong>Rientro.</strong> Abbiamo confrontato il decadimento naturale, una vela di resistenza e un propulsore dedicato. Da solo,
+                HyonoSat rientra in circa 4 anni, ben entro il limite di 25 anni; orientando i pannelli solari mobili controvento si scende a circa
+                235 giorni senza hardware aggiuntivo, ed è stata la nostra scelta.
+              </li>
+            </ul>
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/aodcs/inclination.png" width="840" height="630" loading="lazy" alt="Inclination over five years: after a fast correction from 98 degrees it stays between the two red limits around 97.5 degrees" />
+                <figcaption><span lang="en">Inclination held within its limits over 5 years</span><span lang="it">Inclinazione mantenuta nei limiti per 5 anni</span></figcaption>
+              </figure>
+              <figure class="diagram">
+                <img src="img/aodcs/deorbit.jpg" width="787" height="590" loading="lazy" alt="Altitude over time during deorbiting with the solar panels used as drag surfaces: from 470 km to reentry in about 235 days, GMAT and simplified model agreeing" />
+                <figcaption><span lang="en">Deorbiting with the solar panels as drag surfaces</span><span lang="it">Rientro con i pannelli solari come superfici di resistenza</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="attitude-determination"><span lang="en">Attitude determination</span><span lang="it">Determinazione d'assetto</span></h2>
+            <p lang="en">
+              From STK we generated 15 minutes of nadir pointing attitude and built simulated measurements with the noise of our sensors: three
+              stars from the star tracker, the Sun direction from the sun sensor, which is lost in eclipse after 10 minutes, and gyro rates with
+              noise and drifting bias. We estimated the attitude with TRIAD, QUEST and a multiplicative extended Kalman filter, which also estimates
+              the gyro bias. The Kalman filter gives the smallest errors and uncertainties, because it carries the memory of past measurements
+              instead of solving each instant on its own.
+            </p>
+            <p lang="it">
+              Da STK abbiamo generato 15 minuti di assetto in puntamento al nadir e costruito misure simulate con il rumore dei nostri sensori: tre
+              stelle dallo star tracker, la direzione del Sole dal sensore solare, che si perde in eclisse dopo 10 minuti, e le velocità dei
+              giroscopi con rumore e bias variabile. Abbiamo stimato l'assetto con TRIAD, QUEST e un filtro di Kalman esteso moltiplicativo, che
+              stima anche il bias dei giroscopi. Il filtro di Kalman dà gli errori e le incertezze più piccoli, perché conserva la memoria delle
+              misure passate invece di risolvere ogni istante da solo.
+            </p>
+            <div class="gallery">
+              <figure class="diagram">
+                <img src="img/aodcs/mekf-errors.png" width="680" height="523" loading="lazy" alt="Roll, pitch and yaw errors of the Kalman filter over 900 seconds, within the one sigma bounds of a few ten thousandths of a degree" />
+                <figcaption><span lang="en">Kalman filter: roll, pitch and yaw errors with ±1σ bounds</span><span lang="it">Filtro di Kalman: errori di rollio, beccheggio e imbardata con limiti ±1σ</span></figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="attitude-control"><span lang="en">Attitude control</span><span lang="it">Controllo d'assetto</span></h2>
+            <p lang="en">
+              The control has to bring the satellite from the tumbling after release to stable nadir pointing, and keep it there against the
+              disturbances.
+            </p>
+            <p lang="it">
+              Il controllo deve portare il satellite dalla rotazione incontrollata dopo il rilascio a un puntamento al nadir stabile, e mantenerlo
+              contro i disturbi.
+            </p>
+            <ul lang="en">
+              <li>
+                <strong>Detumbling.</strong> A B-dot controller uses only the magnetometer and the three magnetorquers, so it runs on a simple
+                onboard computer. Starting from 30°/s on every axis, it damps the rotation within a few orbits, with the magnetorquers using their
+                boost mode only in the first minutes.
+              </li>
+              <li>
+                <strong>Linear nadir pointing.</strong> With PD and PID controllers against the worst case disturbance, we compared three actuator
+                sets: three magnetorquers, two magnetorquers and one reaction wheel, and four reaction wheels. The PD leaves an error of about half a
+                degree, the PID cancels it. We chose four wheels, which keep full control if one fails.
+              </li>
+              <li>
+                <strong>Nonlinear nadir pointing.</strong> A quaternion feedback law, proved stable with Lyapunov and LaSalle, takes the satellite to
+                the commanded attitude along the shortest path. Its gain ramps up during the first 10 minutes to keep the wheel torques within their
+                limits.
+              </li>
+              <li>
+                <strong>Desaturation.</strong> Disturbances keep loading the wheels with momentum. When they reach their maximum speed, the
+                magnetorquers unload them in about 9 minutes, every 3.1 hours on average, while the pointing error stays below 7°; in normal pointing
+                it is below 1°.
+              </li>
+            </ul>
+            <ul lang="it">
+              <li>
+                <strong>Detumbling.</strong> Un controllore B-dot usa solo il magnetometro e i tre magnetorquer, quindi gira su un computer di bordo
+                semplice. Partendo da 30°/s su ogni asse, smorza la rotazione in poche orbite, con i magnetorquer in modalità boost solo nei primi
+                minuti.
+              </li>
+              <li>
+                <strong>Puntamento al nadir lineare.</strong> Con controllori PD e PID contro il disturbo nel caso peggiore, abbiamo confrontato tre
+                configurazioni di attuatori: tre magnetorquer, due magnetorquer e una ruota di reazione, e quattro ruote di reazione. Il PD lascia un
+                errore di circa mezzo grado, il PID lo annulla. Abbiamo scelto quattro ruote, che mantengono il pieno controllo anche se una si
+                guasta.
+              </li>
+              <li>
+                <strong>Puntamento al nadir non lineare.</strong> Una legge di controllo in quaternioni, stabile per Lyapunov e LaSalle, porta il
+                satellite all'assetto comandato lungo il percorso più breve. Il guadagno cresce nei primi 10 minuti per tenere le coppie delle ruote
+                entro i loro limiti.
+              </li>
+              <li>
+                <strong>Desaturazione.</strong> I disturbi caricano continuamente le ruote di momento angolare. Quando raggiungono la velocità
+                massima, i magnetorquer le scaricano in circa 9 minuti, in media ogni 3,1 ore, con un errore di puntamento sotto i 7°; nel
+                puntamento normale resta sotto 1°.
+              </li>
+            </ul>
+            <div class="gallery">
+              <figure class="wide diagram">
+                <img src="img/aodcs/detumbling.png" width="1106" height="419" loading="lazy" alt="B-dot detumbling over five orbits: angular velocities on the three axes decaying from 30 degrees per second to zero, and magnetorquer dipole moments within 2 square ampere metres" />
+                <figcaption>
+                  <span lang="en">B-dot detumbling from 30°/s: angular velocity (left) and magnetorquer dipole (right) over five orbits</span
+                  ><span lang="it">Detumbling B-dot da 30°/s: velocità angolare (sinistra) e dipolo dei magnetorquer (destra) in cinque orbite</span>
+                </figcaption>
+              </figure>
+              <figure class="diagram">
+                <img src="img/aodcs/wheels-pyramid.png" width="596" height="415" loading="lazy" alt="Sketch of four reaction wheels arranged in a pyramid around the body axes, each tilted by an angle beta" />
+                <figcaption><span lang="en">Four reaction wheels in a pyramid</span><span lang="it">Quattro ruote di reazione a piramide</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/aodcs/nonlinear-acquisition.png" width="1106" height="860" loading="lazy" alt="Nonlinear acquisition: error quaternion, Bryant angle errors from up to 70 degrees, angular rate errors and actuator torques all settling within about 200 seconds" />
+                <figcaption><span lang="en">Nonlinear acquisition of nadir pointing, settled in about 200 s</span><span lang="it">Acquisizione non lineare del puntamento al nadir, conclusa in circa 200 s</span></figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/aodcs/desaturation.png" width="1106" height="442" loading="lazy" alt="Pointing errors over about eight hours with short spikes at each desaturation, and wheel speeds climbing to their limit and dropping back" />
+                <figcaption>
+                  <span lang="en">Pointing errors (left) and wheel speeds (right): each drop is a desaturation</span
+                  ><span lang="it">Errori di puntamento (sinistra) e velocità delle ruote (destra): ogni caduta è una desaturazione</span>
+                </figcaption>
+              </figure>
+            </div>
+
+            <h2 class="group-title" id="report">Report</h2>
+            <p class="pub-links">
+              <a href="files/aodcs-hyonosat-2021.pdf"><span lang="en">Final report (PDF)</span><span lang="it">Report finale (PDF, in inglese)</span></a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

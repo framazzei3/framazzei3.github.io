@@ -271,6 +271,18 @@
     link.setAttribute("rel", "noopener");
   });
 
+  // Clickable cards: a click anywhere opens the title link, unless it lands on another link or ends a text selection
+  Array.prototype.forEach.call(document.querySelectorAll(".pub.linked"), function (card) {
+    var link = card.querySelector(".pub-title a");
+    if (!link) return;
+    card.addEventListener("click", function (event) {
+      if (event.target.closest("a")) return;
+      if (String(window.getSelection()).length > 0) return;
+      if (event.ctrlKey || event.metaKey) window.open(link.href, "_blank", "noopener");
+      else window.location.href = link.href;
+    });
+  });
+
   // Contents menu on project pages: highlight the section currently in view
   var tocLinks = Array.prototype.slice.call(document.querySelectorAll(".toc a[href^='#']"));
   if (tocLinks.length) {
