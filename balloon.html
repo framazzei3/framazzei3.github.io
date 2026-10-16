@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=25" />
+    <link rel="stylesheet" href="css/style.css?v=28" />
     <script src="js/prefs.js?v=16"></script>
-    <script src="js/main.js?v=20" defer></script>
+    <script src="js/main.js?v=21" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js.
@@ -32,183 +32,218 @@
            TODO: review the Italian translation
            =================================================================== -->
       <section class="section">
-        <div class="container project">
-          <p class="back-link">
-            <a href="isu.html"><span lang="en">Back to ISU SHSSP 2023</span><span lang="it">Torna a ISU SHSSP 2023</span></a>
-          </p>
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#flight"><span lang="en">The flight</span><span lang="it">Il volo</span></a></li>
+              <li><a href="#payloads"><span lang="en">Payloads</span><span lang="it">Payload</span></a></li>
+              <li><a href="#organisation"><span lang="en">Mission organisation</span><span lang="it">Organizzazione</span></a></li>
+              <li><a href="#results"><span lang="en">Results</span><span lang="it">Risultati</span></a></li>
+              <li><a href="#camera"><span lang="en">Onboard camera</span><span lang="it">Camera di bordo</span></a></li>
+              <li><a href="#photos"><span lang="en">Photos</span><span lang="it">Foto</span></a></li>
+              <li><a href="#report"><span lang="en">Report and data</span><span lang="it">Report e dati</span></a></li>
+              <li><a href="#publication"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></a></li>
+            </ol>
+            <p class="toc-title"><span lang="en">Links</span><span lang="it">Link</span></p>
+            <ul class="toc-links">
+              <li><a href="https://www.areg.org.au/archives/211360"><span lang="en">Flight report (AREG)</span><span lang="it">Report del volo (AREG)</span></a></li>
+              <li><a href="https://grafana.v2.sondehub.org/d/D11v9324k/shssp-2023-sensor-dashboard?orgId=1&amp;from=2023-01-29T01:17:08.761Z&amp;to=2023-01-29T03:46:28.246Z&amp;timezone=browser"><span lang="en">Sensor dashboard</span><span lang="it">Dashboard dei sensori</span></a></li>
+              <li><a href="publications.html#pub-iac-balloon"><span lang="en">IAC paper</span><span lang="it">Articolo IAC</span></a></li>
+            </ul>
+          </nav>
 
-          <h1 class="page-title"><span lang="en">Stratospheric balloon mission</span><span lang="it">Missione con pallone stratosferico</span></h1>
-          <p class="section-intro" lang="en">International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
-          <p class="section-intro" lang="it">International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
+          <div class="project-body">
+            <p class="back-link">
+              <a href="isu.html"><span lang="en">Back to ISU SHSSP 2023</span><span lang="it">Torna a ISU SHSSP 2023</span></a>
+            </p>
 
-          <p class="lead" lang="en">
-            During the program, our group designed, built, tested, launched, tracked and recovered a stratospheric balloon in a single week. The
-            flight was run as an analogue of an orbital mission: each participant took on a role that a real space mission would need.
-          </p>
-          <p class="lead" lang="it">
-            Durante il programma il nostro gruppo ha progettato, costruito, testato, lanciato, tracciato e recuperato un pallone stratosferico in
-            una sola settimana. Il volo è stato gestito come analogo di una missione orbitale: ogni partecipante ha ricoperto un ruolo che
-            servirebbe in una vera missione spaziale.
-          </p>
+            <h1 class="page-title" id="overview"><span lang="en">Stratospheric balloon mission</span><span lang="it">Missione con pallone stratosferico</span></h1>
+            <p class="section-intro" lang="en">International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
+            <p class="section-intro" lang="it">International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
 
-          <!-- Key numbers -->
-          <ul class="facts">
-            <li><strong>35.4 km</strong><span lang="en">maximum altitude</span><span lang="it">quota massima</span></li>
-            <li><strong>2 h 21 min</strong><span lang="en">flight time</span><span lang="it">durata del volo</span></li>
-            <li><strong>80.4 km</strong><span lang="en">from launch to landing</span><span lang="it">dal lancio all'atterraggio</span></li>
-            <li><strong>5</strong><span lang="en">payloads, 1.2 kg in total</span><span lang="it">payload, 1,2 kg in totale</span></li>
-          </ul>
+            <p class="lead" lang="en">
+              During the program, our group designed, built, tested, launched, tracked and recovered a stratospheric balloon in a single week. The
+              flight was run as an analogue of an orbital mission: each participant took on a role that a real space mission would need.
+            </p>
+            <p class="lead" lang="it">
+              Durante il programma il nostro gruppo ha progettato, costruito, testato, lanciato, tracciato e recuperato un pallone stratosferico in
+              una sola settimana. Il volo è stato gestito come analogo di una missione orbitale: ogni partecipante ha ricoperto un ruolo che
+              servirebbe in una vera missione spaziale.
+            </p>
 
-          <h2 class="group-title"><span lang="en">The flight</span><span lang="it">Il volo</span></h2>
-          <p lang="en">
-            The balloon was launched on 29 January 2023 from a field north of Adelaide and reached 35,431 m before bursting. Part of the burst
-            balloon tangled around the parachute, so the descent was faster than planned. The payloads landed in a tree about 80 km to the east
-            and were recovered by the ground teams. Telemetry was received by 37 stations, including three run by participants.
-          </p>
-          <p lang="it">
-            Il pallone è stato lanciato il 29 gennaio 2023 da un campo a nord di Adelaide e ha raggiunto 35.431 m prima di scoppiare. Parte del
-            pallone esploso si è attorcigliata al paracadute, quindi la discesa è stata più veloce del previsto. I payload sono atterrati su un
-            albero a circa 80 km verso est e sono stati recuperati dalle squadre a terra. La telemetria è stata ricevuta da 37 stazioni, tre delle
-            quali gestite dai partecipanti.
-          </p>
+            <!-- Key numbers -->
+            <ul class="facts">
+              <li><strong>35.4 km</strong><span lang="en">maximum altitude</span><span lang="it">quota massima</span></li>
+              <li><strong>2 h 21 min</strong><span lang="en">flight time</span><span lang="it">durata del volo</span></li>
+              <li><strong>80.4 km</strong><span lang="en">from launch to landing</span><span lang="it">dal lancio all'atterraggio</span></li>
+              <li><strong>5</strong><span lang="en">payloads, 1.2 kg in total</span><span lang="it">payload, 1,2 kg in totale</span></li>
+            </ul>
 
-          <h2 class="group-title"><span lang="en">Payloads</span><span lang="it">Payload</span></h2>
-          <ul lang="en">
-            <li>Two cameras, one pointing down (nadir) and one at the horizon</li>
-            <li>Two radiation detectors</li>
-            <li>One life science experiment</li>
-          </ul>
-          <ul lang="it">
-            <li>Due camere, una rivolta verso il basso (nadir) e una verso l'orizzonte</li>
-            <li>Due rivelatori di radiazione</li>
-            <li>Un esperimento di scienze della vita</li>
-          </ul>
+            <h2 class="group-title" id="flight"><span lang="en">The flight</span><span lang="it">Il volo</span></h2>
+            <p lang="en">
+              The balloon was launched on 29 January 2023 from a field north of Adelaide and reached 35,431 m before bursting. Part of the burst
+              balloon tangled around the parachute, so the descent was faster than planned. The payloads landed in a tree about 80 km to the east
+              and were recovered by the ground teams. Telemetry was received by 37 stations, including three run by participants.
+            </p>
+            <p lang="it">
+              Il pallone è stato lanciato il 29 gennaio 2023 da un campo a nord di Adelaide e ha raggiunto 35.431 m prima di scoppiare. Parte del
+              pallone esploso si è attorcigliata al paracadute, quindi la discesa è stata più veloce del previsto. I payload sono atterrati su un
+              albero a circa 80 km verso est e sono stati recuperati dalle squadre a terra. La telemetria è stata ricevuta da 37 stazioni, tre delle
+              quali gestite dai partecipanti.
+            </p>
 
-          <h2 class="group-title"><span lang="en">Mission organisation</span><span lang="it">Organizzazione della missione</span></h2>
-          <p lang="en">Twelve participants, supported by faculty advisors, were split into four teams:</p>
-          <p lang="it">Dodici partecipanti, seguiti dai docenti, erano divisi in quattro team:</p>
-          <ul lang="en">
-            <li>Planning and launch operations</li>
-            <li>Ground station and tracking</li>
-            <li>Payloads and data</li>
-            <li>Data processing and analysis</li>
-          </ul>
-          <ul lang="it">
-            <li>Pianificazione e operazioni di lancio</li>
-            <li>Stazione di terra e tracciamento</li>
-            <li>Payload e dati</li>
-            <li>Elaborazione e analisi dei dati</li>
-          </ul>
-          <p lang="en">Data were followed in real time during the flight and analysed again after the payloads were recovered.</p>
-          <p lang="it">I dati sono stati seguiti in tempo reale durante il volo e analizzati di nuovo dopo il recupero dei payload.</p>
+            <h2 class="group-title" id="payloads"><span lang="en">Payloads</span><span lang="it">Payload</span></h2>
+            <ul lang="en">
+              <li>Two cameras, one pointing down (nadir) and one at the horizon</li>
+              <li>Two radiation detectors</li>
+              <li>One life science experiment</li>
+            </ul>
+            <ul lang="it">
+              <li>Due camere, una rivolta verso il basso (nadir) e una verso l'orizzonte</li>
+              <li>Due rivelatori di radiazione</li>
+              <li>Un esperimento di scienze della vita</li>
+            </ul>
 
-          <h2 class="group-title"><span lang="en">Results</span><span lang="it">Risultati</span></h2>
-          <ul lang="en">
-            <li>The Geiger counter showed the radiation peak (Pfotzer maximum) at about 20 km of altitude.</li>
-            <li>The personal dosimeter flown as a backup recorded 3 µSv over the whole flight.</li>
-            <li>
-              The nadir camera saw only clouds, so the image processing exercise used imagery from an earlier flight (Horus 58) together with
-              Sentinel-2 data, sharpening the resolution from 10 m to 1.5 m.
-            </li>
-          </ul>
-          <ul lang="it">
-            <li>Il contatore Geiger ha mostrato il picco di radiazione (massimo di Pfotzer) a circa 20 km di quota.</li>
-            <li>Il dosimetro personale, portato in volo come riserva, ha registrato 3 µSv nell'intero volo.</li>
-            <li>
-              La camera nadir ha visto solo nuvole, quindi l'esercizio di elaborazione delle immagini ha usato quelle di un volo precedente
-              (Horus 58) insieme ai dati Sentinel-2, portando la risoluzione da 10 m a 1,5 m.
-            </li>
-          </ul>
+            <h2 class="group-title" id="organisation"><span lang="en">Mission organisation</span><span lang="it">Organizzazione della missione</span></h2>
+            <p lang="en">Twelve participants, supported by faculty advisors, were split into four teams:</p>
+            <p lang="it">Dodici partecipanti, seguiti dai docenti, erano divisi in quattro team:</p>
+            <ul lang="en">
+              <li>Planning and launch operations</li>
+              <li>Ground station and tracking</li>
+              <li>Payloads and data</li>
+              <li>Data processing and analysis</li>
+            </ul>
+            <ul lang="it">
+              <li>Pianificazione e operazioni di lancio</li>
+              <li>Stazione di terra e tracciamento</li>
+              <li>Payload e dati</li>
+              <li>Elaborazione e analisi dei dati</li>
+            </ul>
+            <p lang="en">Data were followed in real time during the flight and analysed again after the payloads were recovered.</p>
+            <p lang="it">I dati sono stati seguiti in tempo reale durante il volo e analizzati di nuovo dopo il recupero dei payload.</p>
 
-          <!-- TODO: describe your own role in the mission -->
-          <!--
-          <h2 class="group-title"><span lang="en">My role</span><span lang="it">Il mio ruolo</span></h2>
-          <p lang="en">...</p>
-          <p lang="it">...</p>
-          -->
+            <h2 class="group-title" id="results"><span lang="en">Results</span><span lang="it">Risultati</span></h2>
+            <ul lang="en">
+              <li>The Geiger counter showed the radiation peak (Pfotzer maximum) at about 20 km of altitude.</li>
+              <li>The personal dosimeter flown as a backup recorded 3 µSv over the whole flight.</li>
+              <li>
+                The nadir camera saw only clouds, so the image processing exercise used imagery from an earlier flight (Horus 58) together with
+                Sentinel-2 data, sharpening the resolution from 10 m to 1.5 m.
+              </li>
+            </ul>
+            <ul lang="it">
+              <li>Il contatore Geiger ha mostrato il picco di radiazione (massimo di Pfotzer) a circa 20 km di quota.</li>
+              <li>Il dosimetro personale, portato in volo come riserva, ha registrato 3 µSv nell'intero volo.</li>
+              <li>
+                La camera nadir ha visto solo nuvole, quindi l'esercizio di elaborazione delle immagini ha usato quelle di un volo precedente
+                (Horus 58) insieme ai dati Sentinel-2, portando la risoluzione da 10 m a 1,5 m.
+              </li>
+            </ul>
 
-          <!-- Onboard camera: images from the AREG flight report (areg.org.au/archives/211360), 1600 px wide.
-               Altitudes are read from the telemetry strip printed on each image. -->
-          <h2 class="group-title"><span lang="en">From the onboard camera</span><span lang="it">Dalla camera di bordo</span></h2>
-          <div class="gallery">
-            <figure>
-              <img src="img/balloon/onboard/onboard-07km.jpg" width="1600" height="1201" loading="lazy" alt="Clouds seen from the balloon at 6.9 km" />
-              <figcaption><span lang="en">6.9 km: climbing through the clouds</span><span lang="it">6,9 km: salita tra le nuvole</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/onboard/onboard-08km.jpg" width="1600" height="1201" loading="lazy" alt="Cloud tops below the balloon at 7.9 km" />
-              <figcaption><span lang="en">7.9 km: above the clouds</span><span lang="it">7,9 km: sopra le nuvole</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/onboard/onboard-17km.jpg" width="1600" height="1201" loading="lazy" alt="Horizon at 17.3 km with the sky turning dark" />
-              <figcaption><span lang="en">17.3 km</span><span lang="it">17,3 km</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/onboard/onboard-22km.jpg" width="1600" height="1201" loading="lazy" alt="Curved horizon over the clouds at 22.1 km" />
-              <figcaption><span lang="en">22.1 km</span><span lang="it">22,1 km</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/onboard/onboard-32km.jpg" width="1600" height="1201" loading="lazy" alt="Curvature of the Earth and black sky at 32.1 km" />
-              <figcaption><span lang="en">32.1 km</span><span lang="it">32,1 km</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/onboard/onboard-33km.jpg" width="1600" height="1201" loading="lazy" alt="Thin blue atmosphere over the clouds at 33.2 km" />
-              <figcaption><span lang="en">33.2 km, close to the burst at 35.4 km</span><span lang="it">33,2 km, vicino allo scoppio a 35,4 km</span></figcaption>
-            </figure>
-            <figure class="wide">
-              <img src="img/balloon/onboard/onboard-descent.jpg" width="1600" height="1201" loading="lazy" alt="Red soil and a dirt track seen from 257 m during the descent" />
-              <figcaption><span lang="en">257 m, descending just before landing</span><span lang="it">257 m, in discesa poco prima dell'atterraggio</span></figcaption>
-            </figure>
+            <!-- TODO: describe your own role in the mission -->
+            <!--
+            <h2 class="group-title" id="role"><span lang="en">My role</span><span lang="it">Il mio ruolo</span></h2>
+            <p lang="en">...</p>
+            <p lang="it">...</p>
+            -->
+
+            <!-- Onboard camera: images from the AREG flight report (areg.org.au/archives/211360), 1600 px wide.
+                 Altitudes are read from the telemetry strip printed on each image. -->
+            <h2 class="group-title" id="camera"><span lang="en">From the onboard camera</span><span lang="it">Dalla camera di bordo</span></h2>
+            <!-- Carousel: one photo at a time, swipe or use the arrows; js/main.js adds the arrow behaviour and the counter -->
+            <div class="carousel" aria-roledescription="carousel" aria-label="Onboard camera">
+              <div class="carousel-track" tabindex="0">
+                <figure>
+                  <img src="img/balloon/onboard/onboard-07km.jpg" width="1600" height="1201" loading="lazy" alt="Clouds seen from the balloon at 6.9 km" />
+                  <figcaption><span lang="en">6.9 km: climbing through the clouds</span><span lang="it">6,9 km: salita tra le nuvole</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-08km.jpg" width="1600" height="1201" loading="lazy" alt="Cloud tops below the balloon at 7.9 km" />
+                  <figcaption><span lang="en">7.9 km: above the clouds</span><span lang="it">7,9 km: sopra le nuvole</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-17km.jpg" width="1600" height="1201" loading="lazy" alt="Horizon at 17.3 km with the sky turning dark" />
+                  <figcaption><span lang="en">17.3 km</span><span lang="it">17,3 km</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-22km.jpg" width="1600" height="1201" loading="lazy" alt="Curved horizon over the clouds at 22.1 km" />
+                  <figcaption><span lang="en">22.1 km</span><span lang="it">22,1 km</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-32km.jpg" width="1600" height="1201" loading="lazy" alt="Curvature of the Earth and black sky at 32.1 km" />
+                  <figcaption><span lang="en">32.1 km</span><span lang="it">32,1 km</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-33km.jpg" width="1600" height="1201" loading="lazy" alt="Thin blue atmosphere over the clouds at 33.2 km" />
+                  <figcaption><span lang="en">33.2 km, close to the burst at 35.4 km</span><span lang="it">33,2 km, vicino allo scoppio a 35,4 km</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/onboard/onboard-descent.jpg" width="1600" height="1201" loading="lazy" alt="Red soil and a dirt track seen from 257 m during the descent" />
+                  <figcaption><span lang="en">257 m, descending just before landing</span><span lang="it">257 m, in discesa poco prima dell'atterraggio</span></figcaption>
+                </figure>
+              </div>
+              <button class="carousel-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
+              <button class="carousel-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+              <p class="carousel-count" aria-live="polite"></p>
+            </div>
+            <p class="photo-credit">
+              <span lang="en">Onboard images: </span><span lang="it">Immagini di bordo: </span
+              ><a href="https://www.areg.org.au/archives/211360">Amateur Radio Experimenters Group (AREG), Project Horus</a>
+            </p>
+
+            <!-- Photo carousel: web copies in img/balloon/ (1600 px wide), originals in materiale/originali-foto/balloon/.
+                 Shown cropped to 3:2 (--ratio); js/main.js adds the arrows and the counter. -->
+            <h2 class="group-title" id="photos"><span lang="en">Photos</span><span lang="it">Foto</span></h2>
+            <div class="carousel" style="--ratio: 3 / 2" aria-roledescription="carousel" aria-label="Photos">
+              <div class="carousel-track" tabindex="0">
+                <figure>
+                  <img src="img/balloon/inflation.jpg" width="1600" height="1067" loading="lazy" alt="Team inflating the stratospheric balloon on a tarp in a grass field" />
+                  <figcaption><span lang="en">Inflating the balloon before launch</span><span lang="it">Gonfiaggio del pallone prima del lancio</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/ground-station.jpg" width="1600" height="959" loading="lazy" alt="Team members at the ground station table with laptops and tracking antennas" />
+                  <figcaption><span lang="en">At the ground station</span><span lang="it">Alla stazione di terra</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/tracking.jpg" width="1600" height="900" loading="lazy" alt="Team members following the flight on laptops under a blue tent" />
+                  <figcaption><span lang="en">Following the flight from the ground</span><span lang="it">Il volo seguito da terra</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/ground-station-laptops.jpg" width="1600" height="1246" loading="lazy" alt="Francesco holding two laptops at the ground station" />
+                  <figcaption><span lang="en">Ground station setup</span><span lang="it">Allestimento della stazione di terra</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/flight-data.jpg" width="1600" height="1114" loading="lazy" alt="Francesco and two others looking at flight data on a laptop" />
+                  <figcaption><span lang="en">Checking the flight data</span><span lang="it">Controllo dei dati di volo</span></figcaption>
+                </figure>
+                <figure>
+                  <img src="img/balloon/team.jpg" width="1600" height="1067" loading="lazy" alt="Participants and faculty pointing at the sky after the launch" />
+                  <figcaption><span lang="en">The whole team after the launch</span><span lang="it">L'intero team dopo il lancio</span></figcaption>
+                </figure>
+              </div>
+              <button class="carousel-btn prev" type="button" aria-label="Previous photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg></button>
+              <button class="carousel-btn next" type="button" aria-label="Next photo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg></button>
+              <p class="carousel-count" aria-live="polite"></p>
+            </div>
+
+            <h2 class="group-title" id="report"><span lang="en">Flight report and data</span><span lang="it">Report e dati del volo</span></h2>
+            <p class="pub-links">
+              <a href="https://www.areg.org.au/archives/211360"><span lang="en">Flight report (AREG, Project Horus)</span><span lang="it">Report del volo (AREG, Project Horus)</span></a>
+              <a href="https://grafana.v2.sondehub.org/d/D11v9324k/shssp-2023-sensor-dashboard?orgId=1&amp;from=2023-01-29T01:17:08.761Z&amp;to=2023-01-29T03:46:28.246Z&amp;timezone=browser"
+                ><span lang="en">Sensor data dashboard (SondeHub)</span><span lang="it">Dashboard dei dati dei sensori (SondeHub)</span></a
+              >
+            </p>
+
+            <h2 class="group-title" id="publication"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></h2>
+            <p>
+              <a href="publications.html#pub-iac-balloon"
+                ><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a
+              >, 74th International Astronautical Congress (IAC), Baku, 2023.
+            </p>
           </div>
-          <p class="photo-credit">
-            <span lang="en">Onboard images: </span><span lang="it">Immagini di bordo: </span
-            ><a href="https://www.areg.org.au/archives/211360">Amateur Radio Experimenters Group (AREG), Project Horus</a>
-          </p>
-
-          <!-- Photo gallery: web copies in img/balloon/ (1600 px wide), originals in materiale/balloon-originals/.
-               Add class="wide" to a <figure> to make it span both columns. -->
-          <h2 class="group-title"><span lang="en">Photos</span><span lang="it">Foto</span></h2>
-          <div class="gallery">
-            <figure class="wide">
-              <img src="img/balloon/inflation.jpg" width="1600" height="1067" loading="lazy" alt="Team inflating the stratospheric balloon on a tarp in a grass field" />
-              <figcaption><span lang="en">Inflating the balloon before launch</span><span lang="it">Gonfiaggio del pallone prima del lancio</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/ground-station.jpg" width="1600" height="959" loading="lazy" alt="Team members at the ground station table with laptops and tracking antennas" />
-              <figcaption><span lang="en">At the ground station</span><span lang="it">Alla stazione di terra</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/tracking.jpg" width="1600" height="900" loading="lazy" alt="Team members following the flight on laptops under a blue tent" />
-              <figcaption><span lang="en">Following the flight from the ground</span><span lang="it">Il volo seguito da terra</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/ground-station-laptops.jpg" width="1600" height="1246" loading="lazy" alt="Francesco holding two laptops at the ground station" />
-              <figcaption><span lang="en">Ground station setup</span><span lang="it">Allestimento della stazione di terra</span></figcaption>
-            </figure>
-            <figure>
-              <img src="img/balloon/flight-data.jpg" width="1600" height="1114" loading="lazy" alt="Francesco and two others looking at flight data on a laptop" />
-              <figcaption><span lang="en">Checking the flight data</span><span lang="it">Controllo dei dati di volo</span></figcaption>
-            </figure>
-            <figure class="wide">
-              <img src="img/balloon/team.jpg" width="1600" height="1067" loading="lazy" alt="Participants and faculty pointing at the sky after the launch" />
-              <figcaption><span lang="en">The whole team after the launch</span><span lang="it">L'intero team dopo il lancio</span></figcaption>
-            </figure>
-          </div>
-
-          <h2 class="group-title"><span lang="en">Flight report and data</span><span lang="it">Report e dati del volo</span></h2>
-          <p class="pub-links">
-            <a href="https://www.areg.org.au/archives/211360"><span lang="en">Flight report (AREG, Project Horus)</span><span lang="it">Report del volo (AREG, Project Horus)</span></a>
-            <a href="https://grafana.v2.sondehub.org/d/D11v9324k/shssp-2023-sensor-dashboard?orgId=1&amp;from=2023-01-29T01:17:08.761Z&amp;to=2023-01-29T03:46:28.246Z&amp;timezone=browser"
-              ><span lang="en">Sensor data dashboard (SondeHub)</span><span lang="it">Dashboard dei dati dei sensori (SondeHub)</span></a
-            >
-          </p>
-
-          <h2 class="group-title"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></h2>
-          <p>
-            <a href="publications.html#pub-iac-balloon"
-              ><em>A Stratospheric Balloon Program as a Space Mission Analogue: An Educational Activity at the International Space University</em></a
-            >, 74th International Astronautical Congress (IAC), Baku, 2023.
-          </p>
         </div>
       </section>
     </main>

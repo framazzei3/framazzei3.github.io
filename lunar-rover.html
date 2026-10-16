@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=25" />
+    <link rel="stylesheet" href="css/style.css?v=28" />
     <script src="js/prefs.js?v=16"></script>
-    <script src="js/main.js?v=20" defer></script>
+    <script src="js/main.js?v=21" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js.
@@ -44,7 +44,11 @@
               <li><a href="#dead-reckoning">Dead reckoning</a></li>
               <li><a href="#ekf"><span lang="en">Kalman filter</span><span lang="it">Filtro di Kalman</span></a></li>
               <li><a href="#consistency"><span lang="en">Filter consistency</span><span lang="it">Consistenza del filtro</span></a></li>
-              <li><a href="#code"><span lang="en">Code</span><span lang="it">Codice</span></a></li>            </ol>
+            </ol>
+            <p class="toc-title"><span lang="en">Links</span><span lang="it">Link</span></p>
+            <ul class="toc-links">
+              <li><a href="https://github.com/framazzei3/lunar-rover-localisation"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg><span lang="en">GitHub repository</span><span lang="it">Repository GitHub</span></a></li>
+            </ul>
           </nav>
 
           <div class="project-body">
@@ -59,16 +63,12 @@
             <p class="lead" lang="en">
               A rover on the Moon has to cross tens of kilometres between craters and ridges and know where it is along the way. In this MATLAB
               project I planned and controlled its path, then tested two onboard localisation systems: odometry alone, and odometry fused with a
-              lidar that ranges known landmarks in a Kalman filter. In 2026 I rewrote the code from scratch, fixed several errors of the original
-              version, and found that the standard extended Kalman filter is badly overconfident on this problem; the results below come from the
-              revised code.
+              lidar that ranges known landmarks in a Kalman filter.
             </p>
             <p class="lead" lang="it">
               Un rover sulla Luna deve percorrere decine di chilometri tra crateri e creste e sapere dove si trova lungo il percorso. In questo
               progetto in MATLAB ho pianificato e controllato il suo percorso, poi ho testato due sistemi di localizzazione di bordo: la sola
-              odometria, e l'odometria fusa con un lidar che misura la distanza da punti di riferimento noti in un filtro di Kalman. Nel 2026 ho
-              riscritto il codice da zero, corretto diversi errori della versione originale, e scoperto che il filtro di Kalman esteso standard è
-              fortemente troppo ottimista su questo problema; i risultati qui sotto vengono dal codice rivisto.
+              odometria, e l'odometria fusa con un lidar che misura la distanza da punti di riferimento noti in un filtro di Kalman.
             </p>
 
             <!-- Key numbers from results/summary.txt and results/monte_carlo.txt -->

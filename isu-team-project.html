@@ -10,9 +10,9 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=25" />
+    <link rel="stylesheet" href="css/style.css?v=28" />
     <script src="js/prefs.js?v=16"></script>
-    <script src="js/main.js?v=20" defer></script>
+    <script src="js/main.js?v=21" defer></script>
   </head>
 
   <!-- Header, menu and footer are added by js/main.js.
@@ -28,32 +28,133 @@
     <main id="main">
       <!-- ===================================================================
            PROJECT PAGE: ISU SHSSP 2023 team project, Journey to the Moon.
-           TODO: write the project description
+           Text from the report in files/.
            =================================================================== -->
       <section class="section">
-        <div class="container project">
-          <p class="back-link">
-            <a href="isu.html"><span lang="en">Back to ISU SHSSP 2023</span><span lang="it">Torna a ISU SHSSP 2023</span></a>
-          </p>
+        <div class="container project with-toc">
+          <!-- Contents: sticky on wide screens; js/main.js highlights the section in view -->
+          <nav class="toc" aria-label="Contents">
+            <p class="toc-title"><span lang="en">Contents</span><span lang="it">Indice</span></p>
+            <ol>
+              <li><a href="#overview"><span lang="en">Overview</span><span lang="it">Panoramica</span></a></li>
+              <li><a href="#project"><span lang="en">The project</span><span lang="it">Il progetto</span></a></li>
+              <li><a href="#roadmap"><span lang="en">Technology roadmap</span><span lang="it">Roadmap tecnologica</span></a></li>
+              <li><a href="#legal"><span lang="en">Legal framework</span><span lang="it">Quadro giuridico</span></a></li>
+              <li><a href="#report"><span lang="en">Report and presentation</span><span lang="it">Report e presentazione</span></a></li>
+              <li><a href="#publication"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></a></li>
+            </ol>
+            <p class="toc-title"><span lang="en">Links</span><span lang="it">Link</span></p>
+            <ul class="toc-links">
+              <li><a href="files/isu-shssp23-journey-to-the-moon.pdf">Report (PDF)</a></li>
+              <li><a href="files/isu-shssp23-journey-to-the-moon-executive-summary.pdf">Executive summary (PDF)</a></li>
+              <li><a href="https://youtu.be/gRo3xG6uHC0"><span lang="en">Presentation (YouTube)</span><span lang="it">Presentazione (YouTube)</span></a></li>
+              <li><a href="publications.html#pub-iac-moon"><span lang="en">IAC paper</span><span lang="it">Articolo IAC</span></a></li>
+            </ul>
+          </nav>
 
-          <h1 class="page-title">Journey to the Moon</h1>
-          <p class="section-intro" lang="en">Team project, International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
-          <p class="section-intro" lang="it">Team project, International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
+          <div class="project-body">
+            <p class="back-link">
+              <a href="isu.html"><span lang="en">Back to ISU SHSSP 2023</span><span lang="it">Torna a ISU SHSSP 2023</span></a>
+            </p>
 
-          <p class="notice" lang="en">This page is being set up: a description of the project will be added soon.</p>
-          <p class="notice" lang="it">Pagina in allestimento: presto aggiungerò una descrizione del progetto.</p>
+            <h1 class="page-title" id="overview">Journey to the Moon</h1>
+            <p class="section-intro" lang="en">Team project, International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
+            <p class="section-intro" lang="it">Team project, International Space University, Southern Hemisphere Space Studies Program 2023, Adelaide</p>
 
-          <h2 class="group-title"><span lang="en">Report and presentation</span><span lang="it">Report e presentazione</span></h2>
-          <p class="pub-links">
-            <a href="files/isu-shssp23-journey-to-the-moon.pdf"><span lang="en">Team project report (PDF, 2.8 MB)</span><span lang="it">Report del team project (PDF, 2,8 MB)</span></a>
-            <a href="https://youtu.be/gRo3xG6uHC0"><span lang="en">Final presentation (YouTube)</span><span lang="it">Presentazione finale (YouTube)</span></a>
-          </p>
+            <p class="lead" lang="en">
+              Fifty years after Apollo, several nations and companies are preparing to return to the Moon, often aiming at the same sites near the
+              south pole. Our team asked what it would take to keep humans there for good: which technologies a permanent settlement needs, and which
+              rules would let governments and private actors work side by side.
+            </p>
+            <p class="lead" lang="it">
+              Cinquant'anni dopo Apollo, diverse nazioni e aziende si preparano a tornare sulla Luna, spesso puntando agli stessi siti vicino al polo
+              sud. Il nostro team si è chiesto cosa servirebbe per restarci in modo permanente: quali tecnologie servono a un insediamento stabile, e
+              quali regole permetterebbero a governi e privati di lavorare fianco a fianco.
+            </p>
 
-          <h2 class="group-title"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></h2>
-          <p>
-            <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a>,
-            74th International Astronautical Congress (IAC), Baku, 2023.
-          </p>
+            <!-- Key numbers -->
+            <ul class="facts">
+              <li><strong>19</strong><span lang="en">participants</span><span lang="it">partecipanti</span></li>
+              <li><strong>10</strong><span lang="en">countries</span><span lang="it">paesi</span></li>
+              <li><strong>2050</strong><span lang="en">roadmap horizon</span><span lang="it">orizzonte della roadmap</span></li>
+            </ul>
+
+            <h2 class="group-title" id="project"><span lang="en">The project</span><span lang="it">Il progetto</span></h2>
+            <p lang="en">
+              The team project closes the program: participants with backgrounds from engineering and physics to medicine, business and law work
+              together on one topic, chaired by Eric Dahlstrom. We defined sustainability as the ability to maintain a continuous, long term human
+              presence on the Moon, and built the report around three parts:
+            </p>
+            <p lang="it">
+              Il team project chiude il programma: partecipanti con formazioni che vanno dall'ingegneria e la fisica alla medicina, l'economia e il
+              diritto lavorano insieme su un unico tema, coordinati da Eric Dahlstrom. Abbiamo definito la sostenibilità come la capacità di mantenere
+              una presenza umana continua e di lungo periodo sulla Luna, e abbiamo costruito il report in tre parti:
+            </p>
+            <ul lang="en">
+              <li>A review of lunar exploration, from the first Soviet probes to Artemis, the International Lunar Research Station and commercial landers</li>
+              <li>A technology roadmap for a lunar settlement</li>
+              <li>A proposal for a new legal framework for activities on the Moon</li>
+            </ul>
+            <ul lang="it">
+              <li>Una panoramica dell'esplorazione lunare, dalle prime sonde sovietiche ad Artemis, alla International Lunar Research Station e ai lander commerciali</li>
+              <li>Una roadmap tecnologica per un insediamento lunare</li>
+              <li>Una proposta di nuovo quadro giuridico per le attività sulla Luna</li>
+            </ul>
+
+            <h2 class="group-title" id="roadmap"><span lang="en">Technology roadmap</span><span lang="it">Roadmap tecnologica</span></h2>
+            <p lang="en">
+              We focused on the three needs most tied to the physical survival of a settlement, and for each one we reviewed the state of the art,
+              the gaps and our recommendations over three horizons: near term (to 2030), mid term (to 2040) and long term (to 2050).
+            </p>
+            <p lang="it">
+              Ci siamo concentrati sui tre bisogni più legati alla sopravvivenza fisica di un insediamento, e per ciascuno abbiamo analizzato lo stato
+              dell'arte, le lacune e le nostre raccomandazioni su tre orizzonti: breve termine (fino al 2030), medio termine (fino al 2040) e lungo
+              termine (fino al 2050).
+            </p>
+            <ul lang="en">
+              <li><strong>Power:</strong> solar arrays on the nearly always lit peaks near the south pole first, then fission reactors and storage for the lunar night, scaling from tens of kilowatts to megawatts</li>
+              <li><strong>In situ resource utilisation:</strong> robots and rovers to extract water ice and regolith, and additive manufacturing to build with local material</li>
+              <li><strong>Habitation:</strong> shelter from radiation, dust and temperature swings, and closed loop life support</li>
+            </ul>
+            <ul lang="it">
+              <li><strong>Energia:</strong> prima pannelli solari sui picchi quasi sempre illuminati vicino al polo sud, poi reattori a fissione e accumulo per la notte lunare, passando da decine di kilowatt a megawatt</li>
+              <li><strong>Uso delle risorse in situ:</strong> robot e rover per estrarre ghiaccio d'acqua e regolite, e manifattura additiva per costruire con materiale locale</li>
+              <li><strong>Abitazione:</strong> protezione da radiazioni, polvere e sbalzi di temperatura, e supporto vitale a ciclo chiuso</li>
+            </ul>
+
+            <h2 class="group-title" id="legal"><span lang="en">Legal framework</span><span lang="it">Quadro giuridico</span></h2>
+            <p lang="en">
+              Current space law was written for a few state actors, and the Artemis Accords are a set of guidelines led by a single country. We
+              proposed a two tier system:
+            </p>
+            <p lang="it">
+              Il diritto spaziale attuale è stato scritto per pochi attori statali, e gli Artemis Accords sono linee guida promosse da un solo paese.
+              Abbiamo proposto un sistema a due livelli:
+            </p>
+            <ul lang="en">
+              <li><strong>Lunar Activities Treaty:</strong> a binding treaty signed by states, modelled on the Antarctic Treaty System and the International Space Station agreement</li>
+              <li><strong>Committee Overseeing Lunar Activities:</strong> an international organisation where states, companies, academia, NGOs and workers' unions all have a voice, giving advice and settling disputes, drawing on the UN, the WTO and the ILO</li>
+            </ul>
+            <ul lang="it">
+              <li><strong>Lunar Activities Treaty:</strong> un trattato vincolante firmato dagli stati, sul modello del Trattato Antartico e dell'accordo della Stazione Spaziale Internazionale</li>
+              <li><strong>Committee Overseeing Lunar Activities:</strong> un'organizzazione internazionale in cui stati, aziende, università, ONG e sindacati hanno tutti voce, che dà pareri e risolve le controversie, ispirata a ONU, WTO e OIL</li>
+            </ul>
+
+            <h2 class="group-title" id="report"><span lang="en">Report and presentation</span><span lang="it">Report e presentazione</span></h2>
+            <p class="pub-links">
+              <a href="files/isu-shssp23-journey-to-the-moon.pdf"><span lang="en">Team project report (PDF, 2.8 MB)</span><span lang="it">Report del team project (PDF, 2,8 MB)</span></a>
+              <a href="files/isu-shssp23-journey-to-the-moon-executive-summary.pdf">Executive summary (PDF, 4 MB)</a>
+              <a href="https://youtu.be/gRo3xG6uHC0"><span lang="en">Final presentation (YouTube)</span><span lang="it">Presentazione finale (YouTube)</span></a>
+            </p>
+
+            <h2 class="group-title" id="publication"><span lang="en">Publication</span><span lang="it">Pubblicazione</span></h2>
+            <p lang="en">The work was then condensed into a paper presented at the International Astronautical Congress:</p>
+            <p lang="it">Il lavoro è stato poi sintetizzato in un articolo presentato all'International Astronautical Congress:</p>
+            <p>
+              <a href="publications.html#pub-iac-moon"><em>Technological and Legal Perspectives for Sustainable Human Presence on the Moon</em></a>,
+              74th International Astronautical Congress (IAC), Baku, 2023.
+            </p>
+          </div>
         </div>
       </section>
     </main>

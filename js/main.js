@@ -308,6 +308,41 @@
     window.addEventListener("resize", markActive);
   }
 
+  // Photo carousels: arrows, counter, left/right keys; swiping works without JavaScript
+  Array.prototype.forEach.call(document.querySelectorAll(".carousel"), function (carousel) {
+    var track = carousel.querySelector(".carousel-track");
+    var slides = track.children;
+    var prev = carousel.querySelector(".carousel-btn.prev");
+    var next = carousel.querySelector(".carousel-btn.next");
+    var count = carousel.querySelector(".carousel-count");
+
+    var current = function () {
+      return Math.round(track.scrollLeft / track.clientWidth);
+    };
+    var go = function (i) {
+      i = Math.max(0, Math.min(slides.length - 1, i));
+      track.scrollTo({ left: i * track.clientWidth });
+    };
+    var update = function () {
+      var i = current();
+      prev.disabled = i === 0;
+      next.disabled = i === slides.length - 1;
+      count.textContent = i + 1 + " / " + slides.length;
+    };
+
+    prev.addEventListener("click", function () { go(current() - 1); });
+    next.addEventListener("click", function () { go(current() + 1); });
+    track.addEventListener("keydown", function (event) {
+      if (event.key === "ArrowLeft") { event.preventDefault(); go(current() - 1); }
+      if (event.key === "ArrowRight") { event.preventDefault(); go(current() + 1); }
+    });
+    track.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+
+    carousel.classList.add("is-ready");
+    update();
+  });
+
   // Mobile menu
   var toggle = document.querySelector(".nav-toggle");
   var menu = document.getElementById("site-nav");
