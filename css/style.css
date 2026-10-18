@@ -436,6 +436,32 @@ ol {
   margin: 0;
 }
 
+/* Home: news list, date on the left */
+.news {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.news li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.75rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.news li:last-child {
+  border-bottom: 0;
+}
+
+.news-date {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  padding-top: 0.1rem;
+}
+
 .interests li {
   margin-bottom: 0.25rem;
 }
@@ -1048,6 +1074,17 @@ html:not(.js) .pub-filter {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--text-muted);
+}
+
+/* Projects: plain list by year, newest first */
+.year-group {
+  margin-top: 1.5rem;
+}
+
+.year-heading {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .pubs {

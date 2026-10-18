@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Every public page of the site, for search engines. Add a line here when adding a page. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://framazzei3.github.io/</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/projects.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/publications.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/teaching.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/cv.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/personal.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/aodcs.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/attitude-determination.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/balloon.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/isu-team-project.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/isu.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/lunar-rover.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/orbit-determination.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/rocketry.html</loc><lastmod>2026-10-18</lastmod></url>
+  <url><loc>https://framazzei3.github.io/space-manipulator.html</loc><lastmod>2026-10-18</lastmod></url>
+</urlset>

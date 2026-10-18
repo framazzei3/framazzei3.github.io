@@ -10,7 +10,7 @@
 
     <!-- Shared assets: bump ?v= after editing css/js so browsers skip their cached copy -->
     <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="css/style.css?v=28" />
+    <link rel="stylesheet" href="css/style.css?v=29" />
     <script src="js/prefs.js?v=16"></script>
     <script src="js/main.js?v=21" defer></script>
   </head>
@@ -35,24 +35,9 @@
           <p class="notice" lang="en">This section is being set up: the sub-projects of my PhD, with their GitHub repositories, will be added soon.</p>
           <p class="notice" lang="it">Sezione in allestimento: presto aggiungerò i sottoprogetti del dottorato, con i relativi repository GitHub.</p>
 
-          <!-- Category filter (shown only with JavaScript; js/main.js). Each data-filter matches a group id below. -->
-          <div class="pub-filter" role="group" aria-label="Filter by category">
-            <button type="button" data-filter="all" aria-pressed="true"><span lang="en">All</span><span lang="it">Tutti</span> <span class="count">10</span></button>
-            <button type="button" data-filter="cern" aria-pressed="false"><span lang="en">Robotics at CERN</span><span lang="it">Robotica al CERN</span> <span class="count">2</span></button>
-            <button type="button" data-filter="space" aria-pressed="false"><span lang="en">Space</span><span lang="it">Spazio</span> <span class="count">2</span></button>
-            <button type="button" data-filter="university" aria-pressed="false"><span lang="en">University projects</span><span lang="it">Progetti universitari</span> <span class="count">6</span></button>
-            <span class="pub-toggle-all">
-              <button type="button" data-toggle-all="open"><span lang="en">Expand all</span><span lang="it">Espandi tutto</span></button>
-              <button type="button" data-toggle-all="close"><span lang="en">Collapse all</span><span lang="it">Comprimi tutto</span></button>
-            </span>
-          </div>
-
-          <!-- ---------- Robotics at CERN ---------- -->
-          <details class="pub-group" id="cern" open>
-            <summary>
-              <h2 class="group-heading"><span lang="en">Robotics at CERN</span><span lang="it">Robotica al CERN</span></h2>
-              <span class="count">2</span>
-            </summary>
+          <!-- ---------- 2023, newest first ---------- -->
+          <section class="year-group" id="y2023">
+            <h2 class="group-heading year-heading">2023</h2>
             <div class="pubs">
               <!-- TODO: add results (mapped volume, field range, uncertainty, flights), photos and the GitHub repositories of the sub-projects -->
               <article class="pub">
@@ -71,55 +56,6 @@
                     <a href="publications.html#pub-frontiers-2026">Frontiers 2026</a>
                     <a href="publications.html#pub-eprd-day-2026">EP-R&amp;D Day 2026</a>
                     <a href="publications.html#pub-airships-2024">Airship Conference 2024</a>
-                  </p>
-                </div>
-              </article>
-
-              <article class="pub">
-                <span class="badge" style="--badge: #0033a0">CERN</span>
-                <div class="pub-body">
-                  <h3 class="pub-title"><span lang="en">Flying robots in strong magnetic fields</span><span lang="it">Robot volanti in campi magnetici intensi</span></h3>
-                  <p class="pub-venue" lang="en">CERN EP-DT<br />Internship and Junior Robotics Engineer<br />2021 to 2022</p>
-                  <p class="pub-venue" lang="it">CERN EP-DT<br />Tirocinio e Junior Robotics Engineer<br />dal 2021 al 2022</p>
-                  <p class="pub-note" lang="en">
-                    Models of the magnetic forces and torques that detector fields exert on electromagnetic actuators, validated by experiment and built into the flight control; UAV and blimp prototypes tested with motion capture, and a GNC flight-software simulator for blimps in the caverns.
-                  </p>
-                  <p class="pub-note" lang="it">
-                    Modelli delle forze e delle coppie magnetiche che i campi dei rivelatori esercitano sugli attuatori elettromagnetici, validati sperimentalmente e integrati nel controllo di volo; prototipi di drone e dirigibile testati con motion capture, e un simulatore del software di volo GNC per dirigibili nelle caverne.
-                  </p>
-                  <p class="pub-links">
-                    <a href="publications.html#pub-mechatronics-2026">Mechatronics 2026</a>
-                    <a href="publications.html#pub-robotics-2025">Robotics 2025</a>
-                    <a href="publications.html#pub-frontiers-2023">Frontiers 2023</a>
-                    <a href="publications.html#pub-erf-2022">ERF 2022</a>
-                  </p>
-                </div>
-              </article>
-            </div>
-          </details>
-
-          <!-- ---------- Space ---------- -->
-          <details class="pub-group" id="space" open>
-            <summary>
-              <h2 class="group-heading"><span lang="en">Space</span><span lang="it">Spazio</span></h2>
-              <span class="count">2</span>
-            </summary>
-            <div class="pubs">
-              <article class="pub">
-                <span class="badge" style="--badge: #1a5f9e">INAF · ESA</span>
-                <div class="pub-body">
-                  <h3 class="pub-title"><span lang="en">PLATO camera system engineering</span><span lang="it">Ingegneria di sistema delle camere di PLATO</span></h3>
-                  <p class="pub-venue" lang="en">INAF<br />Payload System Engineer<br />Mar 2023 to Oct 2023</p>
-                  <p class="pub-venue" lang="it">INAF<br />Payload System Engineer<br />da mar 2023 a ott 2023</p>
-                  <p class="pub-note" lang="en">
-                    Payload system engineering for the 26 cameras of ESA's PLATO exoplanet mission: camera requirements and MBSE model, integrated into ESA's mission model; technical documentation, requirement compliance and deviations during camera integration and calibration.
-                  </p>
-                  <p class="pub-note" lang="it">
-                    Ingegneria di sistema del payload per le 26 camere della missione PLATO dell'ESA dedicata agli esopianeti: requisiti e modello MBSE delle camere, integrato nel modello di missione dell'ESA; documentazione tecnica, conformità ai requisiti e deviazioni durante integrazione e calibrazione delle camere.
-                  </p>
-                  <p class="pub-links">
-                    <a href="publications.html#pub-spie-2024">SPIE 2024</a>
-                    <a href="publications.html#pub-plato-2025">PLATO mission 2025</a>
                   </p>
                 </div>
               </article>
@@ -143,15 +79,12 @@
                 </div>
               </article>
             </div>
-          </details>
+          </section>
 
-          <!-- ---------- University projects (Sapienza University of Rome), newest first ---------- -->
-          <!-- Reports are in materiale/Progetti Universita (not published) -->
-          <details class="pub-group" id="university" open>
-            <summary>
-              <h2 class="group-heading"><span lang="en">University projects</span><span lang="it">Progetti universitari</span></h2>
-              <span class="count">6</span>
-            </summary>
+          <!-- ---------- 2021, newest first ---------- -->
+          <!-- Reports of the university projects are in materiale/Progetti Universita (not published) -->
+          <section class="year-group" id="y2021">
+            <h2 class="group-heading year-heading">2021</h2>
             <div class="pubs">
               <article class="pub linked">
                 <img class="pub-cover" src="img/aodcs/cover.jpg" width="960" height="540" loading="lazy" alt="" />
@@ -182,10 +115,10 @@
                   <p class="pub-venue" lang="en">Final exercise<br />Space Robotic Systems<br />Mar to Jun 2021</p>
                   <p class="pub-venue" lang="it">Esercizio finale<br />Space Robotic Systems<br />da mar a giu 2021</p>
                   <p class="pub-note" lang="en">
-                    Forward and inverse kinematics (Denavit-Hartenberg), workspace, trajectory generation with quintic polynomials and parabolic blends, Newton-Euler dynamics, linear and nonlinear control, and robustness to errors in the arm model; revisited in 2026 with code that checks its own dynamic model.
+                    Forward and inverse kinematics (Denavit-Hartenberg), workspace, trajectory generation with quintic polynomials and parabolic blends, Newton-Euler dynamics, linear and nonlinear control, and robustness to errors in the arm model.
                   </p>
                   <p class="pub-note" lang="it">
-                    Cinematica diretta e inversa (Denavit-Hartenberg), spazio di lavoro, generazione di traiettorie con polinomi di quinto ordine e raccordi parabolici, dinamica di Newton-Eulero, controllo lineare e non lineare, e robustezza agli errori nel modello dei bracci; ripreso nel 2026 con un codice che verifica il proprio modello dinamico.
+                    Cinematica diretta e inversa (Denavit-Hartenberg), spazio di lavoro, generazione di traiettorie con polinomi di quinto ordine e raccordi parabolici, dinamica di Newton-Eulero, controllo lineare e non lineare, e robustezza agli errori nel modello dei bracci.
                   </p>
                   <p class="pub-links">
                     <a href="https://github.com/framazzei3/mars-manipulator-control"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>GitHub</a>
@@ -206,10 +139,10 @@
                   <p class="pub-venue" lang="en">Final exercise<br />Space Robotic Systems<br />Mar to Jun 2021</p>
                   <p class="pub-venue" lang="it">Esercizio finale<br />Space Robotic Systems<br />da mar a giu 2021</p>
                   <p class="pub-note" lang="en">
-                    Trajectory planning between craters and ridges, dead reckoning localisation from odometry with uncertainty ellipses, and a Kalman filter fusing odometry with a lidar terrain mapper; revisited in 2026 with an observability constrained, second order filter that keeps its uncertainty honest.
+                    Trajectory planning between craters and ridges, dead reckoning localisation from odometry with uncertainty ellipses, and a Kalman filter fusing odometry with a lidar terrain mapper.
                   </p>
                   <p class="pub-note" lang="it">
-                    Pianificazione della traiettoria evitando crateri e creste, localizzazione con sola odometria (dead reckoning) ed ellissi di incertezza, e un filtro di Kalman che fonde odometria e un mappatore lidar del terreno; ripreso nel 2026 con un filtro del secondo ordine con vincolo di osservabilità, che mantiene onesta la sua incertezza.
+                    Pianificazione della traiettoria evitando crateri e creste, localizzazione con sola odometria (dead reckoning) ed ellissi di incertezza, e un filtro di Kalman che fonde odometria e un mappatore lidar del terreno.
                   </p>
                   <p class="pub-links">
                     <a href="https://github.com/framazzei3/lunar-rover-localisation"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg>GitHub</a>
@@ -219,7 +152,13 @@
                   </p>
                 </div>
               </article>
+            </div>
+          </section>
 
+          <!-- ---------- 2020, newest first ---------- -->
+          <section class="year-group" id="y2020">
+            <h2 class="group-heading year-heading">2020</h2>
+            <div class="pubs">
               <article class="pub linked">
                 <img class="pub-cover" src="img/attitude-determination/cover.svg" width="1600" height="900" loading="lazy" alt="" />
                 <span class="badge" style="--badge: #0b6e8a">Space Missions and Systems</span>
@@ -261,7 +200,13 @@
                   </p>
                 </div>
               </article>
+            </div>
+          </section>
 
+          <!-- ---------- 2019, newest first ---------- -->
+          <section class="year-group" id="y2019">
+            <h2 class="group-heading year-heading">2019</h2>
+            <div class="pubs">
               <article class="pub linked">
                 <img class="pub-cover" src="img/rocketry/cover.jpg" width="568" height="320" loading="lazy" alt="" />
                 <span class="badge" style="--badge: #c0392b">Space Propulsion Lab</span>
@@ -282,7 +227,7 @@
                 </div>
               </article>
             </div>
-          </details>
+          </section>
         </div>
       </section>
     </main>
