@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Space manipulator · Francesco Mazzei</title>
-    <meta name="description" content="Kinematics, trajectory generation, dynamics and control of a three-joint arm modelled on the InSight Instrument Deployment Arm, Space Robotic Systems, Sapienza University of Rome, 2021." />
+    <meta name="description" content="Kinematics, trajectory generation, dynamics and control of a three-joint arm modelled on the InSight Instrument Deployment Arm, Space Robotic Systems, Sapienza University of Rome, 2021, revisited in 2026." />
     <meta name="author" content="Francesco Mazzei" />
     <meta name="color-scheme" content="light dark" />
 
@@ -27,9 +27,10 @@
 
     <main id="main">
       <!-- ===================================================================
-           PROJECT PAGE: space manipulator, Space Robotic Systems 2020/2021.
-           Figures in img/space-manipulator/ (taken from the report), report in files/.
-           Originals in D:\UNIVERSITA'\Space Robotics systems\02 Esame Manipolatore\Consegna (not published).
+           PROJECT PAGE: space manipulator, Space Robotic Systems 2020/2021, revisited in 2026.
+           Figures in img/space-manipulator/, produced by the rewritten code in
+           E:\Archivio\03_Paper_e_Report\Mars_Manipulator\mars-manipulator-control (main.m);
+           numbers from its results/summary.txt. The 2021 report stays in files/.
            TODO: review the Italian translation
            =================================================================== -->
       <section class="section">
@@ -44,11 +45,12 @@
               <li><a href="#trajectories"><span lang="en">Trajectories</span><span lang="it">Traiettorie</span></a></li>
               <li><a href="#dynamics"><span lang="en">Dynamics</span><span lang="it">Dinamica</span></a></li>
               <li><a href="#control"><span lang="en">Control</span><span lang="it">Controllo</span></a></li>
-              <li><a href="#report">Report</a></li>
+              <li><a href="#code"><span lang="en">Code</span><span lang="it">Codice</span></a></li>
             </ol>
             <p class="toc-title"><span lang="en">Links</span><span lang="it">Link</span></p>
             <ul class="toc-links">
-              <li><a href="files/space-manipulator-2021.pdf"><span lang="en">Final report (PDF)</span><span lang="it">Report finale (PDF)</span></a></li>
+              <li><a href="https://github.com/framazzei3/mars-manipulator-control"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg><span lang="en">GitHub repository</span><span lang="it">Repository GitHub</span></a></li>
+              <li><a href="files/space-manipulator-2021.pdf"><span lang="en">2021 report (PDF, in Italian)</span><span lang="it">Report 2021 (PDF)</span></a></li>
             </ul>
           </nav>
 
@@ -60,100 +62,98 @@
             <h1 class="page-title" id="overview">
               <span lang="en">Space manipulator: kinematics, dynamics and control</span><span lang="it">Manipolatore spaziale: cinematica, dinamica e controllo</span>
             </h1>
-            <p class="section-intro" lang="en">Final exercise, Space Robotic Systems, Sapienza University of Rome, 2020/2021</p>
-            <p class="section-intro" lang="it">Esercizio finale, Space Robotic Systems, Sapienza Università di Roma, 2020/2021</p>
+            <p class="section-intro" lang="en">Final exercise, Space Robotic Systems, Sapienza University of Rome, 2020/2021, revisited in 2026</p>
+            <p class="section-intro" lang="it">Esercizio finale, Space Robotic Systems, Sapienza Università di Roma, 2020/2021, ripreso nel 2026</p>
 
             <p class="lead" lang="en">
               A simplified model of the Instrument Deployment Arm of NASA's InSight lander, which placed the seismometer and the heat probe on the
-              surface of Mars. In MATLAB, with the Robotics Toolbox, I took the arm through the full chain of manipulator design: kinematics,
-              workspace, trajectory generation, dynamics, and linear and nonlinear control, ending with a test of the controller on a wrong model of
-              the arm.
+              surface of Mars. In MATLAB I took the arm through the full chain of manipulator design: kinematics, workspace, trajectory generation,
+              dynamics, and linear and nonlinear control, ending with a test of the controller on a wrong model of the arm.
             </p>
             <p class="lead" lang="it">
               Un modello semplificato dell'Instrument Deployment Arm del lander InSight della NASA, che ha posato il sismometro e la sonda termica
-              sulla superficie di Marte. In MATLAB, con il Robotics Toolbox, ho portato il braccio attraverso l'intera catena di progetto di un
-              manipolatore: cinematica, spazio di lavoro, generazione delle traiettorie, dinamica, e controllo lineare e non lineare, concludendo con
-              una prova del controllore su un modello errato del braccio.
+              sulla superficie di Marte. In MATLAB ho portato il braccio attraverso l'intera catena di progetto di un manipolatore: cinematica,
+              spazio di lavoro, generazione delle traiettorie, dinamica, e controllo lineare e non lineare, concludendo con una prova del
+              controllore su un modello errato del braccio.
             </p>
 
-            <!-- Key numbers from the report -->
+            <!-- Key numbers from results/summary.txt of the repository -->
             <ul class="facts">
               <li><strong>3</strong><span lang="en">revolute joints</span><span lang="it">giunti rotoidali</span></li>
               <li><strong>10 s</strong><span lang="en">pick and place manoeuvre</span><span lang="it">manovra di presa e rilascio</span></li>
-              <li><strong>4</strong><span lang="en">trajectory profiles compared</span><span lang="it">profili di traiettoria confrontati</span></li>
-              <li><strong>&lt; 1 s</strong><span lang="en">to cancel an initial error of 15°</span><span lang="it">per annullare un errore iniziale di 15°</span></li>
+              <li><strong>0.3 s</strong><span lang="en">to cancel an initial error of 15°</span><span lang="it">per annullare un errore iniziale di 15°</span></li>
+              <li><strong>0.03°</strong><span lang="en">residual error with a wrong model</span><span lang="it">errore residuo con un modello errato</span></li>
             </ul>
 
             <h2 class="group-title" id="arm"><span lang="en">The arm</span><span lang="it">Il braccio</span></h2>
             <p lang="en">
               The arm has three revolute joints (shoulder azimuth, shoulder elevation and elbow) and two links of 1 m and 0.8 m, modelled as hollow
-              cylinders in a carbon fibre and titanium mix. Each joint is driven by a DC motor through a gearbox with a 125:1 or 100:1 ratio, with its
-              own torque and angle limits. The shoulder sits 1 m above the ground on the lander deck, and the task is to pick a tool from the deck and
-              place it on the Martian surface.
+              cylinders in a carbon fibre and titanium mix, weighing 0.87 kg and 0.70 kg. Each joint is driven by a DC motor through a gearbox with a
+              125:1 or 100:1 ratio, with viscous and Coulomb friction and its own torque and angle limits. The shoulder sits 1 m above the ground on
+              the lander deck, and the task is to pick an instrument from the deck and place it on the Martian surface in 10 s.
             </p>
             <p lang="it">
               Il braccio ha tre giunti rotoidali (azimut della spalla, elevazione della spalla e gomito) e due bracci da 1 m e 0,8 m, modellati come
-              cilindri cavi in una miscela di fibra di carbonio e titanio. Ogni giunto è azionato da un motore in corrente continua tramite un
-              riduttore con rapporto 125:1 o 100:1, con i propri limiti di coppia e di angolo. La spalla si trova a 1 m da terra sul ponte del lander,
-              e il compito è prendere uno strumento dal ponte e posarlo sulla superficie di Marte.
+              cilindri cavi in una miscela di fibra di carbonio e titanio, da 0,87 kg e 0,70 kg. Ogni giunto è azionato da un motore in corrente
+              continua tramite un riduttore con rapporto 125:1 o 100:1, con attrito viscoso e di Coulomb e con i propri limiti di coppia e di angolo.
+              La spalla si trova a 1 m da terra sul ponte del lander, e il compito è prendere uno strumento dal ponte e posarlo sulla superficie di
+              Marte in 10 s.
             </p>
             <div class="gallery">
               <figure class="wide diagram">
-                <img src="img/space-manipulator/arm-model.jpg" width="830" height="630" loading="lazy" alt="3D model of the three-joint arm on the lander deck, above a Martian ground texture" />
-                <figcaption><span lang="en">The arm modelled with the Robotics Toolbox</span><span lang="it">Il braccio modellato con il Robotics Toolbox</span></figcaption>
+                <img src="img/space-manipulator/arm-pick-and-place.png" width="1600" height="805" loading="lazy" alt="The arm drawn at the pick position on the deck, at the two via points and at the place position on the ground, with the tool path through the via points and the direct one" />
+                <figcaption>
+                  <span lang="en">The arm at the pick position, at the two via points and at the place position, with the tool path</span
+                  ><span lang="it">Il braccio nella posizione di presa, nei due punti di via e nella posizione di rilascio, con il percorso dell'utensile</span>
+                </figcaption>
               </figure>
             </div>
 
             <h2 class="group-title" id="kinematics"><span lang="en">Kinematics and workspace</span><span lang="it">Cinematica e spazio di lavoro</span></h2>
             <p lang="en">
               I described the arm with Denavit-Hartenberg parameters and derived the transformation from the base to the tool. The inverse kinematics
-              is solved in closed form with an algebraic method: it gives four solutions, two of which violate the joint limits. Of the remaining two
-              I chose elbow up, because elbow down would drive the elbow through the lander deck when picking the tool. Running the inverse
-              kinematics over a grid of points gives the section of the workspace 35 cm above the ground: a ring, with a small notch where the azimuth
-              joint reaches its limit.
+              is solved in closed form with an algebraic method and gives four solutions; I chose the one with the elbow up, above the line from the
+              shoulder to the tool, which keeps the arm clear of the lander deck when picking. Running the inverse kinematics over a grid of points
+              gives the section of the workspace 35 cm above the ground: a ring around the shoulder. The azimuth joint cannot turn between 150° and
+              −135°, yet that wedge is almost all reachable, because the points are below the shoulder and the arm can reach them backwards, with the
+              elevation below −90°. Only two small notches are lost.
             </p>
             <p lang="it">
               Ho descritto il braccio con i parametri di Denavit-Hartenberg e ricavato la trasformazione dalla base all'utensile. La cinematica
-              inversa è risolta in forma chiusa con un metodo algebrico: dà quattro soluzioni, due delle quali violano i limiti dei giunti. Delle due
-              rimanenti ho scelto il gomito alto, perché con il gomito basso il braccio attraverserebbe il ponte del lander al momento della presa.
-              Applicando la cinematica inversa su una griglia di punti si ottiene la sezione dello spazio di lavoro a 35 cm da terra: una corona
-              circolare, con una piccola tacca dove il giunto di azimut raggiunge il suo limite.
+              inversa è risolta in forma chiusa con un metodo algebrico e dà quattro soluzioni; ho scelto quella con il gomito alto, sopra la retta
+              tra spalla e utensile, che tiene il braccio lontano dal ponte del lander al momento della presa. Applicando la cinematica inversa su
+              una griglia di punti si ottiene la sezione dello spazio di lavoro a 35 cm da terra: una corona circolare attorno alla spalla. Il giunto
+              di azimut non può ruotare tra 150° e −135°, eppure quel settore è quasi tutto raggiungibile, perché i punti sono sotto la spalla e il
+              braccio può raggiungerli all'indietro, con l'elevazione sotto i −90°. Si perdono solo due piccole tacche.
             </p>
             <div class="gallery">
-              <figure class="diagram">
-                <img src="img/space-manipulator/pick.jpg" width="629" height="497" loading="lazy" alt="The arm reaching the tool on the lander deck in the elbow up configuration" />
-                <figcaption><span lang="en">Pick: tool on the lander deck</span><span lang="it">Presa: strumento sul ponte del lander</span></figcaption>
-              </figure>
-              <figure class="diagram">
-                <img src="img/space-manipulator/place.jpg" width="629" height="517" loading="lazy" alt="The arm lowering the tool onto the Martian ground" />
-                <figcaption><span lang="en">Place: tool on the ground</span><span lang="it">Rilascio: strumento sul terreno</span></figcaption>
-              </figure>
-              <figure class="wide diagram">
-                <img src="img/space-manipulator/workspace.png" width="762" height="598" loading="lazy" alt="Planar section of the workspace: a red ring centred near the base, with a small notch" />
+              <figure class="diagram" style="width: 100%; max-width: 460px; justify-self: center">
+                <img src="img/space-manipulator/workspace.png" width="1265" height="1270" loading="lazy" alt="Workspace section 35 cm above the ground: a red ring around the shoulder axis with two small notches, and the place position inside it" />
                 <figcaption><span lang="en">Workspace section 35 cm above the ground</span><span lang="it">Sezione dello spazio di lavoro a 35 cm da terra</span></figcaption>
               </figure>
             </div>
 
             <h2 class="group-title" id="trajectories"><span lang="en">Trajectory generation</span><span lang="it">Generazione delle traiettorie</span></h2>
             <p lang="en">
-              The tool moves from the deck to the ground in 10 s, updated at 10 Hz. I generated the joint trajectories in four ways: quintic
-              polynomials and linear functions with parabolic blends, each with and without via points. The two via points make the manoeuvre safe:
-              first the tool is lifted 40 cm straight up from the deck, then the arm rotates in azimuth, and only then it lowers the tool to the
-              ground. Quintic polynomials give the smoothest motion, while parabolic blends pass close to, but not exactly through, the via points.
+              I generated the joint trajectories in four ways: fifth order polynomials and linear functions with parabolic blends, each with and
+              without via points. The two via points make the manoeuvre safe: first the tool is lifted 40 cm straight up from the deck, then the arm
+              turns in azimuth with its shape frozen, and only then it lowers the tool to the ground. The polynomials stop at each via point and give
+              the smoothest motion; the parabolic blends do not stop and pass near, but not exactly through, the via points, with steps in the
+              acceleration.
             </p>
             <p lang="it">
-              L'utensile passa dal ponte al terreno in 10 s, con aggiornamento a 10 Hz. Ho generato le traiettorie dei giunti in quattro modi:
-              polinomi di quinto ordine e funzioni lineari con raccordi parabolici, ciascuno con e senza punti di via. I due punti di via rendono
-              sicura la manovra: prima l'utensile viene sollevato di 40 cm in verticale dal ponte, poi il braccio ruota in azimut, e solo dopo abbassa
-              l'utensile sul terreno. I polinomi di quinto ordine danno il moto più regolare, mentre i raccordi parabolici passano vicino ai punti di
-              via ma non esattamente su di essi.
+              Ho generato le traiettorie dei giunti in quattro modi: polinomi di quinto ordine e funzioni lineari con raccordi parabolici, ciascuno
+              con e senza punti di via. I due punti di via rendono sicura la manovra: prima l'utensile viene sollevato di 40 cm in verticale dal
+              ponte, poi il braccio ruota in azimut mantenendo la sua forma, e solo dopo abbassa l'utensile sul terreno. I polinomi si fermano in
+              ogni punto di via e danno il moto più regolare; i raccordi parabolici non si fermano e passano vicino ai punti di via ma non
+              esattamente su di essi, con gradini nell'accelerazione.
             </p>
             <div class="gallery">
               <figure class="wide diagram">
-                <img src="img/space-manipulator/trajectory-quintic-via-points.png" width="828" height="593" loading="lazy" alt="Joint angles, velocities and accelerations over 10 seconds for the quintic polynomial trajectory with via points" />
+                <img src="img/space-manipulator/trajectories.png" width="1600" height="937" loading="lazy" alt="Joint angles, rates and accelerations over 10 seconds for the four trajectories, one column each" />
                 <figcaption>
-                  <span lang="en">Joint angles, velocities and accelerations with quintic polynomials through the via points</span
-                  ><span lang="it">Angoli, velocità e accelerazioni dei giunti con polinomi di quinto ordine attraverso i punti di via</span>
+                  <span lang="en">Joint angles, rates and accelerations of the four trajectories</span
+                  ><span lang="it">Angoli, velocità e accelerazioni dei giunti per le quattro traiettorie</span>
                 </figcaption>
               </figure>
             </div>
@@ -162,69 +162,98 @@
             <p lang="en">
               I derived the equations of motion symbolically with the iterative Newton-Euler algorithm, in the form τ = M(θ)θ̈ + V(θ, θ̇) + G(θ), and
               rewrote them in configuration space with separate Coriolis and centrifugal terms. Viscous and Coulomb friction of the motors, reflected
-              through the gearboxes, complete the model, and the motor inertias are added to the mass matrix. From each trajectory I then computed the
-              torques the actuators must deliver, saturated at their maximum values.
+              through the gearboxes, complete the model, and the motor inertias are added to the mass matrix. In the rewrite I checked the equations
+              against an independent Lagrangian model and against the conservation of energy of the free arm. The torques needed to follow the
+              trajectories stay far below the motor limits, at most 12 N m on the azimuth, where they are mostly friction: through a 125:1 gearbox
+              the motor's viscous friction becomes 12.8 N m s/rad at the joint.
             </p>
             <p lang="it">
               Ho ricavato simbolicamente le equazioni del moto con l'algoritmo iterativo di Newton-Eulero, nella forma τ = M(θ)θ̈ + V(θ, θ̇) + G(θ), e
               le ho riscritte nello spazio delle configurazioni con termini di Coriolis e centrifughi separati. L'attrito viscoso e di Coulomb dei
-              motori, riportato attraverso i riduttori, completa il modello, e le inerzie dei motori sono aggiunte alla matrice di massa. Da ogni
-              traiettoria ho poi calcolato le coppie che gli attuatori devono fornire, saturate ai loro valori massimi.
+              motori, riportato attraverso i riduttori, completa il modello, e le inerzie dei motori sono aggiunte alla matrice di massa. Nella
+              riscrittura ho verificato le equazioni con un modello lagrangiano indipendente e con la conservazione dell'energia del braccio libero.
+              Le coppie necessarie a seguire le traiettorie restano molto sotto i limiti dei motori, al massimo 12 N m sull'azimut, dove sono
+              soprattutto attrito: attraverso un riduttore 125:1 l'attrito viscoso del motore diventa 12,8 N m s/rad al giunto.
             </p>
+            <div class="gallery">
+              <figure class="wide diagram" style="width: 100%; max-width: 720px; justify-self: center">
+                <img src="img/space-manipulator/open-loop-torques.png" width="1600" height="1214" loading="lazy" alt="Torques of the three joints over 10 seconds for the four trajectories, all below 12 newton metres" />
+                <figcaption><span lang="en">Joint torques to follow the four trajectories</span><span lang="it">Coppie ai giunti per seguire le quattro traiettorie</span></figcaption>
+              </figure>
+            </div>
 
             <h2 class="group-title" id="control"><span lang="en">Control</span><span lang="it">Controllo</span></h2>
             <p lang="en">
-              Both controllers start from a wrong initial pose, about 15° away from the planned trajectory, and use a partitioned trajectory
-              following law with gains chosen for critical damping and a closed loop natural frequency below half the lowest structural resonance.
+              Both controllers start from a wrong initial pose, 15° away from the planned trajectory on two joints, and use a partitioned trajectory
+              following law with gains chosen for critical damping. The motors saturate for the first 0.15 s, and every controller cancels the error
+              in about 0.3 s.
             </p>
             <p lang="it">
-              Entrambi i controllori partono da una posa iniziale errata, a circa 15° dalla traiettoria pianificata, e usano una legge partizionata a
-              inseguimento di traiettoria con guadagni scelti per lo smorzamento critico e una frequenza naturale ad anello chiuso inferiore a metà
-              della risonanza strutturale più bassa.
+              Entrambi i controllori partono da una posa iniziale errata, a 15° dalla traiettoria pianificata su due giunti, e usano una legge
+              partizionata a inseguimento di traiettoria con guadagni scelti per lo smorzamento critico. I motori saturano per i primi 0,15 s, e ogni
+              controllore annulla l'errore in circa 0,3 s.
             </p>
             <ul lang="en">
               <li>
                 <strong>Linear control.</strong> Each joint is treated as an independent second order system with constant effective inertia,
-                dominated by the motor through the gearbox. The error is cancelled in under a second and settles at about 0.1°.
+                dominated by the motor through the gearbox. The error settles at 0.13° on the elevation joint: that is gravity, which the law does not
+                compensate, and it matches the value predicted from the gains, 0.128°.
               </li>
               <li>
                 <strong>Nonlinear control.</strong> A computed torque law uses the full model, M(θ), V, G and friction, to linearise and decouple the
-                joints. The error is cancelled just as fast and settles at the level of numerical precision.
+                joints. The error drops below a millionth of a degree.
               </li>
               <li>
                 <strong>Wrong model.</strong> Running the nonlinear controller with link lengths of 1.15 m and 0.73 m instead of 1 m and 0.8 m, the
-                decoupling is no longer exact, but the arm still follows the trajectory with a residual error of about 0.02°, better than the
+                decoupling is no longer exact, but the arm still follows the trajectory with a residual error of 0.03°, four times better than the
                 linear controller with a perfect model.
               </li>
             </ul>
             <ul lang="it">
               <li>
                 <strong>Controllo lineare.</strong> Ogni giunto è trattato come un sistema del secondo ordine indipendente con inerzia effettiva
-                costante, dominata dal motore attraverso il riduttore. L'errore si annulla in meno di un secondo e si stabilizza a circa 0,1°.
+                costante, dominata dal motore attraverso il riduttore. L'errore si stabilizza a 0,13° sul giunto di elevazione: è la gravità, che la
+                legge non compensa, e coincide con il valore previsto dai guadagni, 0,128°.
               </li>
               <li>
                 <strong>Controllo non lineare.</strong> Una legge a coppia calcolata usa il modello completo, M(θ), V, G e attrito, per linearizzare e
-                disaccoppiare i giunti. L'errore si annulla altrettanto rapidamente e si stabilizza al livello della precisione numerica.
+                disaccoppiare i giunti. L'errore scende sotto il milionesimo di grado.
               </li>
               <li>
                 <strong>Modello errato.</strong> Usando il controllore non lineare con bracci di 1,15 m e 0,73 m invece di 1 m e 0,8 m, il
-                disaccoppiamento non è più esatto, ma il braccio segue comunque la traiettoria con un errore residuo di circa 0,02°, migliore del
-                controllore lineare con modello perfetto.
+                disaccoppiamento non è più esatto, ma il braccio segue comunque la traiettoria con un errore residuo di 0,03°, quattro volte migliore
+                del controllore lineare con modello perfetto.
               </li>
             </ul>
             <div class="gallery">
               <figure class="wide diagram">
-                <img src="img/space-manipulator/nonlinear-control.png" width="1357" height="452" loading="lazy" alt="Joint torques (left) and joint angle and rate errors (right) going to zero within one second under nonlinear control" />
+                <img src="img/space-manipulator/control-errors.png" width="1600" height="620" loading="lazy" alt="Left: norm of the joint angle error on a log scale, dropping from 20 degrees within 0.3 seconds and settling at 0.1 degrees for linear control, 0.01 for the wrong model and below a millionth for computed torque. Right: joint errors after the transient for linear control and the wrong model" />
                 <figcaption>
-                  <span lang="en">Nonlinear control: joint torques (left) and errors (right), cancelled within a second</span
-                  ><span lang="it">Controllo non lineare: coppie dei giunti (sinistra) ed errori (destra), annullati entro un secondo</span>
+                  <span lang="en">Joint angle errors of the three controllers, on a log scale (left) and after the transient (right)</span
+                  ><span lang="it">Errori sugli angoli dei giunti dei tre controllori, in scala logaritmica (sinistra) e dopo il transitorio (destra)</span>
+                </figcaption>
+              </figure>
+              <figure class="wide diagram">
+                <img src="img/space-manipulator/control-torques.png" width="1600" height="943" loading="lazy" alt="Joint torques of the three controllers: saturated at the motor limits in the first 0.15 seconds, then on top of the nominal open loop torques" />
+                <figcaption>
+                  <span lang="en">Joint torques of the three controllers: the first second (left) and the rest of the manoeuvre (right)</span
+                  ><span lang="it">Coppie ai giunti dei tre controllori: il primo secondo (sinistra) e il resto della manovra (destra)</span>
                 </figcaption>
               </figure>
             </div>
 
-            <h2 class="group-title" id="report">Report</h2>
+            <h2 class="group-title" id="code"><span lang="en">Code</span><span lang="it">Codice</span></h2>
+            <p lang="en">
+              The MATLAB code is on GitHub: it needs base MATLAB only, checks its own model, and produces every figure on this page. The original 2021
+              report, in Italian, is also available.
+            </p>
+            <p lang="it">
+              Il codice MATLAB è su GitHub: richiede solo MATLAB di base, verifica il proprio modello e produce tutte le figure di questa pagina. È
+              disponibile anche il report originale del 2021.
+            </p>
             <p class="pub-links">
-              <a href="files/space-manipulator-2021.pdf"><span lang="en">Final report (PDF, in Italian)</span><span lang="it">Report finale (PDF)</span></a>
+              <a href="https://github.com/framazzei3/mars-manipulator-control"><svg class="icon" aria-hidden="true"><use href="#i-github" /></svg><span lang="en">GitHub repository</span><span lang="it">Repository GitHub</span></a>
+              <a href="files/space-manipulator-2021.pdf"><span lang="en">2021 report (PDF, in Italian)</span><span lang="it">Report 2021 (PDF)</span></a>
             </p>
           </div>
         </div>
