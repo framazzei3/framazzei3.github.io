@@ -1102,13 +1102,16 @@ html:not(.js) .pub-filter {
   border: 1px solid var(--border);
   border-radius: 8px;
   transition:
-    box-shadow 0.15s ease,
-    border-color 0.15s ease;
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
+/* Card lifts slightly on hover */
 .pub:hover {
   border-color: var(--accent);
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-4px);
 }
 
 .pub:target {
@@ -1574,6 +1577,10 @@ th {
   *::before,
   *::after {
     transition: none !important;
+  }
+
+  .pub:hover {
+    transform: none;
   }
 }
 
